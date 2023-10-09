@@ -1,0 +1,5 @@
+com\campusdual\springontimize\model\core\service\UserService.class
+com\campusdual\springontimize\model\core\service\ProductService.class
+com\campusdual\springontimize\model\core\dao\UserRoleDao.class
+com\campusdual\springontimize\model\core\dao\UserDao.class
+com\campusdual\springontimize\model\core\dao\ProductDao.class
