@@ -1,0 +1,40 @@
+<h1 style="text-align: center;">ALL IMPORTS - HOME PAGE</h1>
+<p></p>
+<a href="main/products">
+    <o-image attr="image" data="http://placekitten.com/100" auto-fit="true" enabled="false" read-only="false"
+        show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+    </o-image>
+</a>
+<p></p>
+<a href="main/jointpurchasing">
+    <o-image attr="image" data="http://placekitten.com/100" auto-fit="true" enabled="false" read-only="false"
+        show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+    </o-image>
+</a>
+<o-grid #grid attr="grid" title="Grid" service="products" entity="product" columns="id;es_name"
+    keys="id" cols="4" query-rows="8" show-page-size="true" page-size-options="4;8;16"
+    orderable="true" quick-filter="true" grid-item-height="1:3" sortable-columns="es_name"
+    sort-column="" controls="true" refresh-button="true" insert-button="false"
+    pagination-controls="true" gutter-size="1px" fixed-header="yes"  [ngStyle]="{'height':'600px'}" >
+    <o-grid-item *ngFor="let list of grid.dataArray">
+      <o-column layout-padding class="container-item">
+        <img [src]="list.thumbnailUrl" style="margin-top:8px">
+        <h4>{{ list.es_name }}</h4>
+        <div class="phone">
+          <mat-icon>phone</mat-icon> <span> {{ list.phone }} </span>
+        </div>
+        <div class="email">
+          <mat-icon>email</mat-icon> <span>{{ list.email }} </span>
+        </div>
+        <div class="domain">
+          <mat-icon>domain</mat-icon> <span> {{ list.companyname }} </span>
+        </div>
+        <div class="website">
+          <mat-icon>website</mat-icon> <span> {{ list.website }} </span>
+        </div>
+        <div class="body">
+          {{list.body}}
+        </div>
+      </o-column>
+    </o-grid-item>
+  </o-grid>
