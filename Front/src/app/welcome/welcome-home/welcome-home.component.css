@@ -11,54 +11,54 @@ body {
     padding: 0;
     margin: 0;
   }
-
+  
   .nav-list li {
     margin-bottom: 10px;
   }
-
+  
   .nav-list a {
     text-decoration: none;
     color: white;
   }
-
+  
   .content {
     flex: 1;
     padding: 20px;
   }
-
-
+  
+  
   h1 {
     text-align: center;
   }
-
+  
   .alimentacionsegura {
     background-color: #0b0b0b; /* Fondo gris medio para las secciones */
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
   }
-
+  
   h2{
     margin-left: 5%;
   }
-
+  
   .image-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-
+  
   .image-container a {
     text-decoration: none;
   }
-
+  
   .image-container o-image {
     width: calc(33.33% - 5px);
     height: calc(80.33% - 5px);
     display: inline-block;
     margin: 2px;
   }
-
+  
   .navbar {
     background-color: #010000; /* Fondo gris oscuro para la barra de navegación */
     display: flex;
@@ -66,35 +66,35 @@ body {
     align-items: center;
     padding: 10px;
   }
-
+  
   .left {
     display: flex;
     align-items: center;
   }
-
+  
   .logo-container {
     display: flex;
     align-items: center;
   }
-
+  
   .loguito {
     width: 12%;
     height: auto;
     margin-right: 20px;
     margin-left: 20px
   }
-
+  
   .logo-text {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 30px;
     color: orange; /* Color de texto para el logotipo */
   }
-
+  
   .right {
     display: flex;
     align-items: center;
   }
-
+  
   .login {
     text-decoration: none;
     color: orange;
@@ -103,12 +103,12 @@ body {
     margin-right: 30px;
     font-size: 30px;
   }
-
+  
   .login mat-icon {
     margin-left: 5px;
     color: orange;
   }
-
+  
   .logicon{
     font-size: 50px;
     margin-right: 30px;
@@ -116,3 +116,13 @@ body {
     align-items: center;
     text-decoration: none;
   }
+.grid-container {
+  background-color: #000; /* Color de fondo negro */
+  padding: 20px; /* Espacio interior */
+  margin-top: 20px;
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+.content{
+    background-color: #333;
+}
