@@ -1,40 +1,69 @@
-<h1 style="text-align: center;">ALL IMPORTS - HOME PAGE</h1>
-<p></p>
-<a href="main/products?seccion=1">
-    <o-image attr="image" data="http://placekitten.com/100" auto-fit="true" enabled="false" read-only="false"
-        show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
-    </o-image>
-</a>
-<p></p>
-<a href="main/jointpurchasing">
-    <o-image attr="image" data="http://placekitten.com/100" auto-fit="true" enabled="false" read-only="false"
-        show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
-    </o-image>
-</a>
-<o-grid #grid attr="grid" title="Grid" service="products" entity="featuredproduct" columns="id;es_name"
-    keys="id" cols="4" query-rows="8" show-page-size="true" page-size-options="4;8;16"
-    orderable="true" quick-filter="false" grid-item-height="1:3" sortable-columns="es_name"
-    sort-column="" controls="true" refresh-button="true" insert-button="false"
-    pagination-controls="true" gutter-size="1px" fixed-header="yes"  [ngStyle]="{'height':'600px'}" >
-    <o-grid-item *ngFor="let list of grid.dataArray">
-      <o-column layout-padding class="container-item">
-        <img [src]="list.thumbnailUrl" style="margin-top:8px">
-        <h4>{{ list.es_name }}</h4>
-        <div class="phone">
-          <mat-icon>phone</mat-icon> <span> {{ list.phone }} </span>
-        </div>
-        <div class="email">
-          <mat-icon>email</mat-icon> <span>{{ list.email }} </span>
-        </div>
-        <div class="domain">
-          <mat-icon>domain</mat-icon> <span> {{ list.companyname }} </span>
-        </div>
-        <div class="website">
-          <mat-icon>website</mat-icon> <span> {{ list.website }} </span>
-        </div>
-        <div class="body">
-          {{list.body}}
-        </div>
-      </o-column>
-    </o-grid-item>
-  </o-grid>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/welcome-home.component.css">
+  <title>ALL IMPORTS - HOME PAGE</title>
+</head>
+<body>
+  <nav class="navbar" style="height: 6%;">
+    <div class="left">
+      <div class="logo-container">
+        <img src="./assets/images/logo_naranja.png" class="loguito" alt="All imports logo" />
+        <span class="logo-text">ALL IMPORTS</span>
+      </div>
+    </div>
+    <div class="right">
+      <a class="login" href="#">
+       <mat-icon class="logicon">login</mat-icon>
+      </a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="alimentacionsegura">
+      <h2>Alimentación segura</h2>
+      <div class="image-container">
+        <a href="main/products">
+          <o-image attr="image" data="https://i.pinimg.com/564x/92/a6/54/92a654a2bc70021f463ac16ff32f67b8.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
+          <o-image attr="image" data="https://img.freepik.com/foto-gratis/concepto-desayuno-saludable-plato_23-2147672408.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
+          <o-image attr="image" data="https://img.freepik.com/vector-gratis/comida-vegana-hojas-verdes-etiqueta-o-pegatina_1017-26212.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
+          
+        </a>
+      </div>
+    </div>
+    <div class="alimentacionsegura">
+      <h2>Alimentación segura</h2>
+      <div class="image-container">
+        <a href="main/products">
+          <o-image attr="image" data="https://www.solvium-holding.ag/fileadmin/user_upload/asset-management/lkw-in-containerhafen-bei-sonne.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" >
+          </o-image>
+          <o-image attr="image" data="https://thumb.pccomponentes.com/w-530-530/articles/1060/10604769/1407-asus-rog-strix-geforce-rtx-4090-oc-24gb-gddr6x.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" >
+          </o-image>
+          <o-image attr="image" data="https://m.media-amazon.com/images/I/61lUzBpFDTL._AC_.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
+          </o-image>
+        </a>
+      </div>
+    </div>
+    
+    
+    <o-grid #grid attr="grid"  service="products" entity="featuredproduct" columns="id;es_name;image" keys="id" cols="5" query-rows="15" show-page-size="false"  
+    orderable="false" quick-filter="false" grid-item-height="1:1" sortable-columns="es_name"  controls="false" 
+    refresh-button="false" insert-button="false" pagination-controls="false" gutter-size="1px" fixed-header="no" [ngStyle]="{'height':'100px'}">
+  <o-grid-item *ngFor="let list of grid.dataArray">
+    <o-column layout-padding class="container-item">
+      <img img src="./assets/images/{{list.image}}" width="80%" >
+      <h4>{{ list.es_name }}</h4>
+    </o-column>
+  </o-grid-item>
+</o-grid>
+  </div>
+</body>
+</html>
+
+
+
