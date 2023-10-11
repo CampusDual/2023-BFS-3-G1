@@ -37,12 +37,12 @@
       </div>
     </div>
     <div class="alimentacionsegura">
-      <h2>Alimentación segura</h2>
+      <h2>Crowfundings</h2>
       <div class="image-container">
         <a href="main/products">
-          <o-image attr="image" data="https://www.solvium-holding.ag/fileadmin/user_upload/asset-management/lkw-in-containerhafen-bei-sonne.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" >
+          <o-image attr="image" data="https://www.solvium-holding.ag/fileadmin/user_upload/asset-management/lkw-in-containerhafen-bei-sonne.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
           </o-image>
-          <o-image attr="image" data="https://thumb.pccomponentes.com/w-530-530/articles/1060/10604769/1407-asus-rog-strix-geforce-rtx-4090-oc-24gb-gddr6x.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" >
+          <o-image attr="image" data="https://thumb.pccomponentes.com/w-530-530/articles/1060/10604769/1407-asus-rog-strix-geforce-rtx-4090-oc-24gb-gddr6x.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
           </o-image>
           <o-image attr="image" data="https://m.media-amazon.com/images/I/61lUzBpFDTL._AC_.jpg" auto-fit="true" enabled="false" read-only="false" show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
           </o-image>
@@ -50,20 +50,25 @@
       </div>
     </div>
     
-    
-    <o-grid #grid attr="grid"  service="products" entity="featuredproduct" columns="id;es_name;image" keys="id" cols="5" query-rows="15" show-page-size="false"  
-    orderable="false" quick-filter="false" grid-item-height="1:1" sortable-columns="es_name"  controls="false" 
-    refresh-button="false" insert-button="false" pagination-controls="false" gutter-size="1px" fixed-header="no" [ngStyle]="{'height':'100px'}">
-  <o-grid-item *ngFor="let list of grid.dataArray">
-    <o-column layout-padding class="container-item">
-      <img img src="./assets/images/{{list.image}}" width="80%" >
+    <div class="grid-container">
+      <o-grid #grid attr="grid" service="products" entity="featuredproduct" columns="id;es_name;image" 
+        keys="id" cols="4" query-rows="12" show-page-size="false" 
+        orderable="false" quick-filter="false" grid-item-height="1:1.2" sortable-columns="es_name" sort-column="" controls="true" 
+        refresh-button="false" insert-button="false" pagination-controls="false" gutter-size="1px" fixed-header="no" show-footer="false" [ngStyle]="{'height':'600px' }">
+        <o-grid-item *ngFor="let list of grid.dataArray">
+          <o-column layout-padding class="container-item">
+            <img src="./assets/images/{{list.image}}" width="60%">
+            
       <h4>{{ list.es_name }}</h4>
-    </o-column>
-  </o-grid-item>
-</o-grid>
+
+          </o-column>
+        </o-grid-item>
+      </o-grid>
+    </div>
   </div>
 </body>
 </html>
+
 
 
 
