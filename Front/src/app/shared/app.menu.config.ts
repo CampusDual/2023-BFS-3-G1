@@ -1,5 +1,6 @@
 import { MenuRootItem } from "ontimize-web-ngx";
 import { ProductsHomeComponent } from "../main/products/products-home/products-home.component";
+import { SectionfoodHomeComponent } from "../main/sectionfood/sectionfood-home/sectionfood-home.component";
 
 export const MENU_CONFIG: MenuRootItem[] = [
   { id: "home", name: "HOME", icon: "home", route: "/main/home" },
@@ -16,7 +17,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
         route: "/main/sectionfood",
         icon: "people",
         image: "assets/images/ic_clientes.png",
-        component: ProductsHomeComponent,
+        component: SectionfoodHomeComponent,
       },
       {
         id: "jointpurchase",

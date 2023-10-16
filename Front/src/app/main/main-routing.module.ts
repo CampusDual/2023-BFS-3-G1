@@ -13,7 +13,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },      
       { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
-      { path: 'sectionfood', loadChildren: () => import('./section-food/section-food.module').then(m => m.SectionFoodModule) }
+      { path: 'sectionfood', loadChildren: () => import('./sectionfood/sectionfood.module').then(m => m.SectionfoodModule) }
     ]
   }
 ];

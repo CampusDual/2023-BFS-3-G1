@@ -5,14 +5,16 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
-@Repository(value="ProductDao")
+@Repository(value="AllergenDao")
 @Lazy
 @ConfigurationFile(
-        configurationFile = "dao/ProductDao.xml",
+        configurationFile = "dao/AllergenDao.xml",
         configurationFilePlaceholder = "dao/placeholders.properties")
 
-public class ProductDao extends OntimizeJdbcDaoSupport {
+public class AllergenDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_ID = "id";
-    public static final String ATTR_ES_DESCRIPTION_SHORT = "es_description_short";
-    public static final String ATTR_FEATURED = "featured";
+    public static final String ATTR_ES_NAME = "es_name";
+    public static final String ATTR_EN_NAME = "en_name";
+    public static final String ATTR_IMAGE = "image";
+
 }

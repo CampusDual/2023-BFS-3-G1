@@ -1,0 +1,54 @@
+<div class="container">
+  <o-form editable-detail="no" show-header="no" layout-align="start stretch" class="products-filters-form" fxFill>
+    <o-column-collapsible title="{{ 'FILTERS_PRODUCTS' | oTranslate }}" appearance="legacy" expanded="no" 
+    icon="filter_list" class="collapsible">
+      <div class="filter_style" fxLayout="column" fxLayoutGap="14px">
+        <div fxLayout="row wrap" fxLayoutGap="32px">  
+          <o-checkbox attr="al_altramuces" label="Altramuces" [data]="false" read-only="no" required="yes"></o-checkbox>   
+          <o-checkbox attr="al_apio" label="Apio" [data]="false" read-only="no" required="yes"></o-checkbox>   
+          <o-checkbox attr="al_cacahuetes" label="Cacahuetes" [data]="false" read-only="no" required="yes"></o-checkbox>   
+          <o-checkbox attr="al_crustaceos" label="Crustaceos" [data]="false" read-only="no" required="yes"></o-checkbox>   
+          <o-checkbox attr="al_cascara" label="Cascara" [data]="false" read-only="no" required="yes"></o-checkbox>   
+          <o-checkbox attr="al_gluten" label="Gluten" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_huevo" label="Huevo" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_leche" label="Leche" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_moluscos" label="Moluscos" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_mostaza" label="Mostaza" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_pescado" label="Pescado" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_sesamo" label="Sésamo" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_soja" label="Soja" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_sulfifos" label="Sulfitos" [data]="false" read-only="no" required="yes"></o-checkbox>       
+          <o-checkbox attr="al_vegano" label="Vegano" [data]="false" read-only="no" required="yes"></o-checkbox>       
+        </div>
+        <div fxLayout="row" fxLayoutGap="32px">
+          <div fxFlex="75%" fxFill class="filter_btn" fxLayoutAlign="flex-end flex-end">
+            <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear" layout-padding>
+            </o-button>
+            <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="STROKED" label="Filter" layout-padding color="accent">
+            </o-button>
+            <o-filter-builder-menu [oFilterBuilder]="filterBuilder" show-filter-option="no" show-clear-filter-option="no" layout-padding></o-filter-builder-menu>
+          </div>
+        </div>
+      </div>
+      <o-filter-builder #filterBuilder attr="thefilter"
+        filters="al_altramuces:al_altramuces;al_apio:al_apio;al_cacahuetes:al_cacahuetes;al_crustaceos:al_crustaceos;
+        al_cascara:al_cascara;al_gluten:al_gluten;al_huevo:al_huevo;al_leche:al_leche;al_moluscos:al_moluscos;
+        al_mostaza:al_mostaza;al_pescado:al_pescado;al_sesamo:al_sesamo;al_soja:al_soja;al_sulfitos:al_sulfitos;
+        al_vegano:al_vegano" [target]="grid" [expression-builder]="createFilter">
+      </o-filter-builder>
+    </o-column-collapsible>
+  </o-form>
+  <o-grid #grid attr="grid" service="products" entity="product" columns="id;es_name;image" keys="id" cols="6"
+    show-page-size="true" orderable="true" quick-filter="true" grid-item-height="1:1" sortable-columns="Nombre"
+    sort-column="es_name" controls="true" refresh-button="false" insert-button="false" pagination-controls="true"
+    gutter-size="1px" fixed-header="no" show-footer="true" [ngStyle]="{'height':'600px' }">
+    <o-grid-item *ngFor="let list of grid.dataArray">
+      <o-column layout-padding class="container-item">
+        <img src="./assets/images/{{list.image}}" width="60%">
+
+        <h4>{{ list.es_name }}</h4>
+
+      </o-column>
+    </o-grid-item>
+  </o-grid>
+</div>
