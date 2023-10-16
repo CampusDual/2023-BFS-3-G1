@@ -117,15 +117,23 @@ body {
     text-decoration: none;
   }
 .grid-container {
-  background-color: #000; /* Color de fondo negro */
-  padding: 20px; /* Espacio interior */
+  background-color: #0b0b0b; /* Color de fondo negro */
+  padding: 20px; 
   margin-top: 20px;
   border-radius: 5px; /* Bordes redondeados */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra */
+  
 }
+
 .content{
     background-color: #333;
 }
 .items{
     margin-left: 30px;
+}
+.footer-container{
+  background-color: #010000;
+}
+.footer-text{
+  color: orange;
 }
