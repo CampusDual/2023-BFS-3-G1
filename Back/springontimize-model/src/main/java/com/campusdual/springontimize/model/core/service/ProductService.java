@@ -42,19 +42,6 @@ public class ProductService implements IProductService {
 	public EntityResult productDelete(Map<String, Object> keyMap) {
 		return this.daoHelper.delete(this.productDao, keyMap);
 	}
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-	@Override
-	public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList) {
-		keyMap.put(ProductDao.ATTR_FEATURED,true);
-		return this.daoHelper.query(productDao, keyMap, attrList);
-	}
-
->>>>>>> SPRINT01
-
-=======
 	@Override
 	public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList) {
 		keyMap.put(ProductDao.ATTR_FEATURED,true);
@@ -67,5 +54,4 @@ public class ProductService implements IProductService {
 		return result;
 		//return this.daoHelper.query(productDao, keyMap, attrList);
 	}
->>>>>>> Stashed changes
 }
