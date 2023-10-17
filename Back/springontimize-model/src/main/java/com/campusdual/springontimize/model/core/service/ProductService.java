@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,5 +43,20 @@ public class ProductService implements IProductService {
 		return this.daoHelper.delete(this.productDao, keyMap);
 	}
 
+<<<<<<< Updated upstream
 
+=======
+	@Override
+	public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList) {
+		keyMap.put(ProductDao.ATTR_FEATURED,true);
+		return this.daoHelper.query(productDao, keyMap, attrList);
+	}
+
+	public EntityResult productTableQuery(Map<String, Object> keyMap, List<String> attrList) {
+		var result = this.daoHelper.query(this.productDao, keyMap, attrList,
+				productDao.QUERY_VPRODUCTCATEGORY);
+		return result;
+		//return this.daoHelper.query(productDao, keyMap, attrList);
+	}
+>>>>>>> Stashed changes
 }

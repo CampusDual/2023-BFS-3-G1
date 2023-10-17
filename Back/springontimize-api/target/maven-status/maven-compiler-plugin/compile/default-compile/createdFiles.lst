@@ -1,2 +1,6 @@
-com\campusdual\springontimize\api\core\service\IProductService.class
+com\campusdual\springontimize\api\core\service\ICategoryService.class
 com\campusdual\springontimize\api\core\service\IUserService.class
+com\campusdual\springontimize\api\core\service\IAllergenService.class
+com\campusdual\springontimize\api\core\service\IProductService.class
+com\campusdual\springontimize\api\core\service\ISectionService.class
+com\campusdual\springontimize\api\core\service\ICountryService.class

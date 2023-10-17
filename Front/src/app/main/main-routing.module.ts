@@ -12,7 +12,14 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },      
+<<<<<<< Updated upstream
       { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
+=======
+      { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+      { path: 'categories', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule) },
+      { path: 'allergens', loadChildren: () => import('./allergens/allergens.module').then(m => m.AllergensModule) },
+      { path: 'sectionfood', loadChildren: () => import('./sectionfood/sectionfood.module').then(m => m.SectionfoodModule) }
+>>>>>>> Stashed changes
     ]
   }
 ];

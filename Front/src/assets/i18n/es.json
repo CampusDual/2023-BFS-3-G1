@@ -19,5 +19,19 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
+<<<<<<< Updated upstream
   "PRODUCTS": "Productos"
+=======
+  "PRODUCTS": "Productos",
+  "SECTIONS": "Secciones",
+  "SECTION_FOOD": "Alimentación",
+  "SECTION_JOINT_PURCHASE": "Compra CONJUNTA",
+  "SECTION_GENERAL_STORE": "Otros productos",
+  "CATEGORIES": "Categorías",
+  "CATEGORY": "Categoría",
+  "ALLERGIES": "Alérgenos",
+  "NAME": "Nombre",
+  "PRICE" : "Precio",
+  "MAIN_DATA": "Datos básicos"
+>>>>>>> Stashed changes
 }

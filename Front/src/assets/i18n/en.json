@@ -19,5 +19,11 @@
   "FORGOT_PWD": "Forgot your password?",
   "FOOTER_CREATED_BY": "Created by Imatia Innovation",
   "FOOTER_RIGHTS": "All rights reserved",
-  "PRODUCTS": "Products"
+  "PRODUCTS": "Products",
+  "CATEGORIES": "Categories",
+  "CATEGORY": "Category",
+  "ALLERGENS": "Allergens",
+  "NAME": "Name",
+  "PRICE" : "Price",
+  "MAIN_DATA": "Main Data"
 }

@@ -1,0 +1,13 @@
+<o-form service="allergens" entity="allergen" keys="id" header-actions="R;I;U;D" show-header-navigation="no">
+
+    <o-text-input attr="id" sql-type="INTEGER" enabled="no"></o-text-input>
+    <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>
+        <o-image attr="image" empty-image="./assets/images/no-image.png" width="350px"
+            full-screen-button="true"></o-image>
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+            <o-text-input attr="es_name" width="160px" class="form-field"></o-text-input>
+            <o-text-input attr="en_name" width="160px" class="form-field"></o-text-input>
+        </div>
+    </div>
+
+</o-form>

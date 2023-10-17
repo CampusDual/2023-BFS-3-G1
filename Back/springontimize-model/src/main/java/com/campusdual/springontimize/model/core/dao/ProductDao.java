@@ -12,6 +12,14 @@ import org.springframework.stereotype.Repository;
         configurationFilePlaceholder = "dao/placeholders.properties")
 
 public class ProductDao extends OntimizeJdbcDaoSupport {
+<<<<<<< Updated upstream
     public static final String ATTR_ID = "ID";
     public static final String ATTR_ES_DESCRIPTION_SHORT = "ES_DESCRIPTION_SHORT";
+=======
+
+    public static final String QUERY_VPRODUCTCATEGORY = "productcategory";
+    public static final String ATTR_ID = "id";
+    public static final String ATTR_ES_DESCRIPTION_SHORT = "es_description_short";
+    public static final String ATTR_FEATURED = "featured";
+>>>>>>> Stashed changes
 }
