@@ -1,11 +1,16 @@
-import { MenuRootItem } from 'ontimize-web-ngx';
+import { MenuRootItem } from "ontimize-web-ngx";
+import { ProductsHomeComponent } from "../main/products/products-home/products-home.component";
+import { SectionfoodHomeComponent } from "../main/sectionfood/sectionfood-home/sectionfood-home.component";
 
 export const MENU_CONFIG: MenuRootItem[] = [
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   { id: 'home', name: 'HOME', icon: 'home', route: '/main/home' },
   { id: 'products', name: 'PRODUCTS', icon: 'product', route: '/main/products' },
   { id: 'logout', name: 'LOGOUT', route: '/login', icon: 'power_settings_new', confirm: 'yes' }
 =======
+=======
+>>>>>>> SPRINT01
   { id: "home", name: "HOME", icon: "home", route: "/main/home" },
   {
     id: "sections",
@@ -54,6 +59,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     route: "/login",
     icon: "power_settings_new",
     confirm: "yes",
+<<<<<<< HEAD
   },  
   {
     id: "admnistration",
@@ -120,4 +126,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     ],
   },
 >>>>>>> Stashed changes
+=======
+  },
+>>>>>>> SPRINT01
 ];

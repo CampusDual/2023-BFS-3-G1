@@ -13,10 +13,15 @@ public interface IProductService {
     public EntityResult productInsert(Map<String, Object> attrMap);
     public EntityResult productUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap);
     public EntityResult productDelete(Map<String, Object> keyMap);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
     public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList);
     public EntityResult productTableQuery(Map<String, Object> keyMap, List<String> attrList);
 >>>>>>> Stashed changes
+=======
+
+    public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList);
+>>>>>>> SPRINT01
 }

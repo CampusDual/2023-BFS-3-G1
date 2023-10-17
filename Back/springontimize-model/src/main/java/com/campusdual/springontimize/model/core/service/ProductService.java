@@ -43,7 +43,16 @@ public class ProductService implements IProductService {
 		return this.daoHelper.delete(this.productDao, keyMap);
 	}
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+	@Override
+	public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList) {
+		keyMap.put(ProductDao.ATTR_FEATURED,true);
+		return this.daoHelper.query(productDao, keyMap, attrList);
+	}
+
+>>>>>>> SPRINT01
 
 =======
 	@Override

@@ -19,13 +19,17 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   "PRODUCTS": "Productos"
 =======
+=======
+>>>>>>> SPRINT01
   "PRODUCTS": "Productos",
   "SECTIONS": "Secciones",
   "SECTION_FOOD": "Alimentación",
   "SECTION_JOINT_PURCHASE": "Compra CONJUNTA",
+<<<<<<< HEAD
   "SECTION_GENERAL_STORE": "Otros productos",
   "CATEGORIES": "Categorías",
   "CATEGORY": "Categoría",
@@ -34,4 +38,7 @@
   "PRICE" : "Precio",
   "MAIN_DATA": "Datos básicos"
 >>>>>>> Stashed changes
+=======
+  "SECTION_GENERAL_STORE": "Otros productos"
+>>>>>>> SPRINT01
 }
