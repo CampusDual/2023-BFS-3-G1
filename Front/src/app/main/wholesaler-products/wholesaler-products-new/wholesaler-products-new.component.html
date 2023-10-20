@@ -86,11 +86,12 @@
         </o-column>
         <o-column fxFlex="40"
             layout-align="center center">
-            <o-image attr="PHOTO"
-                fxFill
-                class="product-picture"
-                empty-image="./assets/images/no-image.png"
-                sql-type="base64"></o-image>
+            <o-image id="image" fxFill
+                            attr="image"
+                            label="IMAGE"
+                            width="350px"
+                            empty-image="assets/images/no-image.png"
+                            sql-type="OTHER"></o-image>
         </o-column>
     </o-row>
     <o-row attr="allergens"
