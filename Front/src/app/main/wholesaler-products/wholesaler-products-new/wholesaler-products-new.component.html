@@ -1,0 +1,186 @@
+<o-form attr="products_form_insert"
+    service="products"
+    entity="product"
+    keys="id"
+    fxLayout="column"
+    show-header="yes"
+    header-actions="R;U;D"
+    #oForm
+    after-insert-mode="detail"
+    class="standalone-form-container">
+
+    <o-row attr="row1"
+        layout-align="start stretch">
+        <!-- datos basicos del nuevo producto -->
+        <o-column title="MAIN_DATA"
+            layout-align="start stretch"
+            fxFlex="60"
+            layout-padding>
+            <div fxLayout="row"
+                fxLayoutAlign="start center">
+                <!-- nombre en español -->
+                <o-text-input attr="es_name"
+                    label="NAME"
+                    class="margin-right-24"
+                    fxFlex.lg="80"
+                    fxFlex.xl="80"
+                    fxFlex="100"
+                    max-length="100"
+                    required="yes"></o-text-input>
+                <div fxFlex></div>
+            </div>
+            <div fxLayout="row"
+                fxLayoutAlign="start center">
+                <o-textarea-input attr="es_description_short"
+                    label="SHORT_DESCRIPTION"
+                    width="100%"
+                    rows="3"
+                    class="form-field"></o-textarea-input>
+                <div fxFlex></div>
+            </div>
+            <div fxLayout="row"
+                fxLayoutAlign="start center">
+                <o-textarea-input attr="es_description_long"
+                    label="LONG_DESCRIPTION"
+                    width="100%"
+                    rows="6"
+                    class="form-field"></o-textarea-input>
+                <div fxFlex></div>
+            </div>
+            <div fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="16px">
+                <!-- nombre en español -->
+                <o-combo attr="country_id"
+                    label="COUNTRY"
+                    query-on-init="no"
+                    query-on-bind="yes"
+                    filter="yes"
+                    value-column="id"
+                    service="countries"
+                    entity="country"
+                    keys="id"
+                    columns="id;en_name"
+                    visible-columns="en_name"
+                    class="form-field"
+                    required="true">
+                </o-combo>
+                <o-combo attr="category_id"
+                    label="CATEGORY"
+                    query-on-init="no"
+                    query-on-bind="yes"
+                    filter="yes"
+                    value-column="id"
+                    service="categories"
+                    entity="category"
+                    keys="id"
+                    columns="id;es_name"
+                    visible-columns="es_name"
+                    class="form-field"
+                    required="true">
+                </o-combo>
+                <o-currency-input attr="price"
+                    label="PRICE"></o-currency-input>
+                <div fxFlex></div>
+            </div>           
+        </o-column>
+        <o-column fxFlex="40"
+            layout-align="center center">
+            <o-image id="image" fxFill
+                            attr="image"
+                            label="IMAGE"
+                            width="350px"
+                            empty-image="assets/images/no-image.png"
+                            sql-type="OTHER"></o-image>
+        </o-column>
+    </o-row>
+    <o-row attr="allergens"
+        title="ALLERGENS"
+        icon="food"
+        layout-align="start stretch"
+        elevation="1"
+        appearance="none"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="10px grid">
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <span style="margin-right: 15px">
+                <o-slide-toggle attr="al_altramuces"
+                    label="ALTRAMUCES"
+                    read-only="no"></o-slide-toggle>
+            </span>
+            <o-slide-toggle attr="al_apio"
+                label="APIO"
+                read-only="no"></o-slide-toggle>
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_cacahuetes"
+                label="CACAHUETES"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_crustaceos"
+                label="CRUSTACEOS"
+                read-only="no"></o-slide-toggle>
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_cascara"
+                label="CASCARA"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_gluten"
+                label="GLUTEN"
+                read-only="no"></o-slide-toggle>
+
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_huevo"
+                label="HUEVO"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_leche"
+                label="LACTEOS"
+                read-only="no"></o-slide-toggle>
+
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_moluscos"
+                label="MOLUSCOS"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_mostaza"
+                label="MOSTAZA"
+                read-only="no"></o-slide-toggle>
+
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_pescado"
+                label="PESCADO"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_sesamo"
+                label="SESAMO"
+                read-only="no"></o-slide-toggle>
+
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_soja"
+                label="SOJA"
+                read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_sulfitos"
+                label="SULFITOS"
+                read-only="no"></o-slide-toggle>
+
+        </div>
+        <div fxLayout="column"
+            fxLayoutAlign="start">
+            <o-slide-toggle attr="al_vegano"
+                label="NO APTO PARA VEGANOS"
+                read-only="no"></o-slide-toggle>
+        </div>
+    </o-row>
+
+    <div layout-padding></div>
+
+</o-form>

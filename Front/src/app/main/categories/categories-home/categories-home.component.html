@@ -1,13 +1,15 @@
-<o-form-layout-manager title="{{'CATEGORIES' | oTranslate }}" separator=" " mode="dialog" label-columns="es_name">
+<o-form-layout-manager title="{{'CATEGORIES' | oTranslate }}" separator=" " mode="tab" label-columns="es_name">
 
   <div fxFill fxLayout="column" fxLayoutAlign="start">
     <o-table attr="categoriesTable" service="categories" entity="category" keys="id" columns="id;es_name;en_name;image"
       visible-columns="id;es_name;en_name;image" query-rows="20">
       <o-table-column attr="id" title="id" width="100px" orderable="yes"></o-table-column>
       <o-table-column attr="image" title="Imagen" orderable="no" searchable="no" type="image" avatar="yes"
-        empty-image="assets/images/no-image.png" image-type="url"></o-table-column>
-      <o-table-column attr="es_name" title="Nombre esp." orderable="yes"></o-table-column>
-      <o-table-column attr="en_name" title="Nombre ing." orderable="yes"></o-table-column>
+        empty-image="assets/images/no-image.png" image-type="url"></o-table-column>          
+          <o-table-column attr="es_name" title="Nombre esp." orderable="yes" width="50%"></o-table-column>      
+          <o-table-column attr="en_name" title="Nombre ing." orderable="yes" width="50%"></o-table-column>
+      
+       
     </o-table>
   </div>
 

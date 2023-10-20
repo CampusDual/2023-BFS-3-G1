@@ -1,5 +1,6 @@
 G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\ICategoryService.java
 G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\ICountryService.java
+G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\IPermissionsService.java
 G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\ISectionService.java
 G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\IProductService.java
 G:\BOOTCAMP\CODE\2023-BFS-3-G1\Back\springontimize-api\src\main\java\com\campusdual\springontimize\api\core\service\IAllergenService.java

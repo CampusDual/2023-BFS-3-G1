@@ -1,17 +1,19 @@
 <o-form-container breadcrumb="yes" breadcrumb-label-columns="es_name" breadcrumb-separator=", " [form]="form">
-    <o-form #form attr="categories_form_edit" fxLayout="column" show-header="yes" header-actions="R;I;U;D"
-    #oDetailForm keys="id" keys-sql-types="INTEGER" show-header-navigation="no" service="categories" entity="category">
+    <o-form #form attr="categories_form_edit" fxLayout="column" show-header="yes" header-actions="R;I;U;D" #oDetailForm
+        keys="id" keys-sql-types="INTEGER" show-header-navigation="no" service="categories" entity="category">
+
         <mat-tab-group fxFill>
             <mat-tab label="{{ 'MAIN_DATA' | oTranslate }}">
-                <o-text-input attr="id" sql-type="INTEGER" enabled="no"></o-text-input>
-                <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>
-                    <o-image attr="image" empty-image="./assets/images/no-image.png" width="350px"
-                        full-screen-button="true"></o-image>
-                    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
-                        <o-text-input attr="es_name" width="160px" class="form-field"></o-text-input>
-                        <o-text-input attr="en_name" width="160px" class="form-field"></o-text-input>
+                <o-row attr="row1">
+                    <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>
+                        <o-image attr="image" empty-image="./assets/images/no-image.png" width="350px"
+                            full-screen-button="true"></o-image>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+                            <o-text-input attr="es_name" width="100%" class="form-field"></o-text-input>
+                            <o-text-input attr="en_name" width="100%" class="form-field"></o-text-input>                        
+                        </div>
                     </div>
-                </div>
+                </o-row>
             </mat-tab>
             <mat-tab label="{{ 'PRODUCTS' | oTranslate }}">
                 <div layout-padding>

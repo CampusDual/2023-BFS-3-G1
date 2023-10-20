@@ -31,5 +31,9 @@ export const CONFIG: Config = {
 
   exportConfiguration: {
     path: '/export'
-  }
+  },
+  
+  permissionsConfiguration: {
+    service: 'permissions'
+  },
 };
