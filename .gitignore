@@ -1,3 +1,4 @@
 Front/node_modules/**
 Back/springontimize-api/target/springontimize-api-1.0.0-SNAPSHOT-sources.jar
 Back/springontimize-api/target/springontimize-api-1.0.0-SNAPSHOT.jar
+Front/package-lock.json
