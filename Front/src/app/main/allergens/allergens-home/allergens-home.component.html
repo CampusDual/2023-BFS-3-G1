@@ -1,8 +1,8 @@
 <o-form-layout-manager title="{{'ALLERGENS' | oTranslate }}" separator=" " mode="dialog" label-columns="es_name">
 
     <div fxFill fxLayout="column" fxLayoutAlign="start">
-      <o-table attr="allergensTable" service="allergens" entity="allergen" keys="id" columns="id;es_name;en_name;image"
-        visible-columns="id;es_name;en_name;image" query-rows="20">
+      <o-table attr="allergensTable" service="allergens" entity="allergen" keys="id" columns="id;image;es_name;en_name"
+        visible-columns="id;image;es_name;en_name" query-rows="20">
         <o-table-column attr="id" title="id" width="100px" orderable="yes"></o-table-column>
         <o-table-column attr="image" title="Imagen" orderable="no" searchable="no" type="image" avatar="yes"
         empty-image="assets/images/no-image.png" image-type="url"></o-table-column>
