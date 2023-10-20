@@ -16,4 +16,5 @@ public class ProductDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_ID = "id";
     public static final String ATTR_ES_DESCRIPTION_SHORT = "es_description_short";
     public static final String ATTR_FEATURED = "featured";
+    public static final String ATTR_WHOLESALER = "wholesaler";
 }

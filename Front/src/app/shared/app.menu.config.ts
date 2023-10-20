@@ -116,4 +116,26 @@ export const MENU_CONFIG: MenuRootItem[] = [
       },           
     ],
   },
+  {
+    id: "wholesaler",
+    name: "WHOLESALER",
+    icon: "sell",
+    opened: true,
+    items: [
+      {
+        id: "wholesaler-products",
+        name: "WHOLESALER_PRODUCTS",
+        tooltip: "WHOLESALER_PRODUCTS_TOOLTIP",
+        route: "/main/wholesaler-products",
+        icon: "inventory",
+      },
+      {
+        id: "wholesaler_stats",
+        name: "WHOLESALER_STATS",
+        tooltip: "WHOLESALER_STATS_TOOLTIP",
+        route: "/main/wholesaler-stats",
+        icon: "bar_chart",
+      },           
+    ],
+  },
 ];

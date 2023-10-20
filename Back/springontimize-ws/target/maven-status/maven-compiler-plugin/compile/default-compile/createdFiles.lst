@@ -5,4 +5,5 @@ com\campusdual\springontimize\ws\core\rest\AllergenRestController.class
 com\campusdual\springontimize\ws\core\rest\ProductRestController.class
 com\campusdual\springontimize\ws\core\rest\CountryRestController.class
 com\campusdual\springontimize\ws\core\rest\MainRestController.class
+com\campusdual\springontimize\ws\core\rest\PermissionsRestController.class
 com\campusdual\springontimize\ws\core\rest\CategoryRestController.class

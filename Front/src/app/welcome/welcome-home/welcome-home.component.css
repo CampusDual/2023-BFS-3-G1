@@ -87,7 +87,7 @@ h2, h4 {
 }
 
 .container-item img {
-  width: 90%; /* Ancho del 100% para que las imágenes ocupen el 100% del contenedor */
+  width: 70%; /* Ancho del 100% para que las imágenes ocupen el 100% del contenedor */
   height: auto; /* Altura automática para mantener la proporción */
   display: flex;
   align-items: center; 
