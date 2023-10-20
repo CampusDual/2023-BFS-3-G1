@@ -6,6 +6,8 @@ import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -32,6 +34,8 @@ public class ProductService implements IProductService {
 	}
 
 	public EntityResult productInsert(Map<String, Object> attrMap) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		attrMap.put(ProductDao.ATTR_WHOLESALER,authentication.getName());
 		return this.daoHelper.insert(productDao, attrMap);
 	}
 
@@ -40,18 +44,24 @@ public class ProductService implements IProductService {
 	}
 
 	public EntityResult productDelete(Map<String, Object> keyMap) {
-		return this.daoHelper.delete(this.productDao, keyMap);
+		return this.daoHelper.delete(productDao, keyMap);
 	}
 	@Override
 	public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList) {
 		keyMap.put(ProductDao.ATTR_FEATURED,true);
-		return this.daoHelper.query(productDao, keyMap, attrList);
+		return this.daoHelper.query(this.productDao, keyMap, attrList);
 	}
 
 	public EntityResult productTableQuery(Map<String, Object> keyMap, List<String> attrList) {
-		var result = this.daoHelper.query(this.productDao, keyMap, attrList,
+		var result = this.daoHelper.query(productDao, keyMap, attrList,
 				productDao.QUERY_VPRODUCTCATEGORY);
 		return result;
-		//return this.daoHelper.query(productDao, keyMap, attrList);
+	}
+	// Devuelvo los productos del vendedor que está haciendo la consulta
+	public EntityResult wholesalerproductQuery(Map<String, Object> keyMap, List<String> attrList) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
+		userKeyMap.put(ProductDao.ATTR_WHOLESALER,authentication.getName());
+		return this.daoHelper.query(productDao, userKeyMap, attrList);
 	}
 }

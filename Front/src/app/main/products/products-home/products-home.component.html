@@ -10,12 +10,19 @@
       virtual-scroll="no">
       <!-- imagen -->
       <o-table-column async-load="true" width="48px" attr="product_image" orderable="no" searchable="no" type="image"
-        image-type="url" empty-image="assets/images/no-image.png" avatar="yes">
+        image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
       </o-table-column>
       <!-- nombre -->
       <o-table-column attr="product_es_name" title="NAME" orderable="yes"></o-table-column>
       <!-- precio -->
-      <o-table-column attr="price" title="PRICE" type="currency" orderable="no"></o-table-column>
+      <o-table-column attr="price"
+        title="PRICE"
+        type="currency"
+        currency-symbol="€"
+        currency-symbol-position="right"
+        thousand-separator="."
+        decimal-separator=",">
+      </o-table-column>
       <!-- categoria -->
       <o-table-column attr="category_es_name" title="CATEGORY" orderable="no"></o-table-column>
       <!-- featured -->

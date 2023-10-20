@@ -19,15 +19,53 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
+
+  "ID": "Id",
+  "IMAGE": "Imagen",
+  "FEATURED": "Destacados",
   "PRODUCTS": "Productos",
+  "CATEGORIES": "Categorías",
+  "CATEGORY": "Categoría",
+  "ALLERGENS": "Alérgenos",
+  "NAME": "Nombre",
+  "PRICE" : "Precio",
+  "MAIN_DATA": "Datos básicos",
+  "WHOLESALER": "Mayorista",
+  "WHOLESALER_PRODUCTS": "Productos",
+  "WHOLESALER_STATS": "Estadísticas",
+  "ADMINISTRATION": "Administración",
+  "COUNTRY": "País",
+  "ALTRAMUCES": "Altramuces",
+  "APIO": "Apio",
+  "CACAHUETES": "Cacahuetes",
+  "CASCARA": "Cáscara",
+  "CRUSTACEOS": "Crustáceos",
+  "SULFITOS": "Sulfitos",
+  "MOLUSCOS": "Moluscos",
+  "HUEVO": "Huevo",
+  "MOSTAZA": "Mostaza",
+  "LACTEOS": "Lácteos",
+  "PESCADO": "Pescado",
+  "SOJA": "Soja",
+  "SESAMO" : "Sésamo",
+  "GLUTEN" : "Glúten",
+  "NO APTO PARA VEGANOS" : "NO APTO PARA VEGANOS",
+  "SALES" : "Ventas",
+  "SHORT_DESCRIPTION": "Descripción corta",
+  "LONG_DESCRIPTION" : "Descripción larga",
+  "SALEDATE" : "Fecha Venta",
+  "QTY" : "Cantidad",
+  "TOTAL" : "Total",
+
   "SECTIONS": "Secciones",
   "SECTION_FOOD": "Alimentación",
   "SECTION_JOINT_PURCHASE": "Compra CONJUNTA",
-  "SECTION_GENERAL_STORE": "Otros productos",
-  "CATEGORIES": "Categorías",
-  "CATEGORY": "Categoría",
-  "ALLERGIES": "Alérgenos",
-  "NAME": "Nombre",
-  "PRICE" : "Precio",
-  "MAIN_DATA": "Datos básicos"
+  "SECTION_GENERAL_STORE": "Otros productos"
+  
+  
+  
+ 
+
+  
+
 }

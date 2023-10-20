@@ -14,5 +14,10 @@ public interface IProductService {
     public EntityResult productUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap);
     public EntityResult productDelete(Map<String, Object> keyMap);
     public EntityResult featuredproductQuery(Map<String, Object> keyMap, List<String> attrList);
+    // Para traernos los productos con datos relacionados para las tablas
     public EntityResult productTableQuery(Map<String, Object> keyMap, List<String> attrList);
+    // Quiero los productos del vendedor que está logueado
+    public EntityResult wholesalerproductQuery(Map<String, Object> keyMap, List<String> attrList);
+
+
 }
