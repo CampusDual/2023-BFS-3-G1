@@ -15,7 +15,14 @@
       <!-- nombre -->
       <o-table-column attr="product_es_name" title="NAME" orderable="yes"></o-table-column>
       <!-- precio -->
-      <o-table-column attr="price" title="PRICE" type="currency" orderable="no"></o-table-column>
+      <o-table-column attr="price"
+        title="PRICE"
+        type="currency"
+        currency-symbol="€"
+        currency-symbol-position="right"
+        thousand-separator="."
+        decimal-separator=",">
+      </o-table-column>
       <!-- categoria -->
       <o-table-column attr="category_es_name" title="CATEGORY" orderable="no"></o-table-column>
       <!-- featured -->
