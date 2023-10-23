@@ -1,0 +1,42 @@
+  h2, h4 {
+    margin-left: 5%;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .loguito {
+    width: 70%;
+    height: auto;
+    padding-top: 50px;
+    margin-left: 50px;
+  }
+  
+  .grid-container {
+    background-color: #D2CDBB;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+    
+
+  .footer-container {
+    background-color: #A6D785;
+  }
+  
+  .footer-text {
+    color: #D2CDBB;
+  }
+ 
+  

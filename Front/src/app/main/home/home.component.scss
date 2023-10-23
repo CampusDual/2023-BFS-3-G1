@@ -1,3 +1,106 @@
-.bg {
-  background-color: darkred;
-}
+body {
+    /* text-align: center; */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    margin: 30px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .alimentacionsegura, .grid-container {
+    background-color: #C7EBC8;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2, h4 {
+    margin-left: 5%;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+  }
+  
+  
+  .image-container a {
+    text-decoration: none;
+  }
+  
+  .image-container o-image {
+    width: 23%; /* Reducir el ancho para que quepan las 4 imágenes en una fila */
+    margin: 0; /* Elimina el margen para evitar desplazamientos */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .loguito {
+    width: 80%;
+    height: auto;
+    padding-top: 50px;
+    margin-left: 50px;
+  }
+  .logicon {
+    font-size: 60px; /* Aumentar el tamaño del icono de login */
+    margin-left: 5px;
+    margin-right: 90px;
+    color:#D2CDBB;
+  }
+  
+  .grid-container {
+    background-color: #D2CDBB;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .container-item {
+    width: 80%; /* Ancho para que quepan 4 imágenes en una fila */
+    height: 90%;
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .container-item img {
+    width: 70%; /* Ancho del 100% para que las imágenes ocupen el 100% del contenedor */
+    height: auto; /* Altura automática para mantener la proporción */
+    display: flex;
+    align-items: center; 
+    margin: 0 auto; /* Centrar las imágenes */
+    padding: 20px;
+  }
+  
+  .footer-container {
+    background-color: #A6D785;
+  }
+  
+  .footer-text {
+    color: #D2CDBB;
+  }
+  

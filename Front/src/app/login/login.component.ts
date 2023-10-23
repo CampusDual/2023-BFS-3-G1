@@ -1,7 +1,7 @@
 import { Component, Inject, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, LocalStorageService, NavigationService } from 'ontimize-web-ngx';
+import { AuthService, LocalStorageService, NavigationService, SessionInfo, Util } from 'ontimize-web-ngx';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -56,9 +56,29 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // TODO. Uncomment this when enabling feature of Remember me
+  // NOTE: Fix isLoggedIn method when using JEE service
+  //        Add new utility method to authService of isRememberedMe
+  // ngAfterViewInit(): any {
+  //   if (this.authService.isLoggedIn()) {
+  //     return;
+  //   }
+  //   const appData = this.localStorageService.getStoredData();
+  //   const sessionData: SessionInfo = appData[LocalStorageService.SESSION_STORAGE_KEY] || {};
+
+  //   if (appData && Util.isDefined(appData['rememberme'])) {
+  //     if (Util.parseBoolean(appData['rememberme'], false)) {
+  //       this.loginForm.patchValue({ 'username': sessionData.user });
+  //     } else {
+  //       this.loginForm.patchValue({ 'username': ''});
+  //     }
+  //   }
+  // }
+
   login() {
     const userName = this.loginForm.value.username;
     const password = this.loginForm.value.password;
+
     if (userName && userName.length > 0 && password && password.length > 0) {
       const self = this;
       this.authService.login(userName, password)

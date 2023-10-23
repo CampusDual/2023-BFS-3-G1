@@ -1,0 +1,37 @@
+<o-form-layout-manager mode="tab" title="PRODUCTS" label-columns="es_name"
+  attr="o-form-layout-product-home" title-data-origin="products_form_edit">
+
+  <div fxFill fxLayout="column" fxLayoutAlign="start">
+
+    <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="productTable" keys="product_id"
+      columns="product_id;product_image;product_es_name;price;category_es_name;featured"
+      visible-columns="product_image;product_es_name;price;category_es_name;featured" sort-columns="product_es_name"
+      query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true" pageable="no"
+      virtual-scroll="no">
+      <!-- imagen -->
+      <o-table-column async-load="true" width="48px" attr="product_image" orderable="no" searchable="no" type="image"
+        image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
+      </o-table-column>
+      <!-- nombre -->
+      <o-table-column attr="product_es_name" title="NAME" orderable="yes"></o-table-column>
+      <!-- precio -->
+      <o-table-column attr="price"
+        title="PRICE"
+        type="currency"
+        currency-symbol="€"
+        currency-symbol-position="right"
+        thousand-separator="."
+        decimal-separator=",">
+      </o-table-column>
+      <!-- categoria -->
+      <o-table-column attr="category_es_name" title="CATEGORY" orderable="no"></o-table-column>
+      <!-- featured -->
+      <o-table-column attr="featured" title="FEATURED" orderable="no"></o-table-column>
+
+      <o-table-context-menu></o-table-context-menu>
+      <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+    </o-table>
+
+  </div>
+
+</o-form-layout-manager>

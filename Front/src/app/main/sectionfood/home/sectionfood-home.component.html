@@ -1,0 +1,227 @@
+<nav class="navbar"
+    style="height: 6%; background-color: #6c7b69;">
+    <div class="left">
+        <div class="logo-container">
+            <img src="./assets/images/logo_welcome.png"
+                class="loguito"
+                alt="Gourmet Imports" />
+        </div>
+    </div>
+</nav>
+
+<o-form #formFilter
+    editable-detail="yes"
+    show-header="no">
+    <div class="content"
+        style="background-color: #F4F1E6; padding: 20px;">
+
+        <div style="background-color: #D2CDBB; padding: 20px;padding-bottom:30px; border-radius: 10px;">
+
+            <!-- filtros -->
+            <o-column-collapsible title="{{ 'FILTERS_PRODUCTS' | oTranslate }}"
+                appearance="legacy"
+                expanded="yes"
+                icon="filter_list"
+                class="collapsible">
+                <div class="filter_style"
+                    fxLayout="column"
+                    fxLayoutGap="14px">
+                    <div fxLayout="row wrap"
+                        fxLayoutGap="32px">
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_altramuces"
+                                label="ALTRAMUCES"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_apio"
+                                style="margin-top: 15px;"
+                                label="APIO"
+                                read-only="no"></o-slide-toggle>
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_cacahuetes"
+                                label="CACAHUETES"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_crustaceos"
+                                style="margin-top: 15px;"
+                                label="CRUSTACEOS"
+                                read-only="no"></o-slide-toggle>
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_cascara"
+                                label="CASCARA"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_gluten"
+                                style="margin-top: 15px;"
+                                label="GLUTEN"
+                                read-only="no"></o-slide-toggle>
+
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_huevo"
+                                label="HUEVO"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_lacteos"
+                                style="margin-top: 15px;"
+                                label="LACTEOS"
+                                read-only="no"></o-slide-toggle>
+
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_moluscos"
+                                label="MOLUSCOS"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_mostaza"
+                                style="margin-top: 15px;"
+                                label="MOSTAZA"
+                                read-only="no"></o-slide-toggle>
+
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_pescado"
+                                label="PESCADO"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_sesamo"
+                                style="margin-top: 15px;"
+                                label="SESAMO"
+                                read-only="no"></o-slide-toggle>
+
+                        </div>
+                        <div fxLayout="column"
+                            fxLayoutAlign="start">
+                            <o-slide-toggle attr="al_soja"
+                                label="SOJA"
+                                read-only="no"></o-slide-toggle>
+                            <o-slide-toggle attr="al_sulfitos"
+                                style="margin-top: 15px;"
+                                label="SULFITOS"
+                                read-only="no"></o-slide-toggle>
+
+                        </div>
+                    </div>
+                    <div fxLayout="row wrap"
+                        fxLayoutGap="32px">
+
+                        <o-slide-toggle attr="al_vegano"
+                            label="NO APTO PARA VEGANOS"
+                            read-only="no"></o-slide-toggle>
+                        <o-combo #category_id
+                            attr="category_id"
+                            label="CATEGORY"
+                            read-only="no"
+                            service="categories"
+                            entity="category"
+                            columns="id;es_name"
+                            value-column="id"
+                            keys="id"
+                            visible-columns="es_name"
+                            sql-type="INTEGER"
+                            fxFlex="calc(25% - 32px)"></o-combo>
+                        <o-combo #country_id
+                            attr="country_id"
+                            label="COUNTRY"
+                            read-only="no"
+                            service="countries"
+                            entity="country"
+                            columns="id;en_name"
+                            value-column="id"
+                            keys="id"
+                            visible-columns="en_name"
+                            sql-type="INTEGER"
+                            fxFlex="calc(25% - 32px)"></o-combo>
+                    </div>
+                    <div fxLayout="row"
+                        fxLayoutGap="32px">
+                        <div fxFlex="100%"
+                            fxFill
+                            class="filter_btn"
+                            fxLayoutAlign="flex-end flex-end">
+                            <o-button attr="clear"
+                                [oFilterBuilderClear]="filterBuilder"
+                                type="STROKED"
+                                label="Clear"
+                                layout-padding>
+                            </o-button>
+                            <o-button attr="filter"
+                                [oFilterBuilderQuery]="filterBuilder"
+                                type="STROKED"
+                                label="Filter"
+                                layout-padding
+                                color="accent">
+                            </o-button>
+                            <o-filter-builder-menu [oFilterBuilder]="filterBuilder"
+                                show-filter-option="no"
+                                show-clear-filter-option="no"
+                                layout-padding></o-filter-builder-menu>
+                        </div>
+                    </div>
+                </div>
+                <o-filter-builder #filterBuilder
+                    attr="thefilter"
+                    filters="al_altramuces:al_altramuces;al_cacahuetes:al_cacahuetes;al_cascara:al_cascara;al_huevo:al_huevo;
+                    al_moluscos:al_moluscos;al_pescado:al_pescado;al_apio:al_apio;al_crustaceos:al_crustaceos;al_gluten:al_gluten;
+                    al_lacteos:al_lacteos;al_mostaza:al_mostaza;al_sesamo:al_sesamo;al_soja:al_soja;al_sulfitos:al_sulfitos;
+                    al_vegano:al_vegano;country_id:country_id;category_id:category_id"
+                    [target]="grid"
+                    [expression-builder]="createFilter"></o-filter-builder>
+            </o-column-collapsible>
+
+            <!-- grid de productos -->
+            <o-grid #grid
+                attr="grid"
+                service="products"
+                entity="product"
+                columns="id;es_name;image;price;category_id;country_id"
+                keys="id"
+                cols="4"
+                show-page-size="false"
+                orderable="false"
+                quick-filter="false"
+                grid-item-height="1:1.3"
+                sortable-columns="es_name"
+                sort-column=""
+                controls="true"
+                refresh-button="false"
+                insert-button="false"
+                pagination-controls="true"
+                gutter-size="10px"
+                fixed-header="no"
+                show-footer="true"
+                [ngStyle]="{'height':'600px' }">
+                <o-grid-item *ngFor="let list of grid.dataArray">
+                    <o-column layout-padding
+                        class="container-item">
+                        <div>
+                            <o-image [data]="list.image"
+                                enabled="true"
+                                read-only="true"
+                                show-controls="no"
+                                full-screen-button="false"
+                                empty-image="./assets/images/no-image.png"></o-image>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 15px; color: #5B7056;">{{ list.es_name }} <br> {{ list.price }} €
+                            </h4>
+                        </div>
+                    </o-column>
+                </o-grid-item>
+            </o-grid>
+        </div>
+    </div>
+</o-form>
+
+<div id="footer"
+    class="footer-container"
+    style="background-color:#6c7b69;; text-align: center; padding: 10px;">
+    <div fxLayout="row"
+        fxLayoutAlign="center center">
+        <span class="footer-text"
+            style="font-family: 'Arial', sans-serif; font-size: 16px; color: #D2CDBB;">&copy; Creado por Group-A.
+            2023</span>
+    </div>
+</div>

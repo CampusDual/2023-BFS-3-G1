@@ -10,10 +10,10 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-         "build": {
+        "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ontimize-web-ngx-jee-seed",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,17 @@
               "src/assets",
               {
                 "glob": "**/*",
+                "input": "node_modules/ontimize-web-ngx-map/images",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
                 "input": "node_modules/ontimize-web-ngx/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/ontimize-web-ngx-charts/assets",
                 "output": "/assets"
               },
               {
@@ -36,13 +46,51 @@
             ],
             "styles": [
               "node_modules/ontimize-web-ngx/ontimize.scss",
-              "src/assets/css/app.scss",
-              "src/styles.scss"
+              "node_modules/ontimize-web-ngx-map/styles.scss",
+              "node_modules/ontimize-web-ngx-charts/styles.scss",
+              "src/styles.scss",
+              {
+                "input": "src/assets/themes/o-violet-blues.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-violet-blues-dark.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-oxford-blue-emerald.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-oxford-blue-emerald-dark.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-madder-lake-jet.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-madder-lake-jet-dark.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-prussian-celtic-blue.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              },
+              {
+                "input": "src/assets/themes/o-prussian-celtic-blue-dark.scss",
+                "lazy": true,
+                "bundleName": "assets/themes"
+              }
             ],
-            "scripts": [
-              "src/assets/js/domchange.js",
-              "src/assets/js/keyboard.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -54,6 +102,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
+              "serviceWorker": true,
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -72,16 +121,19 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ontimize-web-ngx-jee-seed:build"
+            "browserTarget": "ontimize-web-ngx-jee-seed:build",
+            "sourceMap": {
+              "scripts": true,
+              "styles": false,
+              "vendor": true
+            }
           },
           "configurations": {
             "production": {
@@ -108,8 +160,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/ontimize-web-ngx-charts/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -140,6 +191,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ontimize-web-ngx-jee-seed"
 }

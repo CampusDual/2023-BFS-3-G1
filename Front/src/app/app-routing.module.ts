@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from 'ontimize-web-ngx';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: 'main', loadChildren: () => import('./main/main.module').then(m => m.MainModule) },
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'welcome', loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomeModule) },
-  ];
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'main',
+    canActivate: [AuthGuardService],
+    // canActivateChild: [PermissionsGuardService],
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+  },
+  { path: '', redirectTo: 'main', pathMatch: 'full' }
+];
 
 const opt = {
   enableTracing: false

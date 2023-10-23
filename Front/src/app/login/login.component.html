@@ -8,6 +8,10 @@
       <div fxFill fxLayout="column" fxLayoutAlign="center center" class="login-inner-container">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
 
+          <!-- <div fxLayout="column" fxLayoutAlign="center center" class="logo-container">
+            <img src="./assets/images/ontimize.png">
+          </div> -->
+
           <div class="login-title-container" fxLayout="column">
             <p class="session-expired text" *ngIf="sessionExpired">{{ 'ERROR_SESSION_EXPIRED' | oTranslate }}</p>
             <span class="title_text">{{ 'LOGIN_TITLE' | oTranslate }}:</span>
@@ -31,6 +35,7 @@
 
           <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" class="m-top-24">
             <mat-checkbox class="text">{{ 'REMEMBER_ME' | oTranslate }}</mat-checkbox>
+            <!-- <span class="text link_text">{{ 'FORGOT_PWD' | oTranslate }}</span> -->
           </div>
 
           <button mat-raised-button color="primary" type="submit">{{ 'LOGIN' | oTranslate }}</button>
@@ -47,9 +52,9 @@
     </div>
   </div>
 
-  <div id="footer" class="footer-container" style="background-color:#6c7b69;; text-align: center; padding: 10px;">
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <span class="footer-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #D2CDBB">&copy; Creado por Group-A. 2023</span>
+  <div id="footer" class="footer-container">
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <span> &copy; Creado por Group-A. 2023 </span>     
     </div>
   </div>
 

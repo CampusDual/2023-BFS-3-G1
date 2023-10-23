@@ -1,6 +1,10 @@
-import { MenuRootItem } from "ontimize-web-ngx";
-import { ProductsHomeComponent } from "../main/products/products-home/products-home.component";
-import { SectionfoodHomeComponent } from "../main/sectionfood/sectionfood-home/sectionfood-home.component";
+import { MenuRootItem } from 'ontimize-web-ngx';
+import { SectionfoodHomeComponent } from '../main/sectionfood/home/sectionfood-home.component';
+
+// import { AccountsCardComponent } from './accounts-card/accounts-card.component';
+// import { BranchesCardComponent } from './branches-card/branches-card.component';
+// import { CustomersCardComponent } from './customers-card/customers-card.component';
+// import { EmployeesCardComponent } from './employees-card/employees-card.component';
 
 export const MENU_CONFIG: MenuRootItem[] = [
   { id: "home", name: "HOME", icon: "home", route: "/main/home" },
@@ -19,24 +23,24 @@ export const MENU_CONFIG: MenuRootItem[] = [
         image: "assets/images/ic_clientes.png",
         component: SectionfoodHomeComponent,
       },
-      {
-        id: "jointpurchase",
-        name: "SECTION_JOINT_PURCHASE",
-        tooltip: "SECTION_JOINT_PURCHASE_TOOLTIP",
-        route: "/main/jointpurchasesection",
-        icon: "people",
-        image: "assets/images/ic_clientes.png",
-        component: ProductsHomeComponent,
-      },
-      {
-        id: "general",
-        name: "SECTION_GENERAL_STORE",
-        tooltip: "SECTION_GENERAL_STORE_TOOLTIP",
-        route: "/main/generalstoresection",
-        icon: "local_grocery_store",
-        image: "assets/images/ic_clientes.png",
-        component: ProductsHomeComponent,
-      },
+      // {
+      //   id: "jointpurchase",
+      //   name: "SECTION_JOINT_PURCHASE",
+      //   tooltip: "SECTION_JOINT_PURCHASE_TOOLTIP",
+      //   route: "/main/jointpurchasesection",
+      //   icon: "people",
+      //   image: "assets/images/ic_clientes.png",
+      //   component: ProductsHomeComponent,
+      // },
+      // {
+      //   id: "general",
+      //   name: "SECTION_GENERAL_STORE",
+      //   tooltip: "SECTION_GENERAL_STORE_TOOLTIP",
+      //   route: "/main/generalstoresection",
+      //   icon: "local_grocery_store",
+      //   image: "assets/images/ic_clientes.png",
+      //   component: ProductsHomeComponent,
+      // },
     ],
   }, 
   {
@@ -71,21 +75,14 @@ export const MENU_CONFIG: MenuRootItem[] = [
         id: "categories",
         name: "CATEGORIES",
         tooltip: "CATEGORIES_TOOLTIP",
-        route: "/main/categories",
+        route: "/main/admon-categories",
         icon: "category",
-      },
-      {
-        id: "allergens",
-        name: "ALLERGENS",
-        tooltip: "ALLERGENS_TOOLTIP",
-        route: "/main/allergens",
-        icon: "do_disturb_alt",
       },
       {
         id: "products",
         name: "PRODUCTS",
         tooltip: "PRODUCTS_TOOLTIP",
-        route: "/main/products",
+        route: "/main/admon-products",
         icon: "inventory_2",
       },      
     ],
@@ -99,3 +96,10 @@ export const MENU_CONFIG: MenuRootItem[] = [
   },  
 ];
 
+
+// export const MENU_COMPONENTS = [
+//   AccountsCardComponent,
+//   CustomersCardComponent,
+//   BranchesCardComponent,
+//   EmployeesCardComponent
+// ];

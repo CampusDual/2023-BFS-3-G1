@@ -1,26 +1,44 @@
-@import 'custom-theme.scss';
-/*Import the file who have the theme functions and the ontimize-theme-styles mixin.*/
-@import 'node_modules/ontimize-web-ngx-theming/ontimize-theme.scss';
+// /*
+// * Choose one of the following imports
+// */
+// @import 'node_modules/ontimize-web-ngx-theming/src/themes/ontimize.scss';
+// @import 'node_modules/ontimize-web-ngx-theming/ontimize-theme.scss';
+// @include ontimize-theme-styles($theme);
+@import 'node_modules/ontimize-web-ngx-theming/ontimize-theme-lite.scss';
+@include ontimize-theme-styles-lite($theme);
 
-// ******* @angular/material predefined themes. *******
-// Choose one of the following imports
-// @import 'node_modules/ontimize-web-ngx-theming/src/themes/mat-indigo-pink.scss';
-// @import 'node_modules/ontimize-web-ngx-theming/src/themes/mat-deeppurple-amber.scss';
-// @import 'node_modules/ontimize-web-ngx-theming/src/themes/mat-pink-bluegrey.scss';
-// @import 'node_modules/ontimize-web-ngx-theming/src/themes/mat-purple-green.scss';
-//@import 'node_modules/ontimize-web-ngx-theming/src/themes/ontimize.scss';
-
-// Include ontimize theme
-@include ontimize-theme-styles($theme);
-// Include ontimize-lite theme
-// @import 'node_modules/ontimize-web-ngx-theming/ontimize-theme-lite.scss';
-// @include ontimize-theme-styles-lite($theme, $lite-typography);
-
-// After define theme, it is necessary to transfer color and typography to Ontimize Web framework
+/*
+* After define theme, it is necessary to transfer color to Ontimize Web framework
+*/
 @import 'node_modules/ontimize-web-ngx/theme.scss';
-@include o-material-theme($theme, $default-typography);
+@include o-material-theme($theme, $lite-typography);
 
-// Propagate theme to screen styles definition.
+//set the style variable to null so that it does not give an error that the variable does not exist
+$style: null !default;
+@if ($style=='implatform') {
+  @include implatform-fashion-theme-styles($theme, $lite-typography);
+}
+
+@import 'node_modules/ontimize-web-ngx-filemanager/o-filemanager-table-theme.scss';
+@include o-filemanager-table-theme($theme);
+/*
+* Propagate theme to screen styles definition.
+*/
 @import '../../app/login/login.theme.scss';
 @include login-theme($theme);
 
+@import '../../app/main/main-theme.scss';
+@include main-theme($theme, $lite-typography);
+
+// @import '../../app/main/accounts/home/account-home.theme.scss';
+// @include account-home-theme($theme);
+// @import '../../app/main/accounts/detail/accounts-detail.theme.scss';
+// @include accounts-detail-theme($theme);
+// @import '../../app/main/employees/employees.theme.scss';
+// @include employees-theme($theme);
+@import '../../app//main/about/about.theme.scss';
+@include about-theme($theme);
+
+/*
+* Other app styles
+*/
