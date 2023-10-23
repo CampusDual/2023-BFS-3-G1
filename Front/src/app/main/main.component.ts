@@ -22,8 +22,8 @@ export class MainComponent {
 
   checkSidenavImage() {
     let path = 'assets/images/';
-    this.closedSidenavImage = path + (this.themeService.currentTheme.href.indexOf('ontimize-implatform') > -1 ? 'sidenav-closed-fashion.svg' : 'sidenav-closed.svg');
-    this.openedSidenavImage = path + (this.themeService.currentTheme.href.indexOf('ontimize-implatform') > -1 ? 'sidenav-opened-fashion.svg' : 'sidenav-opened.svg');
+    this.closedSidenavImage = path + (this.themeService.currentTheme.href.indexOf('ontimize-implatform') > -1 ? 'logoclosed.png' : 'sidenav-closed.svg');
+    this.openedSidenavImage = path + (this.themeService.currentTheme.href.indexOf('ontimize-implatform') > -1 ? 'logoopened.png' : 'sidenav-opened.svg');
   }
 
 
