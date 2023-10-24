@@ -1,33 +1,36 @@
 @import 'node_modules/ontimize-web-ngx-theming/ontimize-theme.scss';
 /* Color definitions */
-$mat-custom-primary: (50 : #e8ecf7,
-  100 : #c5cfec,
-  200 : #9fafdf,
-  300 : #798fd2,
-  400 : #5c77c9,
-  500 : #3f5fbf,
-  600 : #3957b9,
-  700 : #314db1,
-  800 : #2943a9,
-  900 : #1b329b,
-  A100 : #d3daff,
-  A200 : #a0afff,
-  A400 : #6d84ff,
-  A700 : #536eff,
-  contrast: (50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #ffffff,
+$mat-custom-primary: (
+50:  #f4f6f3, //Nin idea de que é isto
+100: #D2CDBB, //Apartado seleccionado
+200: #cbd3c7, //Barra de desprazamento
+300: #a6b4a1, //Nin idea de que é isto
+400: #7d9077, //Nin idea de que é isto
+500: #6f856a, //Contenedor de toda a columna
+600: #465942, //Nin idea de que é isto
+700: #374735, //Nin idea de que é isto
+800: #60735b, //Subseccións de cada sección (agora mesmo un cor un pouco máis escuro que o 500)
+900: #253024, //Nin idea de que é isto
+950: #141a14, //Nin idea de que é isto
+A100 : #a0ff8f,
+A200 : #74ff5c,
+A400 : #49ff29,
+A700 : #33ff0f,
+  contrast: (
+  50: #000000, //Nin idea
+  100: #000000, //Nin idea
+  200: #000000, //Nin idea
+  300: #000000, //Nin idea
+  400: #000000, //Nin idea
+  500: #000000, //Nin idea
+  600: #000000, //Nin idea
+  700: #000000, //Nin idea
+  800: #ffffff,
+  900: #ffffff,
+  A100: #000000,
+  A200: #000000,
+  A400: #000000,
+  A700: #000000,
   ));
 
 $mat-custom-accent: $mat-custom-primary;
