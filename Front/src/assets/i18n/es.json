@@ -60,12 +60,36 @@
   "SECTIONS": "Secciones",
   "SECTION_FOOD": "Alimentación",
   "SECTION_JOINT_PURCHASE": "Compra CONJUNTA",
-  "SECTION_GENERAL_STORE": "Otros productos"
+  "SECTION_GENERAL_STORE": "Otros productos",
+  "PRODUCT_DATA": "Detalles de producto",
+  "es_name": "Nombre",
+  "es_description_long":"Descripción",
+  "es_description_short":"Descripción breve",
+  "image": "Imagen",
+  "country_id": "País",
+  "FILL_REPORT":"Reportar",
+  "FILTERS_PRODUCTS":"Filtro de alérgenos",
+  "Clear":"Limpiar",
+  "Filter":"Filtrar",
+  "WHOLESALER-STATS":"Estadisticas de vendedor",
+  "MAIN":"Principal",
+  "ACCOUNT_INFO":"Detalles de cuenta",
+  "BALANCE":"Balance",
+  "AVG_BALANCE":"Media",
+  "STARTDATE":"Fecha de inicio",
+  "Account owners":"Propietarios de cuenta"
   
   
   
- 
+
 
   
+  
+  
+
+  
+  
+  
+
 
 }

@@ -1,39 +1,18 @@
 <div class="container">
-  <o-form-container breadcrumb="yes"
-    breadcrumb-label-columns="id"
-    breadcrumb-separator="-">
-    <o-form #oForm
-      attr="wholesaler_stats_form"
-      service="products"
-      entity="product"
-      keys="id"
-      keys-sql-types="INTEGER"
-      columns="id;es_name"
-      editable-detail="false"
-      show-header="yes"
-      header-actions="R"
-      [label-header]="formLabel"
-      show-header-navigation="yes"
-      include-breadcrumb="yes"
-      (onDataLoaded)="onFormDataLoaded($event)"
+  <o-form-container breadcrumb="yes" breadcrumb-label-columns="id" breadcrumb-separator="-">
+    <o-form #oForm attr="wholesaler_stats_form" service="products" entity="product" keys="id" keys-sql-types="INTEGER"
+      columns="id;es_name" editable-detail="false" show-header="yes" header-actions="R" [label-header]="formLabel"
+      show-header-navigation="yes" include-breadcrumb="yes" (onDataLoaded)="onFormDataLoaded($event)"
       layout-align="start stretch">
 
-      <div fxLayout="column"
-        fxLayoutAlign="start stretch"
-        class="max-height">
+      <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
 
         <div fxLayout="row">
-          <o-row title="ACCOUNT_INFO"
-            class="account-info-container mat-elevation-z1"
-            fxFlex="40"
+          <o-row title="ACCOUNT_INFO" class="account-info-container mat-elevation-z1" fxFlex="40"
             layout-align="space-around start">
-            <div fxLayout="column"
-              class="data-container"
-              layout-padding
-              fxFlex="50">
+            <div fxLayout="column" class="data-container" layout-padding fxFlex="50">
               <span class="account-form-label balance">{{ 'BALANCE' | oTranslate }}</span>
-              <span class="account-form-value balance"
-                [class.red-numbers]="oForm.getDataValue('BALANCE').value < 0">{{
+              <span class="account-form-value balance" [class.red-numbers]="oForm.getDataValue('BALANCE').value < 0">{{
                 oForm.getDataValue('BALANCE').value | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2
                 } }}
                 €</span>
@@ -45,10 +24,7 @@
               <!-- <span class="account-form-value">{{ oForm.getDataValue('STARTDATE').value | date:'d MMM, y' }}</span> -->
             </div>
 
-            <div fxLayout="column"
-              class="data-container customers"
-              layout-padding
-              fxFlex="40">
+            <div fxLayout="column" class="data-container customers" layout-padding fxFlex="40">
               <span class="account-form-label customers-list-title">{{ 'Account owners' | oTranslate }}</span>
 
             </div>

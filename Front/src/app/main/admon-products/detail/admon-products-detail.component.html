@@ -19,21 +19,16 @@
                             full-screen-button="true" sql-type="base64"></o-image>
                         <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
                             <o-text-input attr="es_name" width="100%" class="form-field"></o-text-input>
-                            <o-text-input attr="en_name" width="100%" class="form-field"></o-text-input>
                             <o-textarea-input attr="es_description_short" width="40%"
                                 class="form-field"></o-textarea-input>
-                            <o-textarea-input attr="en_description_short" width="40%"
-                                class="form-field"></o-textarea-input>
                             <o-textarea-input attr="es_description_long" width="40%"
-                                class="form-field"></o-textarea-input>
-                            <o-textarea-input attr="en_description_long" width="40%"
-                                class="form-field"></o-textarea-input>
+                                class="form-field"></o-textarea-input>  
                         </div>
                     </div>
                 </o-row>
                 <o-row attr="row2">
                     <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>
-                        <o-currency-input attr="price" label="PRICE"></o-currency-input>
+                        <o-currency-input attr="PRICE" label="PRICE"></o-currency-input>
                         <o-combo attr="country_id" query-on-init="no" query-on-bind="yes" filter="yes" value-column="id"
                             service="countries" entity="country" keys="id" columns="id;en_name"
                             visible-columns="en_name" class="form-field">
@@ -43,7 +38,7 @@
                     </div>
                 </o-row>
                 <o-row attr="row3">
-                    <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>                        
+                    <div fxLayout="row wrap" fxLayoutGap="14px" fxFill>
                         <o-slide-toggle attr="al_altramuces" label="Altramuces" read-only="no"></o-slide-toggle>
                         <o-slide-toggle attr="al_apio" label="Apio" read-only="no"></o-slide-toggle>
                         <o-slide-toggle attr="al_cacahuetes" label="Cacahuetes" read-only="no"></o-slide-toggle>
