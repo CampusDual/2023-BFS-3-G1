@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+        xmlns="http://www.ontimize.com/schema/jdbc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+        catalog="" schema="${mainschema}" table="sales"
+        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>id</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>id</Column>
+    </UpdateKeys>
+    <GeneratedKey>id</GeneratedKey>
+    <Queries>
+        <Query id="totalsales">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  SUM(TOTAL) AS TOTALSALES
+               FROM
+                  ${mainschema}.SALES AS SA
+                  INNER JOIN ${mainschema}.TUSER AS US ON US.USER_ = SA.USER_
+               #WHERE#
+               #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
+        <Query id="salesdetail">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.SALES AS SA
+                  INNER JOIN ${mainschema}.TUSER AS US ON US.USER_ = SA.USER_
+               #WHERE#
+               ORDER BY saledate asc
+            ]]>
+            </Sentence>
+        </Query>
+        <Query id="bestsellers">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
+                <AmbiguousColumn name="sale_id" prefix="SA" databaseName="id" />
+                <AmbiguousColumn name="product_id" prefix="PR" databaseName="id" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  PR.id AS product_id , es_name , SA.id AS sale_id, SUM(QTY) AS totalqty
+               FROM
+                  ${mainschema}.SALES AS SA
+                  INNER JOIN ${mainschema}.PRODUCTS AS PR ON PR.ID = SA.PRODUCT_ID
+               #WHERE#
+               GROUP BY PR.ID,SA.ID
+               ORDER BY SUM(QTY) DESC
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
+</JdbcEntitySetup>
