@@ -1,7 +1,9 @@
   h2, h4 {
     margin-left: 5%;
   }
-
+.content{
+  margin-top: 40px;
+}
   .navbar {
     display: flex;
     justify-content: space-between;
