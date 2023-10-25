@@ -90,7 +90,22 @@
   "BALANCE":"Balance:",
   "AVG_BALANCE": "Average balances",
   "STARTDATE":"Started date",
-  "Acoount owners":"Account owner"
+  "Acoount owners":"Account owner",
+  "al_altramuces":"Lupins",
+  "al_apio":"Celery",
+  "al_cacahuetes":"Peanuts",
+  "al_cascara":"Nuts",
+  "al_crustaceos":"Crustaceans",
+  "al_gluten":"Gluten",
+  "al_huevo":"Eggs",
+  "al_leche":"Milk",
+  "al_moluscos":"Molluscs",
+  "al_mostaza":"Mustard",
+  "al_pescado":"Fish",
+  "al_sesamo":"Sesame",
+  "al_soja":"Soy",
+  "al_sulfitos":"Sulphites",
+  "al_vegano":"Vegan"
 
 
 }
