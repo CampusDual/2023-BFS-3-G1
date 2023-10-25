@@ -34,7 +34,7 @@
             </div>
             <div fxLayout="column" fxLayoutAlign="start">
               <o-slide-toggle attr="al_huevo" label="HUEVO" read-only="no"></o-slide-toggle>
-              <o-slide-toggle attr="al_lacteos" style="margin-top: 15px" label="LACTEOS"
+              <o-slide-toggle attr="al_leche" style="margin-top: 15px" label="LACTEOS"
                 read-only="no"></o-slide-toggle>
             </div>
             <div fxLayout="column" fxLayoutAlign="start">
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div fxLayout="row wrap" fxLayoutGap="32px">
-            <o-slide-toggle attr="al_vegano" label="NO APTO PARA VEGANOS" read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_vegano" label="No apto para veganos" read-only="no"></o-slide-toggle>
             <o-combo #category_id attr="category_id" label="CATEGORY" read-only="no" service="categories"
               entity="category" columns="id;es_name" value-column="id" keys="id" visible-columns="es_name"
               sql-type="INTEGER" fxFlex="calc(25% - 32px)"></o-combo>
@@ -75,7 +75,7 @@
         </div>
         <o-filter-builder #filterBuilder attr="thefilter" filters="al_altramuces:al_altramuces;al_cacahuetes:al_cacahuetes;al_cascara:al_cascara;al_huevo:al_huevo;
                     al_moluscos:al_moluscos;al_pescado:al_pescado;al_apio:al_apio;al_crustaceos:al_crustaceos;al_gluten:al_gluten;
-                    al_lacteos:al_lacteos;al_mostaza:al_mostaza;al_sesamo:al_sesamo;al_soja:al_soja;al_sulfitos:al_sulfitos;
+                    al_leche:al_leche;al_mostaza:al_mostaza;al_sesamo:al_sesamo;al_soja:al_soja;al_sulfitos:al_sulfitos;
                     al_vegano:al_vegano;country_id:country_id;category_id:category_id" [target]="grid"
           [expression-builder]="createFilter"></o-filter-builder>
       </o-column-collapsible>
