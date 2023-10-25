@@ -26,5 +26,4 @@ export class MainComponent {
     this.openedSidenavImage = path + (this.themeService.currentTheme.href.indexOf('ontimize-implatform') > -1 ? 'logo_welcome.png' : 'sidenav-opened.svg');
   }
 
-
 }
