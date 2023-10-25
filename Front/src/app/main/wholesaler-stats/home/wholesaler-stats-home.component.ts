@@ -107,7 +107,7 @@ export class WholesalerStatsHomeComponent implements OnInit {
         )
       );
     }
-    this.ontimizeService.
+
     this.ontimizeService
       .query(ce, columns, "wholesalersalesdetail")
       .subscribe((resp) => {
