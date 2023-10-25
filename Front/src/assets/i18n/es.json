@@ -56,6 +56,9 @@
   "SALEDATE" : "Fecha Venta",
   "QTY" : "Cantidad",
   "TOTAL" : "Total",
+  "TOTAL SALES" : "Ventas Totales",
+  "FIRST SALE DATE" : "Fecha Primera Venta",
+  "LAST SALE DATE" : "Fecha Última Venta",
 
   "SECTIONS": "Secciones",
   "SECTION_FOOD": "Alimentación",

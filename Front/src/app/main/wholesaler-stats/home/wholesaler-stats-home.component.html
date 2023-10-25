@@ -1,42 +1,132 @@
-<div class="container">
-  <o-form-container breadcrumb="yes" breadcrumb-label-columns="id" breadcrumb-separator="-">
-    <o-form #oForm attr="wholesaler_stats_form" service="products" entity="product" keys="id" keys-sql-types="INTEGER"
-      columns="id;es_name" editable-detail="false" show-header="yes" header-actions="R" [label-header]="formLabel"
-      show-header-navigation="yes" include-breadcrumb="yes" (onDataLoaded)="onFormDataLoaded($event)"
-      layout-align="start stretch">
-
-      <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
-
-        <div fxLayout="row">
-          <o-row title="ACCOUNT_INFO" class="account-info-container mat-elevation-z1" fxFlex="40"
-            layout-align="space-around start">
-            <div fxLayout="column" class="data-container" layout-padding fxFlex="50">
-              <span class="account-form-label balance">{{ 'BALANCE' | oTranslate }}</span>
-              <span class="account-form-value balance" [class.red-numbers]="oForm.getDataValue('BALANCE').value < 0">{{
-                oForm.getDataValue('BALANCE').value | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2
-                } }}
-                €</span>
-              <div class="balance-border"></div>
-              <span class="account-form-label avg-balance">{{ 'AVG_BALANCE' | oTranslate }}</span>
-              <!-- <span class="account-form-value avg-balance">{{ avgBalance | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }}
-                €</span> -->
-              <span class="account-form-label">{{ 'STARTDATE' | oTranslate }}</span>
-              <!-- <span class="account-form-value">{{ oForm.getDataValue('STARTDATE').value | date:'d MMM, y' }}</span> -->
-            </div>
-
-            <div fxLayout="column" class="data-container customers" layout-padding fxFlex="40">
-              <span class="account-form-label customers-list-title">{{ 'Account owners' | oTranslate }}</span>
-
-            </div>
-          </o-row>
-
+<div class="container wholesaler-detail">
+  <o-form #formFilter
+    editable-detail="yes"
+    show-header="no">
+    <o-column-collapsible title="{{ 'FILTERS_PRODUCTS' | oTranslate }}"
+      appearance="legacy"
+      expanded="yes"
+      icon="filter_list"
+      class="collapsible">
+      <div class="filter_style"
+        fxLayout="column"
+        fxLayoutGap="14px">
+        <div fxLayout="row wrap"
+          fxLayoutGap="32px">
+          <div fxLayout="row"
+            fxLayoutAlign="start"
+            fxLayoutGap="20px">
+            <o-date-input #filterStartDate attr="filterStartDate"
+              style="margin-top: 15px"
+              label="START DATE"
+              read-only="no"></o-date-input>
+            <o-date-input #filterEndDate attr="filterEndDate"
+              style="margin-top: 15px"
+              label="END DATE"
+              read-only="no"></o-date-input>
+          </div>
         </div>
-
-        <div fxLayout="row">
-
+        <div fxLayout="row"
+          fxLayoutGap="32px">
+          <div fxFlex="100%"
+            fxFill
+            class="filter_btn"
+            fxLayoutAlign="flex-end flex-end">
+            <o-button attr="clear"
+              [oFilterBuilderClear]="filterBuilder"
+              type="STROKED"
+              label="Clear"
+              layout-padding>
+            </o-button>
+            <o-button attr="filter"              
+              type="STROKED"
+              label="Filter"
+              layout-padding
+              (onClick)="getSalesMovements()">
+            </o-button>             
+          </div>
         </div>
-
       </div>
-    </o-form>
-  </o-form-container>
+    </o-column-collapsible>   
+    <div fxLayout="column"
+      fxLayoutAlign="start stretch"
+      class="max-height">
+      <div fxLayout="row">
+        <o-column title="SALES INFO"
+          class="account-info-container mat-elevation-z1"
+          fxFlex="40">
+          <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }}</span>
+          <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
+            maxDecimalDigits: 2 } }} €</span>
+          <div class="balance-border"></div>
+          <span>{{ 'FIRST SALE DATE' | oTranslate }}{{ first_sale_date | date:'d MMM, y' }}</span>
+          <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
+          <span></span>
+
+        </o-column>
+        <o-column title="SALES INFO"
+          class="account-info-container mat-elevation-z1"
+          fxFlex="40">
+
+          <o-chart type="line"
+            x-label="Time"
+            y-label="Amount (€)"
+            service="wholesalers"
+            entity="wholesalersalesdetail"
+            x-axis="saledate"
+            y-axis="total"
+            x-data-type="time"></o-chart>
+
+        </o-column>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <o-table fxFlex
+      attr="product"
+      title="PRODUCTS"
+      service="wholesalers"
+      entity="wholesalerbestsellers"
+      keys="sale_id"
+      columns="product_id;image;es_name;totalqty"
+      visible-columns="product_id;image;es_name;totalqty"
+      sort-columns="product_id;es_name"
+      query-rows="24"
+      quick-filter="yes"
+      row-height="medium"
+      select-all-checkbox="true"
+      pageable="no"
+      virtual-scroll="no">
+      <o-table-column attr="product_id"
+        title="ID"
+        orderable="yes"
+        type="integer"></o-table-column>
+      <!-- imagen -->
+      <o-table-column attr="image"
+        title="IMAGE"
+        async-load="true"
+        width="48px"
+        orderable="no"
+        searchable="no"
+        type="image"
+        image-type="base64"
+        empty-image="assets/images/no-image.png"
+        avatar="yes">
+      </o-table-column>
+      <!-- nombre -->
+      <o-table-column attr="es_name"
+        title="NAME"
+        searchable="yes"
+        orderable="yes">
+      </o-table-column>
+      <!-- cantidad vendida -->
+      <o-table-column attr="totalqty"
+        title="totalqty"
+        searchable="yes"
+        orderable="yes">
+      </o-table-column>
+
+      <o-table-context-menu></o-table-context-menu>
+      <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+    </o-table>
+    </div>
+  </o-form>
 </div>

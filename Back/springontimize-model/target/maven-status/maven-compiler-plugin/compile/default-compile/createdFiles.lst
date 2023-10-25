@@ -2,6 +2,8 @@ com\campusdual\springontimize\model\core\service\UserService.class
 com\campusdual\springontimize\model\core\service\PermissionsService.class
 com\campusdual\springontimize\model\core\dao\RoutesDao.class
 com\campusdual\springontimize\model\core\service\ProductService.class
+com\campusdual\springontimize\model\core\service\UserRoleService.class
+com\campusdual\springontimize\model\core\dao\SaleDao.class
 com\campusdual\springontimize\model\core\dao\MenuDao.class
 com\campusdual\springontimize\model\core\service\SectionService.class
 com\campusdual\springontimize\model\core\dao\UserDao.class
@@ -9,6 +11,7 @@ com\campusdual\springontimize\model\core\dao\CategoryDao.class
 com\campusdual\springontimize\model\core\dao\SectionDao.class
 com\campusdual\springontimize\model\core\dao\CountryDao.class
 com\campusdual\springontimize\model\core\dao\UserRoleDao.class
+com\campusdual\springontimize\model\core\service\SaleService.class
 com\campusdual\springontimize\model\core\dao\AllergenDao.class
 com\campusdual\springontimize\model\core\service\CountryService.class
 com\campusdual\springontimize\model\core\service\AllergenService.class

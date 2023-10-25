@@ -1,4 +1,4 @@
-.accounts-detail {
+.wholesaler-detail {
     display: block;
     height: 100%;
   
@@ -82,16 +82,16 @@
       height: 75%;
       margin-bottom: auto;
       margin-top: auto;
-  
-      .balance-border {
-        border-style: solid;
-        border-width: 6px;
-        border-bottom: 0;
-        border-left: 0;
-        border-right: 0;
-        width: 48px;
-        margin-bottom: 25px;
-      }
+    }
+    
+    .balance-border {
+      border-style: solid;
+      border-width: 6px;
+      border-bottom: 0;
+      border-left: 0;
+      border-right: 0;
+      width: 48px;
+      margin-bottom: 25px;
     }
   
     .customers {
