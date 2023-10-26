@@ -32,6 +32,9 @@
         <Query id="salesdetail">
             <AmbiguousColumns>
                 <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
+                <AmbiguousColumn name="sale_price" prefix="SA" databaseName="price" />
+                <AmbiguousColumn name="product_price" prefix="PR" databaseName="price" />
+                <AmbiguousColumn name="sale_id" prefix="SA" databaseName="id" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -40,6 +43,7 @@
                FROM
                   ${mainschema}.SALES AS SA
                   INNER JOIN ${mainschema}.TUSER AS US ON US.USER_ = SA.USER_
+                  INNER JOIN ${mainschema}.PRODUCTS AS PR ON PR.ID = SA.PRODUCT_ID
                #WHERE#
                ORDER BY saledate asc
             ]]>

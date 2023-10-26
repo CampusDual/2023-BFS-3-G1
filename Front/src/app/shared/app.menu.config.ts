@@ -57,7 +57,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
         icon: "inventory",
       },
       {
-        id: "wholesaler_stats",
+        id: "wholesaler-stats",
         name: "WHOLESALER_STATS",
         tooltip: "WHOLESALER_STATS_TOOLTIP",
         route: "/main/wholesaler-stats",
@@ -66,20 +66,20 @@ export const MENU_CONFIG: MenuRootItem[] = [
     ],
   }, 
   {
-    id: "admnistration",
+    id: "admin",
     name: "ADMINISTRATION",
     icon: "settings",
     opened: true,
     items: [
       {
-        id: "categories",
+        id: "admin-categories",
         name: "CATEGORIES",
         tooltip: "CATEGORIES_TOOLTIP",
         route: "/main/admon-categories",
         icon: "category",
       },
       {
-        id: "products",
+        id: "admin-products",
         name: "PRODUCTS",
         tooltip: "PRODUCTS_TOOLTIP",
         route: "/main/admon-products",

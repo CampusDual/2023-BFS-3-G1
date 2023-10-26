@@ -2,10 +2,9 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import {
   Expression,
   FilterExpressionUtils,
-  ODateInputComponent,
   OFilterBuilderComponent,
-  OFormComponent,
   OntimizeService,
+  OTableComponent,
   OTranslateService,
 } from "ontimize-web-ngx";
 import {
@@ -13,7 +12,6 @@ import {
   LinePlusBarFocusChartConfiguration,
   PieChartConfiguration,
 } from "ontimize-web-ngx-charts";
-import { OReportStoreService } from "ontimize-web-ngx-report";
 import { D3LocaleService } from "../../../shared/d3-locale/d3Locale.service";
 import { ThemeService } from "../../../shared/theme.service";
 import { isNullOrUndefined } from "util";
@@ -23,15 +21,12 @@ import { isNullOrUndefined } from "util";
   templateUrl: "./wholesaler-stats-home.component.html",
   styleUrls: ["./wholesaler-stats-home.component.css"],
   encapsulation: ViewEncapsulation.None,
-  host: {
-    "[class.wholesaler-stats-home]": "true",
-  },
 })
 export class WholesalerStatsHomeComponent implements OnInit {
-  @ViewChild("filterStartDate", { static: false })
-  public filterStartDate: ODateInputComponent;
-  @ViewChild("filterEndDate", { static: false })
-  public filterEndDate: ODateInputComponent;
+  @ViewChild("filterBuilder", { static: true })
+  filterBuilder: OFilterBuilderComponent;
+  @ViewChild("sales", { static: true })
+  sales: OTableComponent;
 
   public formLabel: string;
   public id: string;
@@ -68,51 +63,15 @@ export class WholesalerStatsHomeComponent implements OnInit {
           console.error(resp);
         }
       });
-    this.getSalesMovements();
+    this.getFirstLastMovement();
   }
 
-  private getSalesMovements() {
-    // Llamo al servicio
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
-    );
-    // Defino las columnas que necesito y las variables para guardar los filtros y la
-    // expresion final
-    const columns = ["saledate", "total"];
-    let filters: Array<Expression> = [];
-    let ce: Expression;
-
-    if (!isNullOrUndefined(this.filterStartDate)) {
-      filters.push(
-        FilterExpressionUtils.buildExpressionMoreEqual(
-          "saledate",
-          this.filterStartDate.getValue()
-        )
-      );
-    }
-    if (!isNullOrUndefined(this.filterEndDate)) {
-      filters.push(
-        FilterExpressionUtils.buildExpressionLessEqual(
-          "saledate",
-          this.filterEndDate.getValue()
-        )
-      );
-    }
-    if (filters.length > 0) {
-      ce = filters.reduce((exp1, exp2) =>
-        FilterExpressionUtils.buildComplexExpression(
-          exp1,
-          exp2,
-          FilterExpressionUtils.OP_AND
-        )
-      );
-    }
-
+  private getFirstLastMovement() {
+    const columns = ["saledate"];
     this.ontimizeService
-      .query(ce, columns, "wholesalersalesdetail")
+      .query(void 0, columns, "wholesalersalesdetail")
       .subscribe((resp) => {
         if (resp.code === 0) {
-          this.processLineData(resp.data);
           this.last_sale_date = resp.data[resp.data.length - 1].saledate;
           this.first_sale_date = resp.data[0].saledate;
         } else {
@@ -121,24 +80,61 @@ export class WholesalerStatsHomeComponent implements OnInit {
       });
   }
 
-  private processLineData(data: any[]): void {
-    if (data && data.length) {
-      const balanceSerie: ChartSeries = {
-        key: this.translateService.get("salestotal"),
-        values: [],
-      };
+  // creamos el filtro por el que se va a hacer la búsqueda
+  createFilter(values: Array<{ attr; value }>): Expression {
+    let filters: Array<Expression> = [];
+    values.forEach((fil) => {
+      if (fil.value) {
+        if (fil.attr === "saledate_start") {
+          filters.push(
+            FilterExpressionUtils.buildExpressionMoreEqual(
+              "saledate",
+              fil.value
+            )
+          );
+        }
+        if (fil.attr === "saledate_end") {
+          filters.push(
+            FilterExpressionUtils.buildExpressionLessEqual(
+              "saledate",
+              fil.value
+            )
+          );
+        }
+      }
+    });
 
-      data.forEach((item: any, i: number) => {
-        let color: string;
-        const date = new Date(item.saledate);
-        let salestotal = item.salestotal;
-        balanceSerie.values.push({ x: date, y: salestotal });
-      });
-      this.lineData = [balanceSerie];
+    if (filters.length > 0) {
+      return filters.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      );
+    } else {
+      return null;
     }
   }
 
-  public onFormDataLoaded(data: any): void {
+  public onSaleDataDataLoaded(data: any): void {    
+      this.processLineData(data);   
+  }
+
+ private processLineData(data: any[]): void {
+    if (data && data.length) {
+      const salesSerie: ChartSeries = {
+        key: this.translateService.get('SALES'),
+        values: []
+      }
+      data.forEach((item: any, i: number) => {                      
+        salesSerie.values.push({ x: item.saledate, y: item.total });       
+      });      
+      this.lineData = [salesSerie];
+    }
+  }
+
+  public onTableDataLoaded(data: any): void {
     this.formLabel = data.ACCOUNTTYP;
     this.id = data.ACCOUNTID;
 
@@ -180,57 +176,5 @@ export class WholesalerStatsHomeComponent implements OnInit {
     this.balanceChartParams.legend.margin.right = 0;
     this.balanceChartParams.legend.margin.bottom = 0;
     this.balanceChartParams.legend.margin.left = 0;
-  }
-
-  createFilter(values: Array<{ attr; value }>): Expression {
-    let filters = [];
-    values.forEach((fil) => {
-      if (fil.value) {
-        if (fil.attr === "filterStartDate") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionLike(fil.attr, fil.value)
-          );
-        }
-
-        if (fil.attr === "ACCOUNTTYPEID") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionEquals(fil.attr, fil.value)
-          );
-        }
-
-        //startdate
-        if (fil.attr === "STARTDATE") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionMoreEqual(fil.attr, fil.value)
-          );
-        }
-
-        //startdate
-        if (fil.attr === "ENDDATE") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionLessEqual(fil.attr, fil.value)
-          );
-        }
-
-        //balance
-        if (fil.attr === "BALANCE") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionLessEqual(fil.attr, fil.value)
-          );
-        }
-      }
-    });
-    let ce: Expression;
-    if (filters.length > 0) {
-      ce = filters.reduce((exp1, exp2) =>
-        FilterExpressionUtils.buildComplexExpression(
-          exp1,
-          exp2,
-          FilterExpressionUtils.OP_AND
-        )
-      );
-    }
-
-    return ce;
   }
 }
