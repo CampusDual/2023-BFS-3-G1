@@ -56,6 +56,9 @@
   "SALEDATE" : "Fecha Venta",
   "QTY" : "Cantidad",
   "TOTAL" : "Total",
+  "TOTAL SALES" : "Ventas Totales",
+  "FIRST SALE DATE" : "Fecha Primera Venta",
+  "LAST SALE DATE" : "Fecha Última Venta",
 
   "SECTIONS": "Secciones",
   "SECTION_FOOD": "Alimentación",
@@ -77,8 +80,22 @@
   "BALANCE":"Balance",
   "AVG_BALANCE":"Media",
   "STARTDATE":"Fecha de inicio",
-  "Account owners":"Propietarios de cuenta"
-  
+  "Account owners":"Propietarios de cuenta",
+  "al_altramuces":"Altramuces",
+  "al_apio":"Apio",
+  "al_cacahuetes":"Cacahuetes",
+  "al_cascara":"Cáscara",
+  "al_crustaceos":"Crustáceos",
+  "al_gluten":"Glúten",
+  "al_huevo":"Huevo",
+  "al_leche":"Leche",
+  "al_moluscos":"Moluscos",
+  "al_mostaza":"Mostaza",
+  "al_pescado":"Pescado",
+  "al_sesamo":"Sésamo",
+  "al_soja":"Soja",
+  "al_sulfitos":"Sulfitos",
+  "al_vegano":"Vegano"
   
   
 
