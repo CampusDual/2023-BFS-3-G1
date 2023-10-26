@@ -9,7 +9,7 @@
       <mat-tab label="{{ 'SUMMARY' | oTranslate }}">
         <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
           <div fxLayout="row">
-            <o-column title="SALES INFO" class="account-info-container mat-elevation-z1" fxFlex="40">
+            <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1" fxFlex="40">
               <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }}</span>
               <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
@@ -18,7 +18,7 @@
               <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
               <span></span>
             </o-column>
-            <o-column title="SALES INFO" class="account-info-container mat-elevation-z1" fxFlex="40">
+            <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1" fxFlex="40">
               <o-chart type="line" x-label="Time" y-label="Amount (€)" service="wholesalers"
                 entity="wholesalersalesdetail" x-axis="saledate" y-axis="total" x-data-type="time"></o-chart>
             </o-column>
@@ -63,7 +63,7 @@
           <div fxLayout="row">
 
             <!-- info de ventas global -->
-            <o-column title="SALES INFO" class="account-info-container mat-elevation-z1" fxFlex="70">
+            <o-column title="{{ 'SALES_DETAIL' | oTranslate }}" class="account-info-container mat-elevation-z1" fxFlex="70">
 
               <o-table #sales fxFlex attr="wholesaler" title="SALES" service="wholesalers"
                 entity="wholesalersalesdetail" keys="sale_id"
@@ -98,10 +98,10 @@
 
             </o-column>
 
-            <o-column title="SALES INFO" class="account-info-container mat-elevation-z1" fxFlex="40">
+            <o-column title="{{ 'SALES_GRAPH' | oTranslate }}" class="account-info-container mat-elevation-z1" fxFlex="40">
               <!-- aqui va la tabla con el detalle de las ventas filtradas si es el caso -->
               <o-chart #saleschart type="line" x-label="Time" y-label="Amount (€)" [data]="lineData" x-axis="saledate"
-                y-axis="total" x-data-type="time"></o-chart>
+                y-axis="total" x-data-type="time" showLegend="true"></o-chart>
 
             </o-column>
           </div>
@@ -109,12 +109,13 @@
       </mat-tab>
 
       <!-- tab con el abc de productos -->
-      <mat-tab label="{{ 'PRODUCTS_ABC' | oTranslate }}">
+      <mat-tab label="{{ 'PRODUCTS_SALE_DATA' | oTranslate }}">
         <o-table fxFlex attr="product" title="PRODUCTS" service="wholesalers" entity="wholesalerbestsellers"
-          keys="sale_id" columns="product_id;image;es_name;totalqty" visible-columns="product_id;image;es_name;totalqty"
-          sort-columns="product_id;es_name" query-rows="24" quick-filter="yes" row-height="medium"
-          select-all-checkbox="true" pageable="no" virtual-scroll="no">
-          <o-table-column attr="product_id" title="ID" orderable="yes" type="integer"></o-table-column>
+          keys="sale_id" columns="product_id;image;es_name;totalqty" visible-columns="image;es_name;totalqty"
+          sort-columns="totalqty desc" query-rows="24" quick-filter="yes" row-height="medium"
+          select-all-checkbox="no" pageable="no" virtual-scroll="no" detail-mode="no" edition-mode="no" insert-button="false"
+          delete-button="false">
+          
           <!-- imagen -->
           <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
             type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
@@ -123,7 +124,7 @@
           <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
           </o-table-column>
           <!-- cantidad vendida -->
-          <o-table-column attr="totalqty" title="totalqty" searchable="yes" orderable="yes">
+          <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" searchable="yes" orderable="yes">
           </o-table-column>
 
           <o-table-context-menu></o-table-context-menu>

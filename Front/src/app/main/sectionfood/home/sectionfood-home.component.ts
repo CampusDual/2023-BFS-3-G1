@@ -6,7 +6,6 @@ import {
   FilterExpressionUtils,
   OFilterBuilderComponent,
 } from "ontimize-web-ngx";
-import { OReportStoreService } from "ontimize-web-ngx-report";
 import { SectionfoodDetailComponent } from "../detail/sectionfood-detail.component";
 
 @Component({

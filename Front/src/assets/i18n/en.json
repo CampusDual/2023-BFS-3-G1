@@ -57,9 +57,8 @@
   "QTY" : "Quantity",
   "TOTAL" : "Total",
   "TOTAL SALES" : "Total Sales",
-  "FIRST SALE DATE" : "Fecha Primera Venta: ",
-  "LAST SALE DATE" : "Fecha Última Venta: ",
-
+  "FIRST SALE DATE" : "First Sell Date: ",
+  "LAST SALE DATE" : "Last Sell Date: ",
   "SECTIONS": "Sections",
   "SECTION_FOOD": "Food",
   "SECTION_JOINT_PURCHASE": "Group Buy",
@@ -108,7 +107,20 @@
   "al_sesamo":"Sesame",
   "al_soja":"Soy",
   "al_sulfitos":"Sulphites",
-  "al_vegano":"Vegan"
+  "al_vegano":"Vegan",
+  "SUMMARY" : "Summary",
+ "SALES_DATA" : "Sales Data",
+  "PRODUCTS_SALE_DATA": "Products Sale Data",
+"SALES_INFO" : "Sales Information",
+"FILTERS_SALES" : "Filters",
+"START DATE" : "Start Date",
+"END DATE" : "End Date",
+"SALES_DETAIL" : "Sales Detail",
+"SALES_GRAPH" : "Gráfica de ventas",
+"SALETOTAL" : "Amount (€)",
+"TOTALQTY" : "Total Units"
+
+
 
 
 }
