@@ -58,12 +58,12 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  PR.id AS product_id , es_name , SA.id AS sale_id,image, SUM(QTY) AS totalqty
+                  PR.id AS product_id , es_name , SUM(QTY) AS totalqty
                FROM
                   ${mainschema}.SALES AS SA
                   INNER JOIN ${mainschema}.PRODUCTS AS PR ON PR.ID = SA.PRODUCT_ID
                #WHERE#
-               GROUP BY PR.ID,SA.ID
+               GROUP BY PR.ID
                ORDER BY SUM(QTY) DESC
             ]]>
             </Sentence>
