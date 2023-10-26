@@ -85,7 +85,7 @@
                         title="{{ 'al_vegano' | oTranslate }}" />
                 </o-row>
                 <o-form editable-detail="yes" show-header="no" class="buttom" >
-                    <o-integer-input attr="" label="Cuantity" width="10%"></o-integer-input>
+                    <o-integer-input attr="" label="Cantidad" min="0" width="10%"></o-integer-input>
                     <o-button attr="stroked1" type="STROKED" label="Agregar a carrito" (click)="showInfo($event)" ></o-button>
                 </o-form>
             </div>
