@@ -35,11 +35,11 @@ export class ThemeService {
       description: 'Ontimize with fashion styles'
     },
     {
-      primary: '#4649A6',
+      primary: '#6f856a',
       accent: '#4649A6',
       href: 'o-violet-blues.css',
       href_dark: 'o-violet-blues-dark.css',
-      description: 'Violet blue'
+      description: 'Tema del grupo A'
     },
     {
       primary: '#071540',
