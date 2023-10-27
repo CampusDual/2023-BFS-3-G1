@@ -3,7 +3,7 @@
 
   <o-column title="LANGUAGE" layout-align="center stretch" class="setting-column" layout-padding>
     <mat-radio-group [value]="currentLang" (change)="changeLang($event)">
-      <mat-radio-button *ngFor="let lang of availableLangs" [value]="lang">{{ 'LANG_' + lang | oTranslate
+      <mat-radio-button *ngFor="let lang of availableLangs" [value]="lang">{{  lang | oTranslate
         }}</mat-radio-button>
     </mat-radio-group>
   </o-column>
