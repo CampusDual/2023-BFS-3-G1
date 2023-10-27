@@ -65,11 +65,13 @@
             insert-button="false" pagination-controls="false" gutter-size="1px" fixed-header="no" show-footer="false"
             [ngStyle]="{'height':'600px' }">
             <o-grid-item *ngFor="let list of grid.dataArray">
+<a id="myLink" href="/main/sectionfood/{{ list.id }}?isdetail=true">
                 <o-column class="container-item">
                     <o-image [data]="list.image" auto-fit="true" enabled="false" read-only="true" show-controls="no"
                         full-screen-button="false" empty-image="./assets/images/no-image.png"></o-image>
                     <h4 style="font-size: 15px; color: #5B7056;">{{ list.es_name }} <br> {{ list.price }} € </h4>
                 </o-column>
+</a>
             </o-grid-item>
         </o-grid>
     </div>
