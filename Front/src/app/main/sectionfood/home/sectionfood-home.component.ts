@@ -7,6 +7,7 @@ import {
   OFilterBuilderComponent,
 } from "ontimize-web-ngx";
 import { SectionfoodDetailComponent } from "../detail/sectionfood-detail.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sectionfood-home",
@@ -18,7 +19,11 @@ export class SectionfoodHomeComponent implements OnInit {
   @ViewChild("filterBuilder", { static: true })
   filterBuilder: OFilterBuilderComponent;
 
-  constructor(protected dialog: MatDialog, protected sanitizer: DomSanitizer) {}
+  constructor(
+    protected dialog: MatDialog,
+    protected sanitizer: DomSanitizer,
+    protected router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -66,5 +71,10 @@ export class SectionfoodHomeComponent implements OnInit {
       width: "520px",
       data: data,
     });
+  }
+
+  public gotoProducts(listId: number) {
+    this.router.navigate(["/main/sectionfood/" + listId + "?isdetail=true"]);
+    return false;
   }
 }

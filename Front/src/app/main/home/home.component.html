@@ -36,7 +36,7 @@
         style="background-color: #D2CDBB; padding: 10px; margin-top: 20px; border-radius: 10px;">
         <h2 style="font-size: 30px; margin-left: 5%; color: #5B7056; padding: 20px;">Compra conjunta</h2>
         <div class="image-container">
-            <a href="main/products"
+            <a id="myLink" href="#" (click)="gotoProducts()"
                 style="text-decoration: none; display: flex; justify-content: center;padding-bottom: 40px;">
                 <o-image attr="image" data="./assets/images/7_1.png" auto-fit="true" enabled="false" read-only="false"
                     show-controls="no" full-screen-button="false" empty-image="./assets/images/no-image.png">
@@ -63,15 +63,15 @@
             cols="4" query-rows="12" show-page-size="false" orderable="false" quick-filter="false"
             grid-item-height="1:1.3" sortable-columns="es_name" sort-column="" controls="true" refresh-button="false"
             insert-button="false" pagination-controls="false" gutter-size="1px" fixed-header="no" show-footer="false"
-            [ngStyle]="{'height':'600px' }">
+            [ngStyle]="{'height':'600px' }" detail-form-route="./sectionfood">
             <o-grid-item *ngFor="let list of grid.dataArray">
-<a id="myLink" href="/main/sectionfood/{{ list.id }}?isdetail=true">
-                <o-column class="container-item">
-                    <o-image [data]="list.image" auto-fit="true" enabled="false" read-only="true" show-controls="no"
-                        full-screen-button="false" empty-image="./assets/images/no-image.png"></o-image>
-                    <h4 style="font-size: 15px; color: #5B7056;">{{ list.es_name }} <br> {{ list.price }} € </h4>
-                </o-column>
-</a>
+                <a id="myLink" href="/main/sectionfood/{{ list.id }}?isdetail=true" style="text-decoration: none;">
+                    <o-column class="container-item">
+                        <o-image [data]="list.image" auto-fit="true" enabled="false" read-only="true" show-controls="no"
+                            full-screen-button="false" empty-image="./assets/images/no-image.png"></o-image>
+                        <h4 style="font-size: 15px; color: #5B7056;">{{ list.es_name }} <br> {{ list.price }} € </h4>
+                    </o-column>
+                </a>
             </o-grid-item>
         </o-grid>
     </div>

@@ -86,7 +86,7 @@
         <o-grid-item *ngFor="let list of grid.dataArray">
           <o-column layout-padding class="container-item">
             <div>              
-                <a id="myLink" href="/main/sectionfood/{{ list.id }}?isdetail=true">
+                <a id="myLink" href="/main/sectionfood/{{ list.id }}?isdetail=true" style="text-decoration: none;">
                   <o-image [data]="list.image" enabled="true" read-only="true" show-controls="no"
                     full-screen-button="no" empty-image="./assets/images/no-image.png"></o-image>
                 </a>
