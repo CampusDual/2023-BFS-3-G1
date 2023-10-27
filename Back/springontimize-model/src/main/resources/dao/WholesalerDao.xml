@@ -58,7 +58,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  PR.id AS product_id , es_name , SUM(QTY) AS totalqty
+                  PR.id AS product_id , es_name , SUM(QTY) AS totalqty, SUM(TOTAL) AS salestotal, image
                FROM
                   ${mainschema}.SALES AS SA
                   INNER JOIN ${mainschema}.PRODUCTS AS PR ON PR.ID = SA.PRODUCT_ID

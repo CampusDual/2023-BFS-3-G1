@@ -1,0 +1,13 @@
+filtrar(event){
+   let filters: Array<Expression> = [];
+   filters.push(FilterExpressionUtils.buildExpressionMoreEqual('STARTDATE', 1451602800000));
+   filters.push(FilterExpressionUtils.buildExpressionLessEqual('STARTDATE', 1698357600000));
+   let kv = { '@basic_expression' : filters.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND))};
+   this.ontimizeService.query(kv, ['ACCOUNTID','ENTITYID','OFFICEID','CDID','ANID','STARTDATE','ENDDATE','INTERESRATE','ACCOUNTTYP'], 'account',{STARTDATE:93}).subscribe(
+      result => {
+         if (result.data && result.data.length) {
+            this.accountTable.setDataArray(result.data);
+         }
+      }
+   );
+  } 
