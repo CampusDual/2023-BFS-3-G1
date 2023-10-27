@@ -12,4 +12,18 @@
         <Column>id</Column>
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
+    <Queries>
+        <Query id="default">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.COUNTRIES AS CO
+               #WHERE#
+               ORDER BY EN_NAME
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>

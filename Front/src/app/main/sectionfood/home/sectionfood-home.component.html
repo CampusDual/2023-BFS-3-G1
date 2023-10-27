@@ -55,7 +55,7 @@
             <o-slide-toggle attr="al_vegano" label="No apto para veganos" read-only="no"></o-slide-toggle>
             <o-combo #category_id attr="category_id" label="CATEGORY" read-only="no" service="categories"
               entity="category" columns="id;es_name" value-column="id" keys="id" visible-columns="es_name"
-              sql-type="INTEGER" fxFlex="calc(25% - 32px)"></o-combo>
+              sql-type="INTEGER" fxFlex="calc(25% - 32px)" sort-columns="es_name" ></o-combo>
             <o-combo #country_id attr="country_id" label="COUNTRY" read-only="no" service="countries" entity="country"
               columns="id;en_name" value-column="id" keys="id" visible-columns="en_name" sql-type="INTEGER"
               fxFlex="calc(25% - 32px)"></o-combo>
