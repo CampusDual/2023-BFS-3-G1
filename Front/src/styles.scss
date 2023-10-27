@@ -30,4 +30,14 @@ o-form-toolbar .mat-toolbar {
   margin-left: 0px !important;
 }
 
+button.mat-sort-header-button{
+  text-align:center !important;
+} 
 
+span.header-title-container{
+  text-align: center;
+}
+
+td.o-column-currency>div{
+  margin-right: 65px;
+}

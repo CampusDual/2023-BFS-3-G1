@@ -1,0 +1,22 @@
+/* .mat-tab-body-wrapper{
+    text-align:center;
+} */
+.o-table{
+    text-align: center;
+}
+
+.o-table .mat-header-cell.start{
+    align-items: center;
+}
+
+/* .o-table .o-table-container .mat-table .mat-header-cell.start, .o-table .o-table-container .mat-table .mat-header-cell.start .mat-sort-header-button {
+    text-align: center ;
+} */
+
+/* o-table-header{
+    text-align: center;
+}  */
+
+button.mat-sort-header-button{
+    text-align:center !important;
+} 

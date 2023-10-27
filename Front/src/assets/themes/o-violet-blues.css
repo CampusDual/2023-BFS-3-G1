@@ -161,7 +161,7 @@
 .rounded-panel,
 .standalone-chart-container,
 .standalone-form-container .o-form-content-wrapper {
-  background: #6f856a; /*NI*/
+  background: #D2CDBB; /*NI*/
   border-radius: 2px; }
 
 .standalone-chart-container {
@@ -2648,12 +2648,12 @@ textarea {
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
   border-radius: 0;
-  background-color: #c7c7c7; }
+  background-color: #8ca386; }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
   -webkit-box-shadow: none;
-  background-color: #9fafdf;
+  background-color: #60735b;
   opacity: 1.0; }
 
 .o-loading {
@@ -2800,8 +2800,8 @@ o-data-toolbar.o-table-toolbar .buttons button {
 .o-list .o-list-toolbar button.o-list-button:not([disabled]).mat-button-base.o-button-primary,
 .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button:not([disabled]).mat-button-base.mat-primary,
 .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button:not([disabled]).mat-button-base.o-button-primary {
-  color: #2943a9;
-  background-color: #c5cfec;
+  color: #9f093c; /*Cor da letra do botón de ok unha vez lle das a novo produto en mayoristas*/
+  background-color: #f4f6f3; /*Cor do fondo do botón de ok unha vez lle das a novo produto en mayoristas*/
   border-color: transparent; }
   .mat-dialog-actions button:not([disabled]).mat-button-base.mat-primary:hover,
   .mat-dialog-actions button:not([disabled]).mat-button-base.mat-primary .mat-button-focus-overlay, .mat-dialog-actions button:not([disabled]).mat-button-base.o-button-primary:hover,
@@ -2822,8 +2822,8 @@ o-data-toolbar.o-table-toolbar .buttons button {
   .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button:not([disabled]).mat-button-base.mat-primary .mat-button-focus-overlay,
   .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button:not([disabled]).mat-button-base.o-button-primary:hover,
   .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button:not([disabled]).mat-button-base.o-button-primary .mat-button-focus-overlay {
-    color: #9f093c;
-    background-color: #ffffff;
+    color: #7d062e; /*Cor de hover da letra do botón de ok unha vez lle das a novo produto en mayoristas*/
+    background-color: #D2CDBB; /*Cor de hover do fondo do botón de ok unha vez lle das a novo produto en mayoristas*/
     border-color: rgba(0, 0, 0, 0.12); }
 
 .mat-dialog-actions button:not([disabled]).mat-button-base, .mat-dialog-actions button:not([disabled]).mat-button-base.mat-accent,

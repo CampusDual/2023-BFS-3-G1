@@ -11,7 +11,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   {
     id: "sections",
     name: "SECTIONS",
-    icon: "remove_red_eye",
+    icon: "drag_indicator",
     opened: false,
     items: [
       {
