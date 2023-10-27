@@ -1,5 +1,4 @@
 body {
-    /* text-align: center; */
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -39,8 +38,8 @@ body {
   }
   
   .image-container o-image {
-    width: 23%; /* Reducir el ancho para que quepan las 4 imágenes en una fila */
-    margin: 0; /* Elimina el margen para evitar desplazamientos */
+    width: 23%; 
+    margin: 0; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   
@@ -64,7 +63,7 @@ body {
     margin-left: 50px;
   }
   .logicon {
-    font-size: 60px; /* Aumentar el tamaño del icono de login */
+    font-size: 60px; 
     margin-left: 5px;
     margin-right: 90px;
     color:#D2CDBB;
@@ -80,7 +79,7 @@ body {
   }
   
   .container-item {
-    width: 80%; /* Ancho para que quepan 4 imágenes en una fila */
+    width: 80%; 
     height: 90%;
     margin: 20px;
     padding: 10px;
@@ -88,11 +87,11 @@ body {
   }
   
   .container-item img {
-    width: 70%; /* Ancho del 100% para que las imágenes ocupen el 100% del contenedor */
-    height: auto; /* Altura automática para mantener la proporción */
+    width: 70%; 
+    height: auto; 
     display: flex;
     align-items: center; 
-    margin: 0 auto; /* Centrar las imágenes */
+    margin: 0 auto; 
     padding: 20px;
   }
   
