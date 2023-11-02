@@ -7,18 +7,9 @@ import { OntimizeService } from 'ontimize-web-ngx';
   styleUrls: ['./shoppingcart-home.component.css']
 })
 export class ShoppingcartHomeComponent implements OnInit {
-  recorded: any;
+  
 
-  // editionCommitted(event: any) {
-  //   let editedRecord = event.rowData;
-  //   let qty = editedRecord['qty'];
-  //   let price = editedRecord['shoppingcart_price'];
-
-  //   if (!isNaN(qty) && !isNaN(price)) {
-  //     let total = qty * price;
-  //     editedRecord['total'] = total;
-  //   }
-  // }
+  
 
 
 
@@ -27,30 +18,30 @@ export class ShoppingcartHomeComponent implements OnInit {
   ngOnInit() {
 
   }
-  // onPostUpdateRecord(event: any) {
-  //   this.ontimizeService.configureService(
-  //     this.ontimizeService.getDefaultServiceConfiguration("shoppingcart")
-  //   );
-  //   const columns = ["id", "qty", "shoppingcart_price", "product_id", "total"];
-  //   const filter = { "id": event.id };
-  //   let price = 0;
+  goToSales(event: any) {
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("shoppingcart")
+    );
+    const columns = ["id", "qty", "shoppingcart_price", "product_id", "total"];
+    const filter = { "id": event.id };
+    let price = 0;
     
-  //   this.ontimizeService
-  //     .query(filter, columns, "shoppingcart")
-  //     .subscribe((resp) => {
-  //       if (resp.code === 0) {
-  //         this.recorded = resp.data[0];
-  //       } else {
-  //         console.error(resp);
-  //       }
-  //     });
-  //   this.recorded["total"] = +((this.recorded["shoppingcart_price"] * this.recorded["qty"]).toFixed(2));
-  //   this.ontimizeService
-  //     .update(filter, this.recorded, "shoppingcart")
-  //     .subscribe((response)=>{
-  //       if(response.code === 0){
-  //         alert("Todo listo muchachos");
-  //       }
-  //     })
-  // }
+    this.ontimizeService
+      .query(filter, columns, "shoppingcart")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.recorded = resp.data[0];
+        } else {
+          console.error(resp);
+        }
+      });
+    this.recorded["total"] = +((this.recorded["shoppingcart_price"] * this.recorded["qty"]).toFixed(2));
+    this.ontimizeService
+      .update(filter, this.recorded, "shoppingcart")
+      .subscribe((response)=>{
+        if(response.code === 0){
+          alert("Todo listo muchachos");
+        }
+      })
+  }
 }
