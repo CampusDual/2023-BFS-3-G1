@@ -8,6 +8,6 @@ export const SERVICE_CONFIG: Object = {
   'sales': {'path': '/sales'},
   'userrole': {'path': '/userrole'},
   'permissions': {'path':'/permissions/permission'},
-  'users': {'path': '/users'}
-
+  'users': {'path': '/users'},
+  'shoppingcart':{'path':'/shoppingcart'}
 };

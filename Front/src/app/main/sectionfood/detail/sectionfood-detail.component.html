@@ -3,7 +3,8 @@
         <o-form #oForm attr="product_detail_form" service="products" entity="product" keys="id" keys-sql-types="INTEGER"
             columns="id;es_name;es_description_short;es_description_long;image;price;category_id;al_gluten;al_cacahuetes;al_cascara;al_altramuces;al_leche;al_vegano;al_apio;al_crustaceos;al_huevo;al_moluscos;al_mostaza;al_pescado;al_sesamo;al_soja;al_sulfitos"
             editable-detail="no" show-header="yes" header-actions="R" [label-header]="formLabel"
-            show-header-navigation="no" include-breadcrumb="yes" layout-align="centered">
+            show-header-navigation="no" include-breadcrumb="yes" layout-align="centered" >
+            <o-integer-input  attr="id" oHidden ></o-integer-input>
 
             <div fxLayout="column" fxLayoutAlign="centered" class="max-height">
 
@@ -13,7 +14,7 @@
                             <o-image id="image" attr="image" enabled="true" read-only="true" show-controls="no"
                                 full-screen-button="false" width="350px"
                                 empty-image="assets/images/no-image.png"></o-image>
-                            <div class="info" fxLayout="row wrap" fxFlex fxLayoutGap="14px" >
+                            <div class="info" fxLayout="row wrap" fxFlex fxLayoutGap="14px">
                                 <div>
                                     <h2><span>{{ oForm.getDataValue('es_name').value }}</span></h2>
                                     <span>{{ oForm.getDataValue('es_description_long').value }}</span>
@@ -31,7 +32,7 @@
                                         enabled="true" read-only="true" show-controls="no">
                                     </o-combo>
                                     <o-currency-input attr="price" label="PRICE"
-                                        editable-detail="false"></o-currency-input>
+                                        editable-detail="false"></o-currency-input>  
                                 </div>
                             </div>
                         </div>
@@ -84,22 +85,22 @@
                         src="./assets/images/allergens/15.png" alt="{{ 'al_vegano' | oTranslate }}"
                         title="{{ 'al_vegano' | oTranslate }}" />
                 </o-row>
-                <o-form editable-detail="yes" show-header="no" class="buttom" >
-                    <o-integer-input attr="" label="Cantidad" min="0" width="10%"></o-integer-input>
-                    <o-button attr="stroked1" type="STROKED" label="Agregar a carrito" (click)="showInfo($event)" ></o-button>
-                </o-form>
-                
             </div>
-            
         </o-form>
-        
+        <o-form #oForm2 editable-detail="yes" show-header="no" class="buttom">
+            <o-integer-input  attr="qty" label="Cantidad" min="0" width="10%"></o-integer-input>
+            <o-button label="Agregar a carrito" (click)="addToCart($event)"></o-button>
+
+            
+
+        </o-form>
     </o-form-container>
-    <div id="footer" class="footer-container" style="background-color: #6c7b69; text-align: center; padding: 10px;width: 100%;">
+    <div id="footer" class="footer-container"
+        style="background-color: #6c7b69; text-align: center; padding: 10px;width: 100%;">
         <div fxLayout="row" fxLayoutAlign="center center">
             <span class="footer-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #d2cdbb">&copy;
                 Creado
                 por Group-A. 2023</span>
         </div>
     </div>
-    
 </div>

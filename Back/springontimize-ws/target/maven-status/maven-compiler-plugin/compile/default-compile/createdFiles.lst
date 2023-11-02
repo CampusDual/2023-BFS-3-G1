@@ -1,5 +1,6 @@
 com\campusdual\springontimize\ws\core\rest\SectionRestController.class
 com\campusdual\springontimize\ws\core\rest\UserRestController.class
+com\campusdual\springontimize\ws\core\rest\WholesalerRestController.class
 com\campusdual\springontimize\ws\core\rest\TestRestController.class
 com\campusdual\springontimize\ws\core\rest\AllergenRestController.class
 com\campusdual\springontimize\ws\core\rest\SaleRestController.class
