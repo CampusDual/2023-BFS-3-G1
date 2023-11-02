@@ -30,7 +30,7 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public EntityResult shoppingcartUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {
-        return this.daoHelper.update(this.shoppingCartDao,keyMap,attrMap);
+        return this.daoHelper.update(this.shoppingCartDao,attrMap,keyMap);
     }
 
     @Override

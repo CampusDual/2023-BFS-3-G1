@@ -15,7 +15,7 @@
     <Queries>
         <Query id="default">
             <AmbiguousColumns>
-                <AmbiguousColumn name="shoppingcart_id" prefix="SC" databaseName="id" />
+                <AmbiguousColumn name="id" prefix="SC" databaseName="id" />
                 <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
                 <AmbiguousColumn name="shoppingcart_price" prefix="SC" databaseName="price" />
                 <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
@@ -23,7 +23,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  #COLUMNS#
+                  #COLUMNS#,qty*sc.price as total
                FROM
                   ${mainschema}.SHOPPINGCART AS SC
                INNER JOIN
