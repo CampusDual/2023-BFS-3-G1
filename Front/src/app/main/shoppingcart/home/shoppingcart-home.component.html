@@ -1,1 +1,32 @@
-<p>shoppingcart-home works!</p>
+<o-form-layout-manager mode="tab" title="SHOPPINGCART" label-columns="es_name" attr="o-form-layout-product-home"
+  title-data-origin="products_form_edit">
+
+  <div fxFill fxLayout="column" fxLayoutAlign="start">
+
+    <o-table fxFlex attr="" title="PRODUCTS" service="shoppingcart" entity="shoppingcart" keys="shoppingcart_id"
+      columns="shoppingcart_id;shoppingcart_price;product_id;qty;total;image;es_name" visible-columns="image;shoppingcart_price;qty;total;es_name"
+      sort-columns="es_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
+      pageable="no" virtual-scroll="no">
+      <!-- imagen -->
+      <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
+        type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
+      </o-table-column>
+      <!-- nombre -->
+      <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes"> 
+      </o-table-column>
+       <!-- precio -->
+      <o-table-column attr="shoppingcart_price" title="PRICE" type="currency" currency-symbol="€" currency-symbol-position="right"
+        thousand-separator="." decimal-separator=",">
+      </o-table-column>
+      <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€" currency-symbol-position="right"
+        thousand-separator="." decimal-separator=",">
+      </o-table-column>
+      
+
+      <o-table-context-menu></o-table-context-menu>
+      <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+    </o-table>
+
+  </div>
+
+</o-form-layout-manager>

@@ -12,4 +12,27 @@
         <Column>id</Column>
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
+    <Queries>
+        <Query id="default">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="shoppingcart_id" prefix="SC" databaseName="id" />
+                <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
+                <AmbiguousColumn name="shoppingcart_price" prefix="SC" databaseName="price" />
+                <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.SHOPPINGCART AS SC
+               INNER JOIN
+                 ${mainschema}.PRODUCTS AS PO
+                 ON
+                 SC.PRODUCT_ID = PO.ID
+               #WHERE#
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 </JdbcEntitySetup>
