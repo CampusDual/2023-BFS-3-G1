@@ -52,9 +52,7 @@ public class ShoppingCartService implements IShoppingCartService {
         Map<String, Object> atributes = new HashMap<>();
         atributes.put(ShoppingCartDao.ATTR_QTY,nProducts + (Integer.parseInt(attrMap.get(ShoppingCartDao.ATTR_QTY).toString())) ); // Hago la actualización del carrito
         return this.daoHelper.update(shoppingCartDao, atributes , updateKeys);
-
     }
-
 
     @Override
     public EntityResult shoppingcartUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) throws OntimizeJEERuntimeException {

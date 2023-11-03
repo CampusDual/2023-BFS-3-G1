@@ -19,4 +19,5 @@ public class SalesHeadDao extends OntimizeJdbcDaoSupport{
     public static final String ATTR_REFEREMCE = "reference";
 
 
+
 }

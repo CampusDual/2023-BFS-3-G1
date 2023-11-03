@@ -6,7 +6,7 @@
         catalog="" schema="${mainschema}" table="shoppingcart"
         datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
     <DeleteKeys>
-        <Column>id</Column>
+        <Column>user_</Column>
     </DeleteKeys>
     <UpdateKeys>
         <Column>id</Column>
@@ -26,7 +26,9 @@
                 <Column>qty</Column>
                 <Column>total</Column>
                 <Column>id</Column>
-                <Column>price</Column>
+                <Column>shoppingcart_price</Column>
+                <Column>image</Column>
+                <Column>es_name</Column>
             </ValidColumns>
             <Sentence>
                 <![CDATA[
