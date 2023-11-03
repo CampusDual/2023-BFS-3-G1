@@ -124,6 +124,9 @@
 "TOTALQTY" : "Total Units",
 
 "THEME" : "Theme",
-"DARK_MODE" : "Dark mode"
+"DARK_MODE" : "Dark mode",
 
+"Cereales, dulces y deriv." : "Cereals, sweets and derivatives.",
+"Frutas y Verduras" : "Fruits and vegetables",
+"Origen Animal" : "Animal origin"
 }

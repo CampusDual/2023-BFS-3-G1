@@ -54,12 +54,13 @@
           <div fxLayout="row wrap" fxLayoutGap="32px">
             <o-slide-toggle attr="al_vegano" label="NO APTO PARA VEGANOS" read-only="no"></o-slide-toggle>
             <o-combo #category_id attr="category_id" label="CATEGORY" read-only="no" service="categories"
-              entity="category" columns="id;es_name" value-column="id" keys="id" visible-columns="es_name"
+              entity="category" columns="id;es_name;en_name" value-column="id" keys="id" visible-columns="es_name"
               sql-type="INTEGER" fxFlex="calc(25% - 32px)" sort-columns="es_name" ></o-combo>
             <o-combo #country_id attr="country_id" label="COUNTRY" read-only="no" service="countries" entity="country"
-              columns="id;en_name" value-column="id" keys="id" visible-columns="en_name" sql-type="INTEGER"
+              columns="id;en_name;es_name" value-column="id" keys="id" visible-columns="es_name" sql-type="INTEGER"
               fxFlex="calc(25% - 32px)"></o-combo>
           </div>
+          <!-- visible-columns="{{ 'es_name' | oTranslate }}" -->
           <div fxLayout="row" fxLayoutGap="32px">
             <div fxFlex="100%" fxFill class="filter_btn" fxLayoutAlign="flex-end flex-end">
               <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear" layout-padding>

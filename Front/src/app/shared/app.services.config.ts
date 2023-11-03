@@ -9,5 +9,6 @@ export const SERVICE_CONFIG: Object = {
   'userrole': {'path': '/userrole'},
   'permissions': {'path':'/permissions/permission'},
   'users': {'path': '/users'},
-  'shoppingcart':{'path':'/shoppingcart'}
+  'shoppingcart':{'path':'/shoppingcart'},
+  'salesHead':{'path':'/salesHead'}
 };
