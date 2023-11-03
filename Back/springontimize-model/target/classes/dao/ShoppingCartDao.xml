@@ -20,6 +20,14 @@
                 <AmbiguousColumn name="shoppingcart_price" prefix="SC" databaseName="price" />
                 <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
             </AmbiguousColumns>
+            <ValidColumns>
+                <Column>user_</Column>
+                <Column>product_id</Column>
+                <Column>qty</Column>
+                <Column>total</Column>
+                <Column>id</Column>
+                <Column>price</Column>
+            </ValidColumns>
             <Sentence>
                 <![CDATA[
                SELECT

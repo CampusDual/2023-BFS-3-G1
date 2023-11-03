@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
         configurationFile = "dao/ShoppingCartDao.xml",
         configurationFilePlaceholder = "dao/placeholders.properties")
 public class ShoppingCartDao extends OntimizeJdbcDaoSupport {
-    public static final String ATTR_ID = "ID";
-    public static final String ATTR_USER_ = "USER";
-    public static final String ATTR_PRODUCT_ID = "PRODUCT_ID;";
-    public static final String ATTR_QTY = "QTY";
-    public static final String ATTR_PRICE = "PRICE";
-    public static final String ATTR_TOTAL = "TOTAL";
+    public static final String ATTR_ID = "id";
+    public static final String ATTR_USER_ = "user_";
+    public static final String ATTR_PRODUCT_ID = "product_id";
+    public static final String ATTR_QTY = "qty";
+    public static final String ATTR_PRICE = "price";
+    public static final String ATTR_TOTAL = "total";
 
 }
