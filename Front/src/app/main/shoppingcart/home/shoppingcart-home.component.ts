@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { OTableComponent, OntimizeService } from "ontimize-web-ngx";
 
 @Component({
@@ -9,14 +10,22 @@ import { OTableComponent, OntimizeService } from "ontimize-web-ngx";
 export class ShoppingcartHomeComponent implements OnInit {
   @ViewChild ("tableInfo",{static:false})
   private tableInfo: OTableComponent;
-  constructor(private ontimizeservice:OntimizeService) {}
+  router:Router;
+  constructor(
+    private ontimizeservice:OntimizeService,
+    private actRoute:ActivatedRoute, router: Router) {
+      this.router=router;
+  }
 
   ngOnInit() {}
+
+
   goToSales(event: any) {
     this.ontimizeservice.configureService(this.ontimizeservice.getDefaultServiceConfiguration('salesHead'));
     this.ontimizeservice.insert({},'salesHead').subscribe((resp) =>{
       if(resp.code ===0){
-        this.tableInfo.reloadData();
+        let responseid = resp.data.id;
+        this.router.navigate(["/main/sales/" + responseid]);
         alert('Pedido realizado con exito, gracias por usar nuestros servicios');
       }
     });

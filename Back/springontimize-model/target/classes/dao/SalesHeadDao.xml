@@ -12,5 +12,19 @@
         <Column>id</Column>
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
+    <Queries>
+        <Query id="salesheadtotal">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  SUM(total) AS salesheadtotal
+               FROM
+                  ${mainschema}.SALES AS SA
+               #WHERE#
+               #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
 
 </JdbcEntitySetup>

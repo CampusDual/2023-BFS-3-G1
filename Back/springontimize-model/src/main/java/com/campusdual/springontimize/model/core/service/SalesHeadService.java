@@ -40,11 +40,11 @@ public class SalesHeadService implements ISalesHeadService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //Recogemos el nombre de usuario
         attrMap.put(SalesHeadDao.ATTR_USER_, authentication.getName());
         attrMap.put(SalesHeadDao.ATTR_SALEDATE, new Date()); //Recogemos la fecha del pedido
-        EntityResult result = this.daoHelper.insert(salesHeadDao, attrMap);
-        if (result.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
-            return result;
+        EntityResult resultInsert = this.daoHelper.insert(salesHeadDao, attrMap);
+        if (resultInsert.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+            return resultInsert;
         }
-        Integer saleId = (Integer) result.get(SalesHeadDao.ATTR_ID);// guardamos el id de la cabecera del pedido
+        Integer saleId = (Integer) resultInsert.get(SalesHeadDao.ATTR_ID);// guardamos el id de la cabecera del pedido
         Date saleDate = (Date) attrMap.get(SalesHeadDao.ATTR_SALEDATE);
         List<String> fields = new ArrayList<>(); //campos por los cuales voy a consultar
         fields.add(ShoppingCartDao.ATTR_USER_);
@@ -66,12 +66,12 @@ public class SalesHeadService implements ISalesHeadService {
 			updateKeys.put(SaleDao.ATTR_SALES_HEAD_ID, saleId);
 			updateKeys.put(SaleDao.ATTR_PRICE, shoppingCartLines.getRecordValues(i).get(ShoppingCartDao.ATTR_PRICE));
 			updateKeys.put(SaleDao.ATTR_SALEDATE, saleDate);
-			result=this.daoHelper.insert(this.saleDao,updateKeys);
+			EntityResult result =this.daoHelper.insert(this.saleDao,updateKeys);
         }
         Map<String, Object> deleteFilter = new HashMap<>();
         deleteFilter.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
-        result=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
-        return new EntityResultMapImpl();
+        EntityResult deleteResult=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
+        return resultInsert;
     }
 
     public EntityResult salesHeadUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap) {
@@ -80,6 +80,11 @@ public class SalesHeadService implements ISalesHeadService {
 
     public EntityResult salesHeadDelete(Map<String, Object> keyMap) {
         return this.daoHelper.delete(this.salesHeadDao, keyMap);
+    }
+
+    @Override
+    public EntityResult salesHeadTotalQuery(Map<String, Object> keyMap, List<String> attrList) {
+        return this.daoHelper.query(salesHeadDao, keyMap, attrList, SalesHeadDao.QUERY_VSALESHEADTOTAL);
     }
 
 }

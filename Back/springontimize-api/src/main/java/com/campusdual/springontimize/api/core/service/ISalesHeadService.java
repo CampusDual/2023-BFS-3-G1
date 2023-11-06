@@ -13,4 +13,5 @@ public interface ISalesHeadService {
     public EntityResult salesHeadInsert(Map<String, Object> attrMap);
     public EntityResult salesHeadUpdate(Map<String, Object> attrMap, Map<String, Object> keyMap);
     public EntityResult salesHeadDelete(Map<String, Object> keyMap);
+    public EntityResult salesHeadTotalQuery(Map<String, Object> keyMap, List<String> attrList);
 }

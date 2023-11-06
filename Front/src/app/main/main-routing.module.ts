@@ -23,7 +23,8 @@ export const routes: Routes = [
       { path: 'reports', loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
       { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
       { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
-      { path: 'shoppingcart', loadChildren:()=> import('./shoppingcart/shoppingcart.module').then(m => m.ShoppingcartModule)}
+      { path: 'shoppingcart', loadChildren:()=> import('./shoppingcart/shoppingcart.module').then(m => m.ShoppingcartModule)},
+      { path: 'sales', loadChildren:()=> import('./sales/sales.module').then(m => m.SalesModule)}
     ]
   }
 ];

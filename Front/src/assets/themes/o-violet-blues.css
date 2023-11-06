@@ -2643,12 +2643,14 @@ textarea {
   width: 8px;
   height: 8px;
   background-color: transparent;
-  opacity: 1.0; }
+  opacity: 1.0;
+  }
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
   border-radius: 0;
-  background-color: #8ca386; }
+  background-color: #8ca386;
+ }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0;

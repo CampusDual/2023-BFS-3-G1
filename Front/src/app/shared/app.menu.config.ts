@@ -47,6 +47,9 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: "shoppingcart", name: "SHOPPINGCART", icon: "cart", route: "/main/shoppingcart"
   },
   {
+    id: "sales", name: "SALES", icon: "cart", route: "/main/sales"
+  },
+  {
     id: "wholesaler",
     name: "WHOLESALER",
     icon: "sell",
