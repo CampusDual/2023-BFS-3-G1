@@ -44,10 +44,18 @@ export const MENU_CONFIG: MenuRootItem[] = [
     ],
   }, 
   {
-    id: "shoppingcart", name: "SHOPPINGCART", icon: "cart", route: "/main/shoppingcart"
+    id: "shoppingcart", 
+    name: "SHOPPINGCART", 
+    icon: "shopping_cart", 
+    route: "/main/shoppingcart",
+    image: "assets/images/cart.png"
   },
   {
-    id: "sales", name: "SALES", icon: "cart", route: "/main/sales"
+    id: "sales",
+     name: "SALES", 
+     icon: "shopping_bag", 
+     route: "/main/sales",
+     image: "assets/images/sales.png"
   },
   {
     id: "wholesaler",
