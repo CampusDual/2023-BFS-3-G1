@@ -2,7 +2,7 @@ package com.campusdual.springontimize.model.core.service;
 
 import com.campusdual.springontimize.api.core.service.IWholesalerService;
 import com.campusdual.springontimize.model.core.dao.ProductDao;
-import com.campusdual.springontimize.model.core.dao.SaleDao;
+import com.campusdual.springontimize.model.core.dao.SaleOrdersLDao;
 import com.campusdual.springontimize.model.core.dao.WholesalerDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
@@ -25,7 +25,7 @@ public class WholesalerService implements IWholesalerService {
 
 	// necesito el total de ventas que estará en la tabla de sales
 	@Autowired
-	private SaleDao saleDao;
+	private SaleOrdersLDao saleOrdersLDao;
 
 	@Autowired
 	private DefaultOntimizeDaoHelper daoHelper;
