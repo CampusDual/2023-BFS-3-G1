@@ -24,6 +24,7 @@ export class SectionfoodDetailComponent implements OnInit {
   @ViewChild("qty", { static: false })
   private oQty: OIntegerInputComponent;
 
+  selectedQty: number;
   constructor(
     private router: Router,
     private ontimizeservice: OntimizeService,
@@ -40,7 +41,7 @@ export class SectionfoodDetailComponent implements OnInit {
     let formValues = this.oForm.getComponents();
     let price = formValues.price.getValue();
     let product_id = formValues.id.getValue();
-    let qty = this.oQty.getValue();
+    let qty = this.selectedQty;
     let total = +(price * qty).toFixed(2);
     this.ontimizeservice
       .insert(

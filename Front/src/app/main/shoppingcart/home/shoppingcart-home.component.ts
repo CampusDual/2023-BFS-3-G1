@@ -20,8 +20,9 @@ export class ShoppingcartHomeComponent implements OnInit {
     private ontimizeservice: OntimizeService,
     private actRoute: ActivatedRoute,
     router: Router,
-    protected snackBarService: SnackBarService
-  ) {
+    protected snackBarService: SnackBarService,
+    
+    ) {
     this.router = router;
   }
 
@@ -41,6 +42,65 @@ export class ShoppingcartHomeComponent implements OnInit {
           iconPosition: "left",
         };
         this.snackBarService.open("SALEORDER_CREATED", config);
+      }
+    });
+  }
+
+  updateCartItem(listItem: any, option:number) {
+    this.ontimizeservice.configureService(
+      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+    );
+    const keyMap = {
+      id: listItem.id,
+      user_: listItem.user_, 
+    };
+  
+    let newQty = listItem.qty;
+    if(option ===1){
+      newQty++;
+    }else if (option === 0){
+      newQty--;
+    }
+    const attrMap = {
+      qty: newQty,
+    };
+    this.ontimizeservice.update(keyMap, attrMap, "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) {
+  
+        const config: OSnackBarConfig = {
+          milliseconds: 5000,
+          icon: "check_circle",
+          iconPosition: "left",
+        };
+        this.snackBarService.open("Quantity updated successfully", config);
+        this.shoppingcartGrid.reloadData();
+      } else {
+        console.error("Error updating item:", resp.message);
+      }
+    });
+  }
+
+
+
+  deleteCartItem(listItem: any) {
+    this.ontimizeservice.configureService(
+           this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+         );
+    const keyMap = {
+      id: listItem.id,
+      user_: listItem.user_, 
+    };
+    this.ontimizeservice.delete(keyMap, "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) { 
+        const config: OSnackBarConfig = {
+          milliseconds: 5000,
+          icon: "check_circle",
+          iconPosition: "left",
+        };
+        this.snackBarService.open("Item deleted successfully", config);
+        this.shoppingcartGrid.reloadData();
+      } else {
+        console.error("Error deleting item:", resp.message);
       }
     });
   }

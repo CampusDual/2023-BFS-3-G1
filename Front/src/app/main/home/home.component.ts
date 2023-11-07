@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent {
-  constructor(protected router: Router) {}
+  constructor(protected router: Router) { }
 
   public gotoProducts() {
     this.router.navigate(["/main/sectionfood"]);

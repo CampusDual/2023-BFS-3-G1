@@ -1,14 +1,15 @@
 <!-- <o-form-layout-manager mode="tab" title="SHOPPINGCART" label-columns="es_name" attr="o-form-layout-product-home"
     title-data-origin="products_form_edit"> -->
 
-<div fxFill fxLayout="column" fxLayoutAlign="start">
+<div class="grid-con" fxFill fxLayout="column" fxLayoutAlign="start">
     <div o-form-toolbar-buttons>
         <o-button icon="list_alt" type="STROKED" attr="" label="CREATE_SALEORDER" layout-padding color="accent"
             (onClick)="goToSales($event)"></o-button>
     </div>
-    <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
-        entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name" query-rows="8"
-        quick-filter="yes" pageable="no" virtual-scroll="no" detail-mode='none' cols="4" refresh-button="true">
+    <o-grid  #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
+        entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_" query-rows="4"
+        quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="4" refresh-button="false"
+        grid-item-height="0.9:1.3" pagination-controls="true" >
 
         <o-grid-item *ngFor="let list of shoppingcartGrid.dataArray">
             <o-column>
@@ -23,21 +24,18 @@
                 </o-row>
                 <o-row>
                     <o-column>
+                        
                         <o-row>Precio {{list.shoppingcart_price}}</o-row>
                         <o-row> Cantidad {{list.qty}}</o-row>
                         <o-row>
-                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary"></o-button>
-                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary"></o-button>
-                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary"></o-button>
+                            <o-button id="up1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary" (click)="updateCartItem(list,1)"></o-button>
+                            <o-button id="down1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary" (click)="updateCartItem(list,0)"></o-button>
+                            <o-button id="delete" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary" (click)="deleteCartItem(list)"></o-button>
                         </o-row>
-                        <o-row>{{list.shoppingcart_price}}</o-row>
-                        <o-row>{{list.qty}}</o-row>
-                        <o-row>{{list.shoppingcart_price}}</o-row>
-
-                        <o-row>{{list.qty}}</o-row>
+                        
                     </o-column>
                 </o-row>
             </o-column>
