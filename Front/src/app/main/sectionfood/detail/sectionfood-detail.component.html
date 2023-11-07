@@ -78,8 +78,10 @@
                         <o-row layout-gap="100px">
                             <o-column>
                                 <o-row title="Comprar" layout-gap="15px" elevation="3" layout-align="center">
-                                    <o-integer-input #qty attr="" label="Cantidad" min="1"
-                                        [data]="getQtyDefaultValue()"></o-integer-input>
+                                    <!-- <o-integer-input #qty attr="" label="Cantidad" min="1"
+                                        [data]="getQtyDefaultValue()" ></o-integer-input> -->
+                                        <input id="input" type="number" #qty [(ngModel)]="selectedQty" min="1">
+
                                     <o-button label="Agregar a carrito" (click)="addToCart($event)"></o-button>
                                 </o-row>
                             </o-column>

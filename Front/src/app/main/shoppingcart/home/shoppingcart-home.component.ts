@@ -20,8 +20,9 @@ export class ShoppingcartHomeComponent implements OnInit {
     private ontimizeservice: OntimizeService,
     private actRoute: ActivatedRoute,
     router: Router,
-    protected snackBarService: SnackBarService
-  ) {
+    protected snackBarService: SnackBarService,
+    
+    ) {
     this.router = router;
   }
 
@@ -44,4 +45,9 @@ export class ShoppingcartHomeComponent implements OnInit {
       }
     });
   }
+
+  increaseQty(listItem: any) {
+    listItem.qty += 1;
+  }
+
 }
