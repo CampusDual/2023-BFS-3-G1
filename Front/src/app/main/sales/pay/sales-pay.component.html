@@ -1,9 +1,9 @@
 <o-form-container breadcrumb="yes" breadcrumb-label-columns="name" breadcrumb-separator=", ">
 
-    <o-form #form attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
-        header-actions="R" #oDetailForm keys="id" keys-sql-types="INTEGER" columns="id" show-header-navigation="yes"
+    <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
+        header-actions="R" #oDetailForm keys="saleordersh_id" keys-sql-types="INTEGER" columns="saleordersh_id" show-header-navigation="yes"
         (onDataLoaded)="onDataLoaded($event)">
-
+ <o-integer-input attr="saleordersh_id" oHidden></o-integer-input>
         <div o-form-toolbar-buttons>
             <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="saleordershPay($event)"
                 attr="fillreport">
@@ -11,7 +11,12 @@
                 <span>{{ 'PAY' | oTranslate }}</span>
             </button>
         </div>
-
+        <o-column attr="row1" title="SALEORDER_TOTAL" icon="home" layout-gap="20px">
+            <o-row>
+                {{ totalsales }}
+            </o-row>
+          
+        </o-column>
         <o-column attr="row1" title="DESTINATION_ADDRESS" icon="home" layout-gap="20px">
             <o-row>
                 <o-text-input attr="dest_name" label="NAME" width="100%" class="form-field"></o-text-input>
