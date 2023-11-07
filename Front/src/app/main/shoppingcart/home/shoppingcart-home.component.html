@@ -29,9 +29,9 @@
                         <o-row> Cantidad {{list.qty}}</o-row>
                         <o-row>
                             <o-button id="up1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary" (click)="incrementQty(list)"></o-button>
+                                color="primary" (click)="updateCartItem(list,1)"></o-button>
                             <o-button id="down1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary"></o-button>
+                                color="primary" (click)="updateCartItem(list,0)"></o-button>
                             <o-button id="delete" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
                                 color="primary" (click)="deleteCartItem(list)"></o-button>
                         </o-row>

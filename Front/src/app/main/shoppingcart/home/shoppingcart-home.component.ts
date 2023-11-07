@@ -46,29 +46,39 @@ export class ShoppingcartHomeComponent implements OnInit {
     });
   }
 
-  // incrementQty(listItem: any) {
-  //   listItem.qty += 1;
-    
-  //   const dataToUpdate = {
-  //     id: listItem.id,
-  //     qty: listItem.qty,
-  //   };
-  //   this.ontimizeservice.configureService(
-  //     this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
-  //   );
-  //   this.ontimizeservice.update(dataToUpdate,"shoppinfcart").subscribe((resp) => {
-  //     if (resp.code === 0) {
-  //       const config: OSnackBarConfig = {
-  //         milliseconds: 5000,
-  //         icon: "check_circle",
-  //         iconPosition: "left",
-  //       };
-  //       this.snackBarService.open("Quantity updated successfully", config);
-  //     } else {
-  //       console.error("Error updating quantity:", resp.message);
-  //     }
-  //   });
-  // }
+  updateCartItem(listItem: any, option:number) {
+    this.ontimizeservice.configureService(
+      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+    );
+    const keyMap = {
+      id: listItem.id,
+      user_: listItem.user_, 
+    };
+  
+    let newQty = listItem.qty;
+    if(option ===1){
+      newQty++;
+    }else if (option === 0){
+      newQty--;
+    }
+    const attrMap = {
+      qty: newQty,
+    };
+    this.ontimizeservice.update(keyMap, attrMap, "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) {
+  
+        const config: OSnackBarConfig = {
+          milliseconds: 5000,
+          icon: "check_circle",
+          iconPosition: "left",
+        };
+        this.snackBarService.open("Quantity updated successfully", config);
+        this.shoppingcartGrid.reloadData();
+      } else {
+        console.error("Error updating item:", resp.message);
+      }
+    });
+  }
 
 
 
