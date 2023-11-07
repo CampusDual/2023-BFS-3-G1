@@ -19,7 +19,7 @@
                         <o-image id="image" attr="image" enabled="true" read-only="true" show-controls="no"
                             full-screen-button="false" width="350px" empty-image="assets/images/no-image.png">
                         </o-image>
-                        <h2>{{ 'PRICE' | oTranslate }}<span>{{ oForm.getDataValue('price').value }} €</span></h2>
+                        <h2>{{ 'PRICE' | oTranslate }} <span>{{ oForm.getDataValue('price').value }} €</span></h2>
                     </o-column>
                     <o-column layout-gap="30px">
                         <o-row>
@@ -91,7 +91,7 @@
                                 </o-combo>
                                 <o-combo attr="country_id" label="COUNTRY" width="250px" query-on-init="no"
                                     query-on-bind="yes" filter="yes" value-column="id" service="countries"
-                                    entity="country" keys="id" columns="id;en_name" visible-columns="en_name"
+                                    entity="country" keys="id" columns="id;es_name" visible-columns="es_name"
                                     enabled="true" read-only="true" show-controls="no">
                                 </o-combo>
                             </o-column>
