@@ -135,5 +135,6 @@
   "DESTINATION_ADDRESS": "Destination Address",
   "DEST_ADDRESS": "Address",
   "DEST_CP": "CP",
-  "DEST_CITY": "City"
+  "DEST_CITY": "City",
+  "SALEORDER_DATA": "Economic Data"
 }

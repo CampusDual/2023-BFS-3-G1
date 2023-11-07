@@ -125,5 +125,7 @@
   "DEST_ADDRESS": "Dirección",
   "DEST_CP": "Cod. Postal",
   "DEST_CITY": "Ciudad",
-  "PAYMENT": "Forma de Pago"
+  "PAYMENT": "Forma de Pago",
+  "SALEORDER_DATA": "Datos Pedido",
+  "SALEORDER_TOTAL": "Importe Total Pedido: "
 }
