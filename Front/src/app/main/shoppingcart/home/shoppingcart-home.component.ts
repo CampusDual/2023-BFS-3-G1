@@ -46,8 +46,52 @@ export class ShoppingcartHomeComponent implements OnInit {
     });
   }
 
-  increaseQty(listItem: any) {
-    listItem.qty += 1;
-  }
+  // incrementQty(listItem: any) {
+  //   listItem.qty += 1;
+    
+  //   const dataToUpdate = {
+  //     id: listItem.id,
+  //     qty: listItem.qty,
+  //   };
+  //   this.ontimizeservice.configureService(
+  //     this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+  //   );
+  //   this.ontimizeservice.update(dataToUpdate,"shoppinfcart").subscribe((resp) => {
+  //     if (resp.code === 0) {
+  //       const config: OSnackBarConfig = {
+  //         milliseconds: 5000,
+  //         icon: "check_circle",
+  //         iconPosition: "left",
+  //       };
+  //       this.snackBarService.open("Quantity updated successfully", config);
+  //     } else {
+  //       console.error("Error updating quantity:", resp.message);
+  //     }
+  //   });
+  // }
 
+
+
+  deleteCartItem(listItem: any) {
+    this.ontimizeservice.configureService(
+           this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+         );
+    const keyMap = {
+      id: listItem.id,
+      user_: listItem.user_, 
+    };
+    this.ontimizeservice.delete(keyMap, "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) { 
+        const config: OSnackBarConfig = {
+          milliseconds: 5000,
+          icon: "check_circle",
+          iconPosition: "left",
+        };
+        this.snackBarService.open("Item deleted successfully", config);
+        this.shoppingcartGrid.reloadData();
+      } else {
+        console.error("Error deleting item:", resp.message);
+      }
+    });
+  }
 }

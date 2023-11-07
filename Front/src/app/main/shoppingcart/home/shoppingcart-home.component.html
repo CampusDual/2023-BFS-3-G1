@@ -7,7 +7,7 @@
             (onClick)="goToSales($event)"></o-button>
     </div>
     <o-grid  #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
-        entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name" query-rows="4"
+        entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_" query-rows="4"
         quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="4" refresh-button="false"
         grid-item-height="0.9:1.3" pagination-controls="true" >
 
@@ -29,11 +29,11 @@
                         <o-row> Cantidad {{list.qty}}</o-row>
                         <o-row>
                             <o-button id="up1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary" (click)="increaseQty(list)"></o-button>
+                                color="primary" (click)="incrementQty(list)"></o-button>
                             <o-button id="down1" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
                                 color="primary"></o-button>
                             <o-button id="delete" attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
-                                color="primary"></o-button>
+                                color="primary" (click)="deleteCartItem(list)"></o-button>
                         </o-row>
                         
                     </o-column>
