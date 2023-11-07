@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { OntimizeService } from "ontimize-web-ngx";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-sales-pay",
@@ -8,25 +8,39 @@ import { OntimizeService } from "ontimize-web-ngx";
 })
 export class SalesPayComponent implements OnInit {
   public totalsales: number = 0;
+  private id: number = 0;
+
+  @ViewChild("oForm", { static: false })
+  private oForm: OFormComponent;
+
   constructor(private ontimizeService: OntimizeService) {}
 
   ngOnInit() {
+   
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
     );
-    const columns = ["saleordershtotal"];
+    const filter = {
+      saleordersh_id: this.id
+    };
+    const columns = ["saleordersh_id"];
     this.ontimizeService
-      .query(void 0, columns, "saleordershtotal")
+      .query(filter, columns, "saleordersh")
       .subscribe((resp) => {
         if (resp.code === 0) {
-          this.totalsales = resp.data[0]["saleordershtotal"];
+          this.totalsales = resp.data[0]["saleordertotal"];
         } else {
           console.error(resp);
         }
       });
   }
 
-  pay(event: any) {
-  alert("hola");
+  onDataLoaded(event: any) {
+ let formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
 }
+
+  pay(event: any) {
+    alert("hola");
+  }
 }
