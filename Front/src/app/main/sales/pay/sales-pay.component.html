@@ -1,0 +1,76 @@
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="name" breadcrumb-separator=", ">
+
+    <o-form #form attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
+        header-actions="R" #oDetailForm keys="id" keys-sql-types="INTEGER" columns="id" show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
+
+        <div o-form-toolbar-buttons>
+            <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="saleordershPay($event)"
+                attr="fillreport">
+                <mat-icon>description</mat-icon>
+                <span>{{ 'PAY' | oTranslate }}</span>
+            </button>
+        </div>
+
+        <o-column attr="row1" title="DESTINATION_ADDRESS" icon="home" layout-gap="20px">
+            <o-row>
+                <o-text-input attr="dest_name" label="NAME" width="100%" class="form-field"></o-text-input>
+            </o-row>
+            <o-row>
+                <o-text-input attr="dest_address" label="DEST_ADDRESS" width="100%" class="form-field"></o-text-input>
+            </o-row>
+            <o-row layout-gap="20px">
+                <o-text-input attr="dest_cp" label="DEST_CP" class="form-field"></o-text-input>
+                <o-text-input attr="dest_city" label="DEST_CITY" class="form-field" class="form-field"></o-text-input>
+                <o-combo attr="country_id" query-on-init="no" query-on-bind="yes" filter="yes" value-column="id"
+                    service="countries" entity="country" keys="id" columns="id;en_name" visible-columns="en_name"
+                    class="form-field">
+                </o-combo>
+            </o-row>
+            <o-date-input attr="saledate" label="SALEDATE" class="form-field" type="date"></o-date-input>
+        </o-column>
+        <o-column attr="row1" title="PAYMENT" icon="credit_card" layout-gap="20px">
+            <mat-tab-group fxFill>
+                <mat-tab label="{{ 'CREDIT_CARD' | oTranslate }}">
+                    <o-column layout-gap="20px">
+                        <o-row>
+                            <o-text-input attr="card_number" label="CARD_NUMBER" class="form-field"></o-text-input>
+                        </o-row>
+                        <o-row layout-gap="20px">
+                            <o-text-input attr="card_exp" label="EXPIRATION" class="form-field"></o-text-input>
+                            <o-text-input attr="card_ccv" label="CCV" class="form-field"></o-text-input>
+                        </o-row>
+                        <o-row>
+                            <o-button #transfer label="Pagar" (click)="pay($event)"></o-button>
+                        </o-row>
+                    </o-column>
+                </mat-tab>
+                <mat-tab label="{{ 'TRANSFER' | oTranslate }}">
+                    <o-column>
+                        <o-row>
+                            Transferencia a la cuenta......
+                        </o-row>
+                        <o-row>
+                            <o-file-input attr="file" label="File" accept-file-type="image/*" max-file-size="100000"
+                                max-num-files="10" show-info="yes"></o-file-input>
+                        </o-row>
+                        <o-row>
+                            <o-button #transfer label="Pagar" (click)="pay($event)"></o-button>
+                        </o-row>
+                    </o-column>
+                </mat-tab>
+                <mat-tab label="{{ 'BIZUM' | oTranslate }}">
+                    <o-column>
+                        <o-row>
+                            Bizum al telefono....
+                        </o-row>
+                        <o-row>
+                            <o-button #transfer label="Pagar" (click)="pay($event)"></o-button>
+                        </o-row>
+                    </o-column>
+                </mat-tab>
+            </mat-tab-group>
+        </o-column>
+    </o-form>
+
+</o-form-container>

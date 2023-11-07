@@ -35,10 +35,17 @@
 
   .footer-container {
     background-color: #A6D785;
+    margin-right: 2%;
+    margin-left: 0px;
   }
   
   .footer-text {
     color: #D2CDBB;
+  }
+
+  .o-scroll{
+    display: none;
+
   }
  
   

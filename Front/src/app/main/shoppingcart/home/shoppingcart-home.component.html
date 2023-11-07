@@ -2,47 +2,47 @@
     title-data-origin="products_form_edit"> -->
 
 <div fxFill fxLayout="column" fxLayoutAlign="start">
-
-    <o-table #tableInfo fxFlex attr="" title="PRODUCTS" service="shoppingcart" entity="shoppingcart" keys="id"
-        columns="id;shoppingcart_price;product_id;qty;image;es_name"
-        visible-columns="image;shoppingcart_price;qty;total;es_name" sort-columns="es_name" query-rows="24"
-        quick-filter="yes" row-height="medium" select-all-checkbox="true" pageable="no" virtual-scroll="no"
-        edition-mode="click" detail-mode='none'>
-        <!-- imagen -->
-        <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
-            type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
-        </o-table-column>
-        <!-- nombre -->
-        <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
-        </o-table-column>
-
-        <o-table-column attr="qty" title="QTY" type="integer" editable="yes" detail-mode='none'>
-            <!-- <o-table-cell-editor-integer (onPostUpdateRecord)="onPostUpdateRecord($event)" >
-                <o-table-cell-editor-integer (onPostUpdateRecord)="onPostUpdateRecord($event)" ></o-table-cell-editor-integer>
-                </o-table-cell-editor-integer> -->
-        </o-table-column>
-
-        <o-table-column attr="shoppingcart_price" title="PRICE" type="currency" currency-symbol="€"
-            currency-symbol-position="right" thousand-separator="." decimal-separator=",">
-        </o-table-column>
-
-        <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€" currency-symbol-position="right"
-            thousand-separator="." decimal-separator=",">
-        </o-table-column>
-        <o-table-column-aggregate attr="total" title="TOTAL"></o-table-column-aggregate>
-        <o-button attr="basic1" type="BASIC" label="BASIC" layout-padding></o-button>
-    
-
-        <o-table-context-menu></o-table-context-menu>
-        <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
-    </o-table>
     <div o-form-toolbar-buttons>
-        <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="goToSales($event)"
-            attr="fillreport">
-            <mat-icon>description</mat-icon>
-            <span>{{ 'FILL_REPORT' | oTranslate }}</span>
-        </button>
+        <o-button icon="list_alt" type="STROKED" attr="" label="CREATE_SALEORDER" layout-padding color="accent"
+            (onClick)="goToSales($event)"></o-button>
     </div>
+    <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
+        entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name" query-rows="8"
+        quick-filter="yes" pageable="no" virtual-scroll="no" detail-mode='none' cols="4" refresh-button="true">
+
+        <o-grid-item *ngFor="let list of shoppingcartGrid.dataArray">
+            <o-column>
+                <o-row>
+                    {{ list.es_name }}
+                </o-row>
+                <o-row>
+                    <o-column>
+                        <o-image [data]="list.image" enabled="false" read-only="false" show-controls="no"
+                            full-screen-button="no" empty-image="./assets/images/no-image.png" fxFill></o-image>
+                    </o-column>
+                </o-row>
+                <o-row>
+                    <o-column>
+                        <o-row>Precio {{list.shoppingcart_price}}</o-row>
+                        <o-row> Cantidad {{list.qty}}</o-row>
+                        <o-row>
+                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary"></o-button>
+                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary"></o-button>
+                            <o-button attr="fab-mini2" type="FAB-MINI" icon="power_setting" layout-padding
+                                color="primary"></o-button>
+                        </o-row>
+                        <o-row>{{list.shoppingcart_price}}</o-row>
+                        <o-row>{{list.qty}}</o-row>
+                        <o-row>{{list.shoppingcart_price}}</o-row>
+
+                        <o-row>{{list.qty}}</o-row>
+                    </o-column>
+                </o-row>
+            </o-column>
+        </o-grid-item>
+    </o-grid>
 </div>
 
 <!-- </o-form-layout-manager> -->

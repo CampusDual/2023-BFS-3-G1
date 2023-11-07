@@ -5,13 +5,13 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
-@Repository(value="SaleDao")
+@Repository(value="SaleOrdersLDao")
 @Lazy
 @ConfigurationFile(
-        configurationFile = "dao/SaleDao.xml",
+        configurationFile = "dao/SaleOrdersLDao.xml",
         configurationFilePlaceholder = "dao/placeholders.properties")
 
-public class SaleDao extends OntimizeJdbcDaoSupport {
+public class SaleOrdersLDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_ID = "id";
     public static final String ATTR_PRICE = "price";
     public static final String ATTR_PRODUCT_ID = "product_id";
@@ -19,5 +19,5 @@ public class SaleDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_SALEDATE = "saledate";
     public static final String ATTR_QTY = "qty";
     public static final String ATTR_TOTAL = "total";
-    public static final String ATTR_SALES_HEAD_ID = "sales_head_id";
+    public static final String ATTR_SALEORDERSH_ID = "saleordersh_id";
 }
