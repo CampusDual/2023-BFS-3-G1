@@ -5,6 +5,7 @@ import {
   Expression,
   FilterExpressionUtils,
   OFilterBuilderComponent,
+  OTranslateService,
 } from "ontimize-web-ngx";
 import { SectionfoodDetailComponent } from "../detail/sectionfood-detail.component";
 import { Router } from "@angular/router";
@@ -18,14 +19,18 @@ import { Router } from "@angular/router";
 export class SectionfoodHomeComponent implements OnInit {
   @ViewChild("filterBuilder", { static: true })
   filterBuilder: OFilterBuilderComponent;
+  public currentLang: string;
 
   constructor(
     protected dialog: MatDialog,
     protected sanitizer: DomSanitizer,
-    protected router: Router
-  ) {}
+    protected router: Router,
+    private translateService: OTranslateService
+  ) {this.currentLang = this.translateService.getCurrentLang();}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("lenguaje: "+ this.currentLang)
+  }
 
   // creamos el filtro por el que se va a hacer la búsqueda
   public createFilter(values: Array<{ attr: string; value: any }>): Expression {
