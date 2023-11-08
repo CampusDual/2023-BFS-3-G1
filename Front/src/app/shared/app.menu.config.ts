@@ -52,7 +52,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
   },
   {
     id: "sales",
-     name: "SALES", 
+     name: "MY_SALEORDERS", 
      icon: "shopping_bag", 
      route: "/main/sales",
      image: "assets/images/sales.png"

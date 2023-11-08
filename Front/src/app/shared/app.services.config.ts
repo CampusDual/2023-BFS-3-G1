@@ -10,5 +10,5 @@ export const SERVICE_CONFIG: Object = {
   users: { path: "/users" },
   shoppingcart: { path: "/shoppingcart" },
   saleordersh: { path: "/saleordersh" },
-  saleOrdersL: { path: "/saleordersl" },
+  saleordersl: { path: "/saleordersl" },
 };

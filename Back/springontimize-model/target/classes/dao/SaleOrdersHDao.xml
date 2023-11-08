@@ -12,27 +12,12 @@
         <Column>id</Column>
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
-
     <Queries>
-        <Query id="default">
+        <Query id="total">
             <AmbiguousColumns>
                 <AmbiguousColumn name="saleordersh_id" prefix="sh" databaseName="id" />
                 <AmbiguousColumn name="saleordersl_id" prefix="sl" databaseName="id" />
             </AmbiguousColumns>
-            <ValidColumns>
-                <Column>saleordersh_id</Column>
-                <Column>user_</Column>
-                <Column>saledate</Column>
-                <Column>salestatus</Column>
-                <Column>dest_address</Column>
-                <Column>dest_cp</Column>
-                <Column>dest_city</Column>
-                <Column>country_id</Column>
-                <Column>dest_name</Column>
-                <Column>card_number</Column>
-                <Column>card_exp</Column>
-                <Column>card_ccv</Column>
-            </ValidColumns>
             <Sentence>
                 <![CDATA[
                SELECT
@@ -51,5 +36,4 @@
             </Sentence>
         </Query>
     </Queries>
-
 </JdbcEntitySetup>

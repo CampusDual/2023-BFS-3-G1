@@ -1,9 +1,11 @@
 <div class="container">
   <o-form-layout-manager mode="dialog" title="SALES" label-columns="NAME" separator="" attr="o-form-layout-sales-home">
     <div fxFill fxLayout="column" fxLayoutAlign="start">
+
       <o-table #table attr="sales" service="saleordersh" entity="saleordersh" title="SALES"
         columns="id;saledate;salestatus" visible-columns="id;saledate;salestatus" sort-columns="saledate" keys="id"
         query-rows="10" pageable="no" row-height="medium">
+
         <o-table-column attr="id" title="id" width="15%" class="o-table-column-centered"></o-table-column>
         <o-table-column attr="saledate" title="saledate" width="22%" type="date" format="LL"></o-table-column>
         <o-table-column attr="salestatus" title="salestatus" width="15%"
@@ -25,6 +27,7 @@
         </o-table-row-expandable>
         <o-table-context-menu></o-table-context-menu>
       </o-table>
+
     </div>
   </o-form-layout-manager>
 </div>

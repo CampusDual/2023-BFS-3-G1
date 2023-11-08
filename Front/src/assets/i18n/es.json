@@ -127,5 +127,10 @@
   "DEST_CITY": "Ciudad",
   "PAYMENT": "Forma de Pago",
   "SALEORDER_DATA": "Datos Pedido",
-  "SALEORDER_TOTAL": "Importe Total Pedido: "
+  "SALEORDER_TOTAL": "Importe Total Pedido: ",
+"SALEORDER_SUBTOTAL": "Subtotal Pedido:",
+"SALEORDER_TRANSPORT": "Gastos de transporte:",
+"SALEORDER_TAXES": "Impuestos (21%)",
+"PAY": "PAY",
+"MY_SALEORDERS": "Mis Pedidos"
 }

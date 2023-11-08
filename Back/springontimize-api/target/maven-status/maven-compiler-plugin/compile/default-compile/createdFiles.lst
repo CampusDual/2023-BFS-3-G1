@@ -1,10 +1,12 @@
 com\campusdual\springontimize\api\core\service\ICategoryService.class
-com\campusdual\springontimize\api\core\service\ISaleService.class
+com\campusdual\springontimize\api\core\service\ISaleOrdersHService.class
 com\campusdual\springontimize\api\core\service\IUserService.class
 com\campusdual\springontimize\api\core\service\IPermissionsService.class
 com\campusdual\springontimize\api\core\service\IAllergenService.class
 com\campusdual\springontimize\api\core\service\IProductService.class
 com\campusdual\springontimize\api\core\service\ISectionService.class
 com\campusdual\springontimize\api\core\service\ICountryService.class
+com\campusdual\springontimize\api\core\service\ISaleOrdersLService.class
+com\campusdual\springontimize\api\core\service\IShoppingCartService.class
 com\campusdual\springontimize\api\core\service\IUserRoleService.class
 com\campusdual\springontimize\api\core\service\IWholesalerService.class

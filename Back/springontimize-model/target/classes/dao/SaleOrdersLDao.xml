@@ -15,21 +15,18 @@
     <Queries>
         <Query id="default">
             <AmbiguousColumns>
-                <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
-                <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
-                <AmbiguousColumn name="sale_id" prefix="SA" databaseName="id" />
-                <AmbiguousColumn name="sale_price" prefix="SA" databaseName="price" />
-                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
-                <AmbiguousColumn name="tuser_user" prefix="TU" databaseName="user_" />
+                <AmbiguousColumn name="product_id" prefix="po" databaseName="id" />
+                <AmbiguousColumn name="product_price" prefix="po" databaseName="price" />
+                <AmbiguousColumn name="sale_id" prefix="sa" databaseName="id" />
+                <AmbiguousColumn name="sale_price" prefix="sa" databaseName="price" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
                SELECT
                   #COLUMNS#
                FROM
-                  ${mainschema}.SALES AS SA
-                  INNER JOIN ${mainschema}.PRODUCTS AS PO ON PO.ID = SA.PRODUCT_ID
-                  INNER JOIN ${mainschema}.TUSER AS TU ON TU.USER_ = SA.USER_
+                  ${mainschema}.saleordersl AS sa
+                  INNER JOIN ${mainschema}.products AS po ON po.id = sa.product_id
                #WHERE#
                #ORDER#
             ]]>
