@@ -8,8 +8,8 @@ import { SalesPayComponent } from './pay/sales-pay.component';
 
 const routes: Routes = [
   { path: "", component: SalesHomeComponent },
-  { path: ":id", component: SalesPayComponent },
-  { path: "detail/:id", component: SalesDetailComponent }
+  { path: ":id", component: SalesDetailComponent },
+  { path: "detail/:id", component: SalesPayComponent }
 
 ];
 

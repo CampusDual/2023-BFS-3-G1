@@ -138,7 +138,6 @@
 "SALESTATUS" : "Estado del pedido",
 "PAYED" : "Estado del pedido: Pagado",
 "PENDIENTE" : "Pendiente de envío",
-"ADDMOREPRODUCTS" : "Añadir más productos"
-
-
+"ADDMOREPRODUCTS" : "Añadir más productos",
+"DELETEORDER" : "Cancelar pedido "
 }

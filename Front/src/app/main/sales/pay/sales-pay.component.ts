@@ -56,6 +56,45 @@ export class SalesPayComponent implements OnInit {
       });
   }
 
+
+  deleteOrder(event: any){
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("saleordersl")
+    );
+    let formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
+    let filter = {
+    saleordersh_id: this.id,
+    };
+    this.ontimizeService
+      .delete(filter, "saleordersl")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          console.log("Lineas borradas con exito ");
+        } else {
+          console.error(resp);
+        }
+      });
+
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
+    );
+    formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
+    let filter2 = {
+      id: this.id,
+    };
+    this.ontimizeService
+      .delete(filter2, "saleordersh")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          console.log("Pedido borrado con exito ");
+        } else {
+          console.error(resp);
+        }
+      });
+  }
+
   pay(event: any, instrument: number) {
     let formValues = this.oForm.getComponents();
     this.ontimizeService.configureService(

@@ -3,6 +3,10 @@
     <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
         header-actions="R" keys="id" keys-sql-types="INTEGER" columns="id;dest_address" show-header-navigation="yes"
         (onDataLoaded)="onDataLoaded($event)">
+        <div o-form-toolbar-buttons>
+            <o-button icon="delete" type="STROKED" attr="" label="DELETEORDER" layout-padding color="accent"
+                (onClick)="deleteOrder($event)"></o-button>
+        </div>
         <o-integer-input attr="id" oHidden></o-integer-input>
         <o-column layout-gap="50px">
 

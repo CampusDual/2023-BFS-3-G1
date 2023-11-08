@@ -62,7 +62,7 @@ export class ShoppingcartHomeComponent implements OnInit {
     this.ontimizeservice.insert({}, "saleordersh").subscribe((resp) => {
       if (resp.code === 0) {
         let responseid = resp.data.id;
-        this.router.navigate(["/main/sales/" + responseid]);
+        this.router.navigate(["/main/sales/detail/" + responseid]);
         const config: OSnackBarConfig = {
           milliseconds: 5000,
           icon: "list_alt",
@@ -127,6 +127,7 @@ export class ShoppingcartHomeComponent implements OnInit {
     };
     this.ontimizeservice.delete(keyMap, "shoppingcart").subscribe((resp) => {
       if (resp.code === 0) { 
+        this.calculateAndDisplaySalesTotals();
         const config: OSnackBarConfig = {
           milliseconds: 5000,
           icon: "check_circle",
