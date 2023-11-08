@@ -24,7 +24,8 @@ export class SectionfoodDetailComponent implements OnInit {
   @ViewChild("qty", { static: false })
   private oQty: OIntegerInputComponent;
 
-  selectedQty: number;
+  
+  selectedQty: number =1;
   constructor(
     private router: Router,
     private ontimizeservice: OntimizeService,

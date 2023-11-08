@@ -48,7 +48,7 @@
                     (onClick)="goToSales($event)"></o-button>
             </div>
             <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
-                entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_"
+                entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_;total"
                 query-rows="12" quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="6"
                 refresh-button="false" grid-item-height="1:1.6">
 

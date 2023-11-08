@@ -16,6 +16,12 @@ export class ShoppingcartHomeComponent implements OnInit {
   @ViewChild("shoppingcartGrid", { static: false })
   private shoppingcartGrid: OGridComponent;
   router: Router;
+  public salesubtotal: number = 0;
+  public saletaxes: number = 0;
+  public saletotal: number = 0;
+  public saletransport: number = 5;
+
+
   constructor(
     private ontimizeservice: OntimizeService,
     private actRoute: ActivatedRoute,
@@ -26,7 +32,30 @@ export class ShoppingcartHomeComponent implements OnInit {
     this.router = router;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.calculateAndDisplaySalesTotals(); 
+  }
+
+  calculateAndDisplaySalesTotals() {
+    this.ontimizeservice.configureService(
+      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+    );
+
+    
+    this.ontimizeservice.query({}, ["qty", "shoppingcart_price"], "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) {
+        const cartItems = resp.data;
+        this.salesubtotal = cartItems.reduce(
+          (subtotal, item) => subtotal + item.qty * item.shoppingcart_price,
+          0
+        );
+        this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
+        this.saletotal = +(this.salesubtotal + this.saletaxes + this.saletransport).toFixed(2);
+      } else {
+        console.error(resp);
+      }
+    });
+  }
 
   goToSales(event: any) {
     this.ontimizeservice.configureService(
@@ -54,19 +83,24 @@ export class ShoppingcartHomeComponent implements OnInit {
       id: listItem.id,
       user_: listItem.user_, 
     };
-  
     let newQty = listItem.qty;
+    let price = listItem.shoppingcart_price;
+    
+    
     if(option ===1){
-      newQty++;
-    }else if (option === 0){
+      newQty++; 
+    }else if (option === 0 && newQty > 0){
       newQty--;
     }
+    let total : number = newQty * price;
+ 
     const attrMap = {
       qty: newQty,
+      total :total
     };
     this.ontimizeservice.update(keyMap, attrMap, "shoppingcart").subscribe((resp) => {
       if (resp.code === 0) {
-  
+        this.calculateAndDisplaySalesTotals();
         const config: OSnackBarConfig = {
           milliseconds: 5000,
           icon: "check_circle",
