@@ -17,8 +17,8 @@
             <AmbiguousColumns>
                 <AmbiguousColumn name="product_id" prefix="po" databaseName="id" />
                 <AmbiguousColumn name="product_price" prefix="po" databaseName="price" />
-                <AmbiguousColumn name="sale_id" prefix="sa" databaseName="id" />
-                <AmbiguousColumn name="sale_price" prefix="sa" databaseName="price" />
+                <AmbiguousColumn name="saleordersl_id" prefix="sa" databaseName="id" />
+                <AmbiguousColumn name="saleordersl_price" prefix="sa" databaseName="price" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -27,6 +27,7 @@
                FROM
                   ${mainschema}.saleordersl AS sa
                   INNER JOIN ${mainschema}.products AS po ON po.id = sa.product_id
+
                #WHERE#
                #ORDER#
             ]]>

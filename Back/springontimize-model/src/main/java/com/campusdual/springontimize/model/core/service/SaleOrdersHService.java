@@ -4,6 +4,7 @@ import com.campusdual.springontimize.api.core.service.ISaleOrdersHService;
 import com.campusdual.springontimize.model.core.dao.SaleOrdersLDao;
 import com.campusdual.springontimize.model.core.dao.SaleOrdersHDao;
 import com.campusdual.springontimize.model.core.dao.ShoppingCartDao;
+import com.campusdual.springontimize.model.core.dao.WholesalerDao;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,14 @@ public class SaleOrdersHService implements ISaleOrdersHService {
     @Override
     public EntityResult saleordershtotalQuery(Map<String, Object> keyMap, List<String> attrList) {
         return this.daoHelper.query(saleOrdersHDao, keyMap, attrList, SaleOrdersHDao.QUERY_VTOTAL);
+    }
+
+    @Override
+    public EntityResult saleordershrelated_dataQuery(Map<String, Object> keyMap, List<String> attrList) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
+        userKeyMap.put(SaleOrdersHDao.ATTR_SALEORDERSH_USER_,authentication.getName());
+        return this.daoHelper.query(saleOrdersHDao, userKeyMap, attrList, SaleOrdersHDao.QUERY_VRELATED_DATA);
     }
 
 }
