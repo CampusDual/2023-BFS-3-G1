@@ -85,4 +85,10 @@ public class SaleOrdersHService implements ISaleOrdersHService {
         return this.daoHelper.query(saleOrdersHDao, keyMap, attrList, SaleOrdersHDao.QUERY_VTOTAL);
     }
 
+    @Override
+    public EntityResult saleordershrelated_dataQuery(Map<String, Object> keyMap, List<String> attrList) {
+        return this.daoHelper.query(saleOrdersHDao, keyMap, attrList, SaleOrdersHDao.QUERY_VRELATED_DATA);
+
+    }
+
 }

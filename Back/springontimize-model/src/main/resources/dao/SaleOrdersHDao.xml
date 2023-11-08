@@ -35,5 +35,33 @@
             ]]>
             </Sentence>
         </Query>
+        <Query id="related_data">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="saleordersh_id" prefix="sh" databaseName="id" />
+                <AmbiguousColumn name="saleordersl_id" prefix="sl" databaseName="id" />
+                <AmbiguousColumn name="countries_id" prefix="co" databaseName="id" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#,SUM(total) AS saleordertotal
+               FROM
+                  ${mainschema}.saleordersh AS sh
+               INNER JOIN
+                ${mainschema}.saleordersl AS sl
+               ON
+                sl.saleordersh_id = sh.id
+                INNER JOIN
+                ${mainschema}.countries AS co
+                ON
+                sh.country_id = co.id
+                 #WHERE#
+               GROUP BY
+                sh.id,co.es_name
+
+               #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

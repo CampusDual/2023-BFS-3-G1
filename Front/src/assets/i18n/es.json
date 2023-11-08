@@ -119,7 +119,7 @@
   "Origen Animal": "Origen Animal",
   "SHOPPINGCART": "Carrito",
   "PRODUCT_ADDED_TO_CART": "El producto se ha añadido al carrito",
-  "CREATE_SALEORDER": "Pasar a PEDIDO",
+  "CREATE_SALEORDER": "Pasar a pedido",
   "SALEORDER_CREATED": "Pedido creado corretamente.",
   "DESTINATION_ADDRESS": "Dirección de envío",
   "DEST_ADDRESS": "Dirección",
@@ -131,6 +131,11 @@
 "SALEORDER_SUBTOTAL": "Subtotal Pedido:",
 "SALEORDER_TRANSPORT": "Gastos de transporte:",
 "SALEORDER_TAXES": "Impuestos (21%)",
-"PAY": "PAY",
-"MY_SALEORDERS": "Mis Pedidos"
+"PAY": "Pagar",
+"MY_SALEORDERS": "Mis Pedidos",
+"SALEORDERNUMBER": "Número",
+"SALEDATE" : "Fecha de venta",
+"SALESTATUS" : "Estado del pedido"
+
+
 }

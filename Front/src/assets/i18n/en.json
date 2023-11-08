@@ -136,5 +136,7 @@
   "DEST_ADDRESS": "Address",
   "DEST_CP": "CP",
   "DEST_CITY": "City",
-  "SALEORDER_DATA": "Economic Data"
+  "SALEORDER_DATA": "Economic Data",
+  "SALEORDERNUMBER": "Number"
+
 }

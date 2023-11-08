@@ -1,33 +1,82 @@
 <div class="container">
-  <o-form-layout-manager mode="dialog" title="SALES" label-columns="NAME" separator="" attr="o-form-layout-sales-home">
+  <o-form-layout-manager
+    mode="dialog"
+    title="SALES"
+    label-columns="NAME"
+    separator=""
+    attr="o-form-layout-sales-home"
+  >
     <div fxFill fxLayout="column" fxLayoutAlign="start">
+      <o-table
+        #table
+        attr="sales"
+        service="saleordersh"
+        entity="saleordershrelated_data"
+        title="SALES"
+        columns="saleordersh_id;saledate;salestatus;es_name;dest_city"
+        visible-columns="saleordersh_id;saledate;salestatus;es_name;dest_city;saleordertotal"
+        sort-columns="saledate"
+        keys="saleordersh_id"
+        query-rows="10"
+        pageable="no"
+        row-height="medium"
+      >
+        <o-table-column
+          attr="saleordersh_id"
+          title="SALEORDERNUMBER"
+          width="15%"
+          class="o-table-column-centered"
+        ></o-table-column>
+        <o-table-column
+          attr="saledate"
+          title="SALEDATE"
+          width="22%"
+          type="date"
+          format="LL"></o-table-column>
+        <o-table-column
+          attr="salestatus"
+          title="SALESTATUS"
+          width="15%"
+          class="o-table-column-centered"
+        ></o-table-column>
+        <o-table-column attr="dest_city" title="DEST_CITY"></o-table-column>
+        <o-table-column attr="es_name" title="country_id"></o-table-column>
+        <o-table-column attr="saleordertotal" title="SALEORDER_TOTAL" type="currency" currency-symbol="€" currency-symbol-position="right"
+        thousand-separator="." decimal-separator=",">
+      </o-table-column>
 
-      <o-table #table attr="sales" service="saleordersh" entity="saleordersh" title="SALES"
-        columns="id;saledate;salestatus" visible-columns="id;saledate;salestatus" sort-columns="saledate" keys="id"
-        query-rows="10" pageable="no" row-height="medium">
-
-        <o-table-column attr="id" title="id" width="15%" class="o-table-column-centered"></o-table-column>
-        <o-table-column attr="saledate" title="saledate" width="22%" type="date" format="LL"></o-table-column>
-        <o-table-column attr="salestatus" title="salestatus" width="15%"
-          class="o-table-column-centered"></o-table-column>
-        <o-table-row-expandable icon-collapse="expand_more" icon-expand="chevron_right">
+        <o-table-row-expandable
+          icon-collapse="expand_more"
+          icon-expand="chevron_right"
+        >
           <ng-template let-row>
             <o-expandable-container [targets]="[salesLines]" [data]="row">
-              <o-table #salesLines service="sales" entity="sale" parent-keys="sales_head_id:id" keys="sale_id"
-                columns="sale_id;sale_price;qty;total" visible-columns="sale_id;sale_price;qty;total" query-on-init="no"
-                query-rows="10" pageable="no" insert-button="no" delete-button="no" detail-mode="none">
+              <o-table
+                #salesLines
+                service="saleordersl"
+                entity="saleordersl"
+                parent-keys="saleordersh_id:id"
+                keys="saleordersl_id"
+                columns="saleordersl_id;saleordersl_price;qty;total"
+                visible-columns="saleordersl;saleordersl_price;qty;total"
+                query-on-init="no"
+                query-rows="10"
+                pageable="no"
+                insert-button="no"
+                delete-button="no"
+                detail-mode="none"
+              >
                 <!-- <o-table-column async-load="true" width="48px" attr="EMPLOYEEPHOTO" orderable="no" searchable="no" type="image" image-type="base64" -->
                 <!-- empty-image="assets/images/no-image.png" avatar="yes"> -->
                 <!-- </o-table-column> -->
                 <o-table-column attr="qty" title="QTY"></o-table-column>
-                <o-table-column attr="price" title="PRICE"></o-table-column>
+                <o-table-column attr="saleordersl_price" title="PRICE"></o-table-column>
               </o-table>
             </o-expandable-container>
           </ng-template>
         </o-table-row-expandable>
         <o-table-context-menu></o-table-context-menu>
       </o-table>
-
     </div>
   </o-form-layout-manager>
 </div>
