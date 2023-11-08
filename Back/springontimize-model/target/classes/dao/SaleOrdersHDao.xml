@@ -67,7 +67,6 @@
                  #WHERE#
                GROUP BY
                 sh.id,co.es_name,ss.es_name
-
                #ORDER#
             ]]>
             </Sentence>

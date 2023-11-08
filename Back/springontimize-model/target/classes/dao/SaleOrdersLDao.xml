@@ -27,6 +27,7 @@
                FROM
                   ${mainschema}.saleordersl AS sa
                   INNER JOIN ${mainschema}.products AS po ON po.id = sa.product_id
+
                #WHERE#
                #ORDER#
             ]]>

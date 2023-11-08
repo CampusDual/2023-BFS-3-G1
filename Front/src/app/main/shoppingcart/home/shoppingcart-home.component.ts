@@ -40,8 +40,6 @@ export class ShoppingcartHomeComponent implements OnInit {
     this.ontimizeservice.configureService(
       this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
     );
-
-    
     this.ontimizeservice.query({}, ["qty", "shoppingcart_price"], "shoppingcart").subscribe((resp) => {
       if (resp.code === 0) {
         const cartItems = resp.data;
