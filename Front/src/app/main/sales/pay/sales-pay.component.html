@@ -21,6 +21,15 @@
                         </o-row>
                         <o-row>
                             <o-column fxFlex="70" layout-align="start start">
+                                {{ 'SALEORDER_TAXES' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
+                            </o-column>
+                        </o-row>
+                        <o-row>
+
+                            <o-column fxFlex="70" layout-align="start start">
                                 {{ 'SALEORDER_TRANSPORT' | oTranslate }}...
                             </o-column>
                             <o-column fxFlex="30" layout-align="start end">
@@ -28,17 +37,9 @@
                                 }} €
                             </o-column>
                         </o-row>
-                        <o-row>
-                            <o-column fxFlex="70" layout-align="start start">
-                                {{ 'SALEORDER_TAXES' | oTranslate }}...
-                            </o-column>
-                            <o-column fxFlex="30" layout-align="start end">
-                                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
-                            </o-column>
-                        </o-row>
                         <div class="diagonal-bar">
                             <p></p>
-                          </div>
+                        </div>
                         <o-row>
                             <o-column fxFlex="70" layout-align="start start">
                                 <span style="font-weight: bold;">{{ 'SALEORDER_TOTAL' | oTranslate }}...</span>
@@ -125,7 +126,8 @@
             </o-column>
 
             <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="saleordersh_id:id"
-                columns="image;es_name;qty;saleordersl_price;total" visible-columns="image;es_name;qty;saleordersl_price;total" insert-button="no" query-rows="8">
+                columns="image;es_name;qty;saleordersl_price;total"
+                visible-columns="image;es_name;qty;saleordersl_price;total" insert-button="no" query-rows="8">
                 <o-table-column attr="image" title="Imagen" orderable="no" searchable="no" type="image" avatar="yes"
                     empty-image="assets/images/no-image.png" image-type="base64" sql-type="base64"></o-table-column>
                 <o-table-column attr="es_name" title="NAME" content-align="start"></o-table-column>
@@ -136,9 +138,9 @@
                 </o-table-column>
                 <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
                     currency-symbol-position="right" thousand-separator="." decimal-separator=",">
-                </o-table-column>            
+                </o-table-column>
             </o-table>
-           
+
 
         </o-column>
     </o-form>
