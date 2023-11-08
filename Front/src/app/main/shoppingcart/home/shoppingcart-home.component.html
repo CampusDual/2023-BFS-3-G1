@@ -14,19 +14,19 @@
                         </o-row>
                         <o-row>
                             <o-column fxFlex="70" layout-align="start start">
+                                {{ 'SALEORDER_TAXES' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
+                            </o-column>
+                        </o-row>
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
                                 {{ 'SALEORDER_TRANSPORT' | oTranslate }}...
                             </o-column>
                             <o-column fxFlex="30" layout-align="start end">
                                 {{ saletransport | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 }
                                 }} €
-                            </o-column>
-                        </o-row>
-                        <o-row>
-                            <o-column fxFlex="70" layout-align="start start">
-                                {{ 'SALEORDER_TAXES' | oTranslate }}...
-                            </o-column>
-                            <o-column fxFlex="30" layout-align="start end">
-                                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
                             </o-column>
                         </o-row>
                         <o-row>
