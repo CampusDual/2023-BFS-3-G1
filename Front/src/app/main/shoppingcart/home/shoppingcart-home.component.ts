@@ -72,6 +72,9 @@ export class ShoppingcartHomeComponent implements OnInit {
       }
     });
   }
+  backToProducts(event: any) {
+    this.router.navigate(["/main/sectionfood"]);
+  }
 
   updateCartItem(listItem: any, option:number) {
     this.ontimizeservice.configureService(

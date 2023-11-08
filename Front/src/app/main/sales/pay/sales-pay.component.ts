@@ -47,9 +47,8 @@ export class SalesPayComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.code === 0) {
           this.salesubtotal = resp.data[0]["saleordertotal"];
-          this.salesubtotal += this.saletransport;
           this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
-          this.saletotal = +(this.salesubtotal + this.saletaxes).toFixed(2);
+          this.saletotal = +(this.salesubtotal + this.saletaxes + this.saletransport).toFixed(2);
           console.log("total cargado " + this.salesubtotal);
         } else {
           console.error(resp);
@@ -97,7 +96,7 @@ export class SalesPayComponent implements OnInit {
         "El pago se ha realizado correctamente",
         config
       );
-      this.router.navigate(["/main/sectionfood"]);
+      this.router.navigate(["/main/sales/detail/" + this.id]);
     }
   }
 }

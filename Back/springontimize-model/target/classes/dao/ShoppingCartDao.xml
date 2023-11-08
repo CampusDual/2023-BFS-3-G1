@@ -34,7 +34,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  #COLUMNS#,qty*sc.price as total
+                  #COLUMNS#
                FROM
                   ${mainschema}.SHOPPINGCART AS SC
                INNER JOIN

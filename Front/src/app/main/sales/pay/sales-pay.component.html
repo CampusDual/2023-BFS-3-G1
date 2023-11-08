@@ -12,6 +12,15 @@
                         layout-align="start" layout-gap="10px" fxFlex="30">
                         <o-row>
                             <o-column fxFlex="70" layout-align="start start">
+                                {{ 'SALEORDERNUMBER' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{  oForm.getDataValue('id').value | oReal: {grouping: true, minDecimalDigits: 0, maxDecimalDigits: 0 } }}
+                                
+                            </o-column>
+                        </o-row>
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
                                 {{ 'SALEORDER_SUBTOTAL' | oTranslate }}...
                             </o-column>
                             <o-column fxFlex="30" layout-align="start end">
