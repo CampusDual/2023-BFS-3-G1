@@ -13,8 +13,8 @@
         service="saleordersh"
         entity="saleordershrelated_data"
         title="SALES"
-        columns="saleordersh_id;saledate;salestatus;es_name;dest_city"
-        visible-columns="saleordersh_id;saledate;salestatus;es_name;dest_city;saleordertotal"
+        columns="saleordersh_id;saledate;salestatus_es_name;countries_es_name;dest_city"
+        visible-columns="saleordersh_id;saledate;salestatus_es_name;countries_es_name;dest_city;saleordertotal"
         sort-columns="saledate"
         keys="saleordersh_id"
         query-rows="10"
@@ -32,18 +32,29 @@
           title="SALEDATE"
           width="22%"
           type="date"
-          format="LL"></o-table-column>
+          format="LL"
+        ></o-table-column>
         <o-table-column
-          attr="salestatus"
+          attr="salestatus_es_name"
           title="SALESTATUS"
           width="15%"
           class="o-table-column-centered"
         ></o-table-column>
         <o-table-column attr="dest_city" title="DEST_CITY"></o-table-column>
-        <o-table-column attr="es_name" title="country_id"></o-table-column>
-        <o-table-column attr="saleordertotal" title="SALEORDER_TOTAL" type="currency" currency-symbol="€" currency-symbol-position="right"
-        thousand-separator="." decimal-separator=",">
-      </o-table-column>
+        <o-table-column
+          attr="countries_es_name"
+          title="country_id"
+        ></o-table-column>
+        <o-table-column
+          attr="saleordertotal"
+          title="SALEORDER_TOTAL"
+          type="currency"
+          currency-symbol="€"
+          currency-symbol-position="right"
+          thousand-separator="."
+          decimal-separator=","
+        >
+        </o-table-column>
 
         <o-table-row-expandable
           icon-collapse="expand_more"
@@ -55,10 +66,10 @@
                 #salesLines
                 service="saleordersl"
                 entity="saleordersl"
-                parent-keys="saleordersh_id:id"
+                parent-keys="saleordersh_id:saleordersh_id"
                 keys="saleordersl_id"
-                columns="saleordersl_id;saleordersl_price;qty;total"
-                visible-columns="saleordersl;saleordersl_price;qty;total"
+                columns="saleordersl_id;saleordersl_price;qty;total;image;es_name"
+                visible-columns="saleordersl;saleordersl_price;qty;total;image;es_name"
                 query-on-init="no"
                 query-rows="10"
                 pageable="no"
@@ -66,11 +77,49 @@
                 delete-button="no"
                 detail-mode="none"
               >
-                <!-- <o-table-column async-load="true" width="48px" attr="EMPLOYEEPHOTO" orderable="no" searchable="no" type="image" image-type="base64" -->
-                <!-- empty-image="assets/images/no-image.png" avatar="yes"> -->
-                <!-- </o-table-column> -->
-                <o-table-column attr="qty" title="QTY"></o-table-column>
-                <o-table-column attr="saleordersl_price" title="PRICE"></o-table-column>
+                <o-table-column
+                  attr="image"
+                  title="Imagen"
+                  orderable="no"
+                  searchable="no"
+                  type="image"
+                  avatar="yes"
+                  empty-image="assets/images/no-image.png"
+                  image-type="base64"
+                  sql-type="base64"
+                ></o-table-column>
+                <o-table-column
+                  attr="es_name"
+                  title="NAME"
+                  content-align="start"
+                ></o-table-column>
+                <o-table-column
+                  attr="qty"
+                  title="QTY"
+                  class="o-table-column-right"
+                  type="integer"
+                >
+                </o-table-column>
+                <o-table-column
+                  attr="saleordersl_price"
+                  title="PRICE"
+                  type="currency"
+                  currency-symbol="€"
+                  currency-symbol-position="right"
+                  thousand-separator="."
+                  decimal-separator=","
+                >
+                </o-table-column>
+                <o-table-column
+                  attr="total"
+                  title="TOTAL"
+                  type="currency"
+                  currency-symbol="€"
+                  currency-symbol-position="right"
+                  thousand-separator="."
+                  decimal-separator=","
+                >
+                </o-table-column>
               </o-table>
             </o-expandable-container>
           </ng-template>

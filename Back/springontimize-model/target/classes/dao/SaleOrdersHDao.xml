@@ -40,6 +40,11 @@
                 <AmbiguousColumn name="saleordersh_id" prefix="sh" databaseName="id" />
                 <AmbiguousColumn name="saleordersl_id" prefix="sl" databaseName="id" />
                 <AmbiguousColumn name="countries_id" prefix="co" databaseName="id" />
+                <AmbiguousColumn name="saleordersh_user_" prefix="sh" databaseName="user_" />
+                <AmbiguousColumn name="salestatus_es_name" prefix="ss" databaseName="es_name" />
+                <AmbiguousColumn name="salestatus_en_name" prefix="ss" databaseName="en_name" />
+                <AmbiguousColumn name="countries_es_name" prefix="co" databaseName="es_name" />
+
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
@@ -47,17 +52,21 @@
                   #COLUMNS#,SUM(total) AS saleordertotal
                FROM
                   ${mainschema}.saleordersh AS sh
-               INNER JOIN
+               LEFT JOIN
                 ${mainschema}.saleordersl AS sl
                ON
                 sl.saleordersh_id = sh.id
-                INNER JOIN
+                LEFT JOIN
                 ${mainschema}.countries AS co
                 ON
                 sh.country_id = co.id
+                LEFT JOIN
+                ${mainschema}.salestatus AS ss
+                ON
+                sh.salestatus = ss.id
                  #WHERE#
                GROUP BY
-                sh.id,co.es_name
+                sh.id,co.es_name,ss.es_name
 
                #ORDER#
             ]]>

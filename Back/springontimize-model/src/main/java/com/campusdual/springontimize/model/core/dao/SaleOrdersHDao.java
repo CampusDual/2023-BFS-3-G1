@@ -18,6 +18,6 @@ public class SaleOrdersHDao extends OntimizeJdbcDaoSupport{
     public static final String ATTR_SALEDATE = "saledate";
     public static final String QUERY_VTOTAL = "total";
     public static final String QUERY_VRELATED_DATA = "related_data";
-
+    public static final String ATTR_SALEORDERSH_USER_ = "saleordersh_user_";
 
 }
