@@ -20,4 +20,5 @@ public class SaleOrdersLDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_QTY = "qty";
     public static final String ATTR_TOTAL = "total";
     public static final String ATTR_SALEORDERSH_ID = "saleordersh_id";
+    public static final String ATTR_SALEORDERSL_ID = "saleordersl_id";
 }

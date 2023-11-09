@@ -54,6 +54,9 @@ public class SaleOrdersHService implements ISaleOrdersHService {
         Map<String, Object> filter = new HashMap<>(); //filtro que voy a realizar para la consulta para saber si ya existe en el carrito el producto
         filter.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
         EntityResult shoppingCartLines = daoHelper.query(shoppingCartDao, filter, fields); // hago la consulta para ver si tengo ese producto y cuantos tengo
+        if (shoppingCartLines.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+            return shoppingCartLines;
+        }
         int i;
         for (i = 0; i < shoppingCartLines.calculateRecordNumber(); i++) {
             Integer id = (Integer) shoppingCartLines.getRecordValues(i).get(ShoppingCartDao.ATTR_QTY);
@@ -78,7 +81,34 @@ public class SaleOrdersHService implements ISaleOrdersHService {
     }
 
     public EntityResult saleordershDelete(Map<String, Object> keyMap) {
-        return this.daoHelper.delete(this.saleOrdersHDao, keyMap);
+        // Recogemos el id del pedido que nos piden borrar
+        Integer id = Integer.parseInt(keyMap.get(SaleOrdersHDao.ATTR_ID).toString());
+        // Tenemos que recoger las lineas de pedido para borrarlas antes que la cabecera
+        Map<String, Object> filter = new HashMap<>();
+        List<String> columns = new ArrayList<>();
+        filter.put(SaleOrdersLDao.ATTR_SALEORDERSH_ID, id);
+        columns.add(SaleOrdersLDao.ATTR_SALEORDERSL_ID);
+        EntityResult resultLines = this.daoHelper.query(saleOrdersLDao, filter, columns);
+        if (resultLines.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+            return resultLines;
+        }
+        int i;
+        for (i = 0; i < resultLines.calculateRecordNumber(); i++) {
+            filter.clear();
+            filter.put(SaleOrdersLDao.ATTR_ID, resultLines.getRecordValues(i).get(SaleOrdersLDao.ATTR_SALEORDERSL_ID));
+            EntityResult result = this.daoHelper.delete(this.saleOrdersLDao, filter);
+            if (result.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+                return result;
+            }
+        }
+        // Borro la cabecera
+        filter.clear();
+        filter.put(SaleOrdersLDao.ATTR_ID, id);
+        EntityResult resultHeader = this.daoHelper.delete(this.saleOrdersHDao, filter);
+        if (resultHeader.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+            return resultHeader;
+        }
+        return resultHeader;
     }
 
     @Override

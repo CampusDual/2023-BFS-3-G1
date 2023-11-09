@@ -4,7 +4,9 @@ import {
   DialogService,
   ODialogConfig,
   OFormComponent,
+  OSnackBarConfig,
   OntimizeService,
+  SnackBarService,
 } from "ontimize-web-ngx";
 
 @Component({
@@ -26,7 +28,8 @@ export class SalesPayComponent implements OnInit {
   constructor(
     private ontimizeService: OntimizeService,
     protected dialogService: DialogService,
-    protected router: Router
+    protected router: Router,
+    protected snackBarService: SnackBarService
   ) {}
 
   ngOnInit() {}
@@ -48,7 +51,11 @@ export class SalesPayComponent implements OnInit {
         if (resp.code === 0) {
           this.salesubtotal = resp.data[0]["saleordertotal"];
           this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
-          this.saletotal = +(this.salesubtotal + this.saletaxes + this.saletransport).toFixed(2);
+          this.saletotal = +(
+            this.salesubtotal +
+            this.saletaxes +
+            this.saletransport
+          ).toFixed(2);
           console.log("total cargado " + this.salesubtotal);
         } else {
           console.error(resp);
@@ -56,43 +63,31 @@ export class SalesPayComponent implements OnInit {
       });
   }
 
-
-  deleteOrder(event: any){
+  deleteOrder(event: any) {
+    if (this.dialogService) {
+      this.dialogService.confirm("SALEORDER_CANCEL", "ARE_YOU_SURE");
+      this.dialogService.dialogRef.afterClosed().subscribe((result) => {
+        if (!result) {
+          return;
+        }
+      });
+    }
     this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("saleordersl")
+      this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
     );
     let formValues = this.oForm.getComponents();
     this.id = formValues.id.getValue();
     let filter = {
-    saleordersh_id: this.id,
-    };
-    this.ontimizeService
-      .delete(filter, "saleordersl")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          console.log("Lineas borradas con exito ");
-        } else {
-          console.error(resp);
-        }
-      });
-
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
-    );
-    formValues = this.oForm.getComponents();
-    this.id = formValues.id.getValue();
-    let filter2 = {
       id: this.id,
     };
-    this.ontimizeService
-      .delete(filter2, "saleordersh")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          console.log("Pedido borrado con exito ");
-        } else {
-          console.error(resp);
-        }
-      });
+    this.ontimizeService.delete(filter, "saleordersh").subscribe((resp) => {
+      if (resp.code === 0) {
+        console.log("pedido borrado con exito ");
+      } else {
+        console.error(resp);
+      }
+    });
+    this.router.navigate(["/main/sectionfood"]);
   }
 
   pay(event: any, instrument: number) {
