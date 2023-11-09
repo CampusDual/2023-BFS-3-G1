@@ -4,3 +4,4 @@ Back/springontimize-api/target/springontimize-api-1.0.0-SNAPSHOT.jar
 Front/package-lock.json
 Back/springontimize-ws/target/springontimize-ws-1.0.0-SNAPSHOT-sources.jar
 *.jar
+Back/.idea/misc.xml
