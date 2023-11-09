@@ -2,13 +2,13 @@
     <o-form-container breadcrumb="no" breadcrumb-label-columns="es_name" breadcrumb-separator="-">
         <o-form #oForm attr="product_detail_form" service="products" entity="product" keys="id" keys-sql-types="INTEGER"
             columns="id;es_name;es_description_short;es_description_long;image;price;category_id;al_gluten;al_cacahuetes;al_cascara;al_altramuces;al_leche;al_vegano;al_apio;al_crustaceos;al_huevo;al_moluscos;al_mostaza;al_pescado;al_sesamo;al_soja;al_sulfitos"
-            editable-detail="yes" show-header="yes" header-actions="R" [label-header]="formLabel"
+            editable-detail="yes" show-header="yes" header-actions="" [label-header]="formLabel"
             show-header-navigation="no" include-breadcrumb="yes" layout-align="centered">
             <o-integer-input attr="id" oHidden></o-integer-input>
             <o-integer-input attr="price" oHidden></o-integer-input>
             <div o-form-toolbar-buttons>
                 <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="goToShoppingCart($event)"
-                    attr="fillreport">
+                    attr="gotoshoppingcart">
                     <mat-icon>shopping_cart</mat-icon>
                     <span>{{ 'SHOPPINGCART' | oTranslate }}</span>
                 </button>

@@ -84,7 +84,7 @@
         columns="id;es_name;image;price;category_id;country_id" keys="id" cols="4" show-page-size="false"
         orderable="false" quick-filter="false" grid-item-height="1:1.3" sortable-columns="es_name" sort-column=""
         controls="true" refresh-button="false" insert-button="false" pagination-controls="true" gutter-size="10px"
-        fixed-header="no" show-footer="true" [ngStyle]="{ height: '600px' }">
+        fixed-header="no" show-footer="true" [ngStyle]="{ height: '600px' }" quick-filter="yes">
         <o-grid-item *ngFor="let list of grid.dataArray">
           <o-column layout-padding class="container-item">
             <div>              

@@ -4,10 +4,9 @@
   <div fxFill fxLayout="column" fxLayoutAlign="start">
 
     <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="wholesalerproduct" keys="id"
-      columns="id;image;es_name;price;featured" visible-columns="id;image;es_name;price;featured"
+      columns="id;image;es_name;price;featured" visible-columns="image;es_name;price;featured"
       sort-columns="id;es_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
       pageable="no" virtual-scroll="no">
-      <o-table-column attr="id" title="ID" orderable="yes" type="integer"></o-table-column>
       <!-- imagen -->
       <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
         type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
