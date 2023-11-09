@@ -92,6 +92,7 @@ public class SaleOrdersHService implements ISaleOrdersHService {
         if (resultLines.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
             return resultLines;
         }
+        // Como tenemos que borrar por id vamos linea a linea
         int i;
         for (i = 0; i < resultLines.calculateRecordNumber(); i++) {
             filter.clear();

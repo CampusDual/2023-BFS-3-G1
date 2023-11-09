@@ -9,7 +9,7 @@ import { SalesPayComponent } from './pay/sales-pay.component';
 const routes: Routes = [
   { path: "", component: SalesHomeComponent },
   { path: ":id", component: SalesDetailComponent },
-  { path: "detail/:id", component: SalesPayComponent }
+  { path: "pay/:id", component: SalesPayComponent }
 
 ];
 

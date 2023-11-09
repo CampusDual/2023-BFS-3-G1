@@ -3,6 +3,7 @@
   }
 .content{
   margin-top: 40px;
+overflow: hidden !important;
 }
   .navbar {
     display: flex;
@@ -30,6 +31,7 @@
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+overflow: hidden !important;
   }
     
 

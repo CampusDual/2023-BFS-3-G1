@@ -87,6 +87,17 @@ export class SalesPayComponent implements OnInit {
         console.error(resp);
       }
     });
+    if (this.dialogService) {
+      this.dialogService.confirm(
+        "SALEORDER_CANCELLED",
+        "SALEORDER_CANCELLED_SUCCESSFULLY"
+      );
+      this.dialogService.dialogRef.afterClosed().subscribe((result) => {
+        if (!result) {
+          return;
+        }
+      });
+    }
     this.router.navigate(["/main/sectionfood"]);
   }
 
@@ -119,6 +130,18 @@ export class SalesPayComponent implements OnInit {
           console.error(resp);
         }
       });
+    if (this.dialogService && instrument == 1) {
+      const config: ODialogConfig = {
+        icon: "credit_card",
+        okButtonText: "ACEPTAR",
+      };
+      this.dialogService.alert(
+        "PEDIDO PAGADO",
+        "El pago se ha realizado correctamente",
+        config
+      );
+      this.router.navigate(["/main/sales/" + this.id]);
+    }
 
     if (this.dialogService && instrument == 1) {
       const config: ODialogConfig = {
@@ -130,7 +153,7 @@ export class SalesPayComponent implements OnInit {
         "El pago se ha realizado correctamente",
         config
       );
-      this.router.navigate(["/main/sales/detail/" + this.id]);
+      this.router.navigate(["/main/sales/" + this.id]);
     }
   }
 }
