@@ -8,7 +8,9 @@ import { SalesPayComponent } from './pay/sales-pay.component';
 
 const routes: Routes = [
   { path: "", component: SalesHomeComponent },
-  { path: ":id", component: SalesPayComponent }
+  { path: ":id", component: SalesDetailComponent },
+  { path: "pay/:id", component: SalesPayComponent }
+
 ];
 
 @NgModule({

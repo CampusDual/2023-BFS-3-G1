@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
 
 @Component({
   selector: "app-sales-detail",
@@ -6,7 +7,19 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./sales-detail.component.css"],
 })
 export class SalesDetailComponent implements OnInit {
-  constructor() {}
+
+  public salesubtotal: number = 0;
+  public saletaxes: number = 0;
+  public saletotal: number = 0;
+  public saletransport: number = 5;
+
+  private id: number = 0;
+
+  constructor(private ontimizeService: OntimizeService,) {}
+
+  @ViewChild("oForm", { static: false })
+  private oForm: OFormComponent;
+
 
   ngOnInit() {}
 
@@ -29,6 +42,31 @@ export class SalesDetailComponent implements OnInit {
       value: "Germany",
     });
     return array;
+  }
+
+  onDataLoaded(event: any) {
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
+    );
+
+    let formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
+    const filter = {
+      saleordersh_id: this.id,
+    };
+    const data = ["saleordersh_id"];
+    this.ontimizeService
+      .query(filter, data, "saleordershtotal")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          this.salesubtotal = resp.data[0]["saleordertotal"];
+          this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
+          this.saletotal = +(this.salesubtotal + this.saletaxes + this.saletransport).toFixed(2);
+          console.log("total cargado " + this.salesubtotal);
+        } else {
+          console.error(resp);
+        }
+      });
   }
 
   getValue() {

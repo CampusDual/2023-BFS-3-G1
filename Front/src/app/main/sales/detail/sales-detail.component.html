@@ -1,52 +1,112 @@
-<o-form editable-detail="false" show-header="yes" header-actions="" service="saleordersh" entity="saleordersh" keys="id"
-  #oForm columns="id;saledate;salestatus" show-header-navigation="yes" layout-direction="column"
-  (onDataLoaded)="onFormDataLoaded($event)">
+<o-form-container breadcrumb="no" breadcrumb-label-columns="name" breadcrumb-separator=", ">
 
-  <div o-form-toolbar-buttons>
+  <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
+      header-actions="R" keys="id" keys-sql-types="INTEGER" editable-detail="no" columns="id;dest_address" show-header-navigation="yes"
+      (onDataLoaded)="onDataLoaded($event)">
+      <o-integer-input attr="id" oHidden></o-integer-input>
+      <o-column layout-gap="50px">
 
-  </div>
+          <o-column layout-gap="20px">
+              <o-row layout-gap="20px">
+                  <o-column style="background-color:cadetblue;" title="SALEORDER_DATA" icon="checklist"
+                      layout-align="start" layout-gap="10px" fxFlex="30">
+                      <o-row>
+                        <o-column fxFlex="70" layout-align="start start">
+                            {{ 'SALEORDERNUMBER' | oTranslate }}...
+                        </o-column>
+                        <o-column fxFlex="30" layout-align="start end">
+                            {{  oForm.getDataValue('id').value | oReal: {grouping: true, minDecimalDigits: 0, maxDecimalDigits: 0 } }}
+                            
+                        </o-column>
+                    </o-row>
+                      <o-row>
+                          <o-column fxFlex="70" layout-align="start start">
+                              {{ 'SALEORDER_SUBTOTAL' | oTranslate }}...
+                          </o-column>
+                          <o-column fxFlex="30" layout-align="start end">
+                              {{ salesubtotal | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }}
+                              €
+                          </o-column>
+                      </o-row>
+                      <o-row>
+                          <o-column fxFlex="70" layout-align="start start">
+                              {{ 'SALEORDER_TAXES' | oTranslate }}...
+                          </o-column>
+                          <o-column fxFlex="30" layout-align="start end">
+                              {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
+                          </o-column>
+                      </o-row>
+                      <o-row>
 
-  <!-- <o-column>
-    <div fxLayout="row wrap" fxLayoutGap="14px" fxLayoutAlign="space-between">
-      <o-column title="BRANCH_INFO" icon="info" fxFlex="55" fxFlex.md="100" class="vertical-margin-10">
-        <div fxLayout="row wrap" fxLayoutGap="14px">
-          <o-text-input #officeId attr="OFFICEID" fxFlex="20" class="form-field"></o-text-input>
-          <o-text-input attr="NAME" fxFlex class="form-field"></o-text-input>
-        </div>
-        <o-text-input attr="ADDRESS" class="form-field"></o-text-input>
-        <div fxLayout="row wrap" fxLayoutGap="14px">
-          <o-text-input attr="PHONE" fxFlex="35" class="form-field"></o-text-input>
-          <o-date-input attr="STARTDATE" label="OPENING_DATE" fxFlex="35" class="form-field"></o-date-input>
-        </div>
+                          <o-column fxFlex="70" layout-align="start start">
+                              {{ 'SALEORDER_TRANSPORT' | oTranslate }}...
+                          </o-column>
+                          <o-column fxFlex="30" layout-align="start end">
+                              {{ saletransport | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 }
+                              }} €
+                          </o-column>
+                      </o-row>
+                      <div class="diagonal-bar">
+                          <p></p>
+                      </div>
+                      <o-row>
+                          <o-column fxFlex="70" layout-align="start start">
+                              <span style="font-weight: bold;">{{ 'SALEORDER_TOTAL' | oTranslate }}...</span>
+                          </o-column>
+                          <o-column fxFlex="30" layout-align="start end">
+                              <span style="font-weight: bold;">{{ saletotal | oReal: { grouping: true,
+                                  minDecimalDigits:
+                                  2, maxDecimalDigits: 2 } }} €</span>
+                          </o-column>
+                      </o-row>
+
+                  </o-column>
+                  <o-column title="DESTINATION_ADDRESS" icon="home" layout-gap="20px" fxFlex="70">
+                      <o-row>
+                          <o-text-input attr="dest_name" label="NAME" width="100%" class="form-field"></o-text-input>
+                      </o-row>
+                      <o-row>
+                          <o-text-input attr="dest_address" label="DEST_ADDRESS" width="100%"
+                              class="form-field"></o-text-input>
+                      </o-row>
+                      <o-row layout-gap="20px">
+                          <o-text-input attr="dest_cp" label="DEST_CP" class="form-field"></o-text-input>
+                          <o-text-input attr="dest_city" label="DEST_CITY" class="form-field"
+                              class="form-field"></o-text-input>
+                          <o-combo attr="country_id" query-on-init="no" query-on-bind="yes" filter="yes"
+                              value-column="id" service="countries" entity="country" keys="id" columns="id;en_name"
+                              visible-columns="en_name" class="form-field">
+                          </o-combo>
+                      </o-row>
+                  </o-column>
+              </o-row>
+              <o-row>
+                  <o-column attr="row1" title="PAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
+                  </o-column>
+              </o-row>
+              <o-row>
+                <o-column title="PENDIENTE" icon="local_shipping" layout-gap="20px" fxFlex="100">
+                </o-column>
+            </o-row>
+          </o-column>
+           <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="saleordersh_id:id"
+              columns="image;es_name;qty;saleordersl_price;total"
+              visible-columns="image;es_name;qty;saleordersl_price;total" insert-button="no" query-rows="10" pagination-controls= "no" quick-filter="no" refresh-button="false" delete-button= "false" >
+              <o-table-column attr="image" title="Imagen" orderable="no" searchable="no" type="image" avatar="yes"
+                  empty-image="assets/images/no-image.png" image-type="base64" sql-type="base64"></o-table-column>
+              <o-table-column attr="es_name" title="NAME" content-align="start"></o-table-column>
+              <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
+              </o-table-column>
+              <o-table-column attr="saleordersl_price" title="PRICE" type="currency" currency-symbol="€"
+                  currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
+              <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
+                  currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
+          </o-table>
+
 
       </o-column>
-      <div fxFlex="40" fxFlex.md="100" *ngIf="hasGPSPositition()">
-        <o-map class="o-map" [center]="getPositionGPS()" zoom="10" min-zoom="3" max-zoom="20" zoom-control="yes" search-control="no"
-          layer-panel-visible="no" base-layer-ids="CartoDB.Positron;Esri;OpenStreetMap.HOT;OpenStreetMap.BlackAndWhite">
-          <o-map-layer layer-type="marker" layer-id="office_marker" [layer-center]="getPositionGPS()" [layer-menu-label]="name"></o-map-layer>
-        </o-map>
-      </div>
-    </div>
-  </o-column> -->
-  <mat-tab-group class="vertical-padding-8">
+  </o-form>
 
-    <mat-tab label="{{ 'ACCOUNTS' | oTranslate }}">
-      <div layout-padding>
-        <o-table #accountsTable service="customers" entity="customerAccount" title="ACCOUNTS"
-          columns="ACCOUNTID;ENTITYID;OFFICEID;CDID;ANID;ACCOUNT;BALANCE;CUSTOMERID;CUSTOMER;STARTDATE"
-          visible-columns="ACCOUNT;CUSTOMER;BALANCE;STARTDATE" updateentityeditablecolumns="ACCOUNT;BALANCE;STARTDATE"
-          sort-columns="STARTDATE" keys="ACCOUNTID" parent-keys="OFFICEID" query-on-init="false" query-rows="10"
-          quick-filter="yes" edit-button-in-row="no" pageable="no" delete-button="no" insert-button="no"
-          fixed-header="true">
-
-          <o-table-column attr="STARTDATE" title="OPENING_DATE" type="date" format="LL"></o-table-column>
-          <o-table-column attr="BALANCE" title="BALANCE" type="currency" currency-symbol="€"
-            currency-symbol-position="right" thousand-separator="." decimal-separator=",">
-          </o-table-column>
-        </o-table>
-      </div>
-    </mat-tab>
-
-  </mat-tab-group>
-
-</o-form>
+</o-form-container>

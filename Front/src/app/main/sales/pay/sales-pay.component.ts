@@ -4,7 +4,9 @@ import {
   DialogService,
   ODialogConfig,
   OFormComponent,
+  OSnackBarConfig,
   OntimizeService,
+  SnackBarService,
 } from "ontimize-web-ngx";
 
 @Component({
@@ -26,7 +28,8 @@ export class SalesPayComponent implements OnInit {
   constructor(
     private ontimizeService: OntimizeService,
     protected dialogService: DialogService,
-    protected router: Router
+    protected router: Router,
+    protected snackBarService: SnackBarService
   ) {}
 
   ngOnInit() {}
@@ -47,14 +50,55 @@ export class SalesPayComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.code === 0) {
           this.salesubtotal = resp.data[0]["saleordertotal"];
-          this.salesubtotal += this.saletransport;
           this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
-          this.saletotal = +(this.salesubtotal + this.saletaxes).toFixed(2);
+          this.saletotal = +(
+            this.salesubtotal +
+            this.saletaxes +
+            this.saletransport
+          ).toFixed(2);
           console.log("total cargado " + this.salesubtotal);
         } else {
           console.error(resp);
         }
       });
+  }
+
+  deleteOrder(event: any) {
+    if (this.dialogService) {
+      this.dialogService.confirm("SALEORDER_CANCEL", "ARE_YOU_SURE");
+      this.dialogService.dialogRef.afterClosed().subscribe((result) => {
+        if (!result) {
+          return;
+        }
+      });
+    }
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
+    );
+    let formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
+    let filter = {
+      id: this.id,
+    };
+    this.ontimizeService.delete(filter, "saleordersh").subscribe((resp) => {
+      if (resp.code === 0) {
+        console.log("pedido borrado con exito ");
+      } else {
+        console.error(resp);
+      }
+    });
+    if (this.dialogService) {
+      this.dialogService.confirm(
+        "SALEORDER_CANCELLED",
+        "SALEORDER_CANCELLED_SUCCESSFULLY"
+      );
+      this.dialogService.dialogRef.afterClosed().subscribe((result) => {
+        if (!result) {
+          return;
+        }
+      });
+    }
+    this.router.navigate(["/main/sectionfood"]);
   }
 
   pay(event: any, instrument: number) {
@@ -86,6 +130,18 @@ export class SalesPayComponent implements OnInit {
           console.error(resp);
         }
       });
+    if (this.dialogService && instrument == 1) {
+      const config: ODialogConfig = {
+        icon: "credit_card",
+        okButtonText: "ACEPTAR",
+      };
+      this.dialogService.alert(
+        "PEDIDO PAGADO",
+        "El pago se ha realizado correctamente",
+        config
+      );
+      this.router.navigate(["/main/sales/" + this.id]);
+    }
 
     if (this.dialogService && instrument == 1) {
       const config: ODialogConfig = {
@@ -97,7 +153,7 @@ export class SalesPayComponent implements OnInit {
         "El pago se ha realizado correctamente",
         config
       );
-      this.router.navigate(["/main/sectionfood"]);
+      this.router.navigate(["/main/sales/" + this.id]);
     }
   }
 }
