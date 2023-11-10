@@ -1,9 +1,10 @@
 <o-form-container breadcrumb="no" breadcrumb-label-columns="name" breadcrumb-separator=", ">
 
   <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
-      header-actions="R" keys="id" keys-sql-types="INTEGER" editable-detail="no" columns="id;dest_address" show-header-navigation="yes"
+      header-actions="R" keys="id" keys-sql-types="INTEGER" editable-detail="no" columns="id;dest_address" show-header-navigation="no"
       (onDataLoaded)="onDataLoaded($event)">
       <o-integer-input attr="id" oHidden></o-integer-input>
+      <o-integer-input attr="salestatus" oHidden></o-integer-input>
       <o-column layout-gap="50px">
 
           <o-column layout-gap="20px">
@@ -82,8 +83,10 @@
                   </o-column>
               </o-row>
               <o-row>
-                  <o-column attr="row1" title="PAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
+                  <o-column *ngIf="payed()" attr="row1" title="PAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
                   </o-column>
+                  <o-column *ngIf="!payed()" attr="row1" title="UNPAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
+                </o-column>
               </o-row>
               <o-row>
                 <o-column title="PENDIENTE" icon="local_shipping" layout-gap="20px" fxFlex="100">

@@ -1,7 +1,7 @@
 <o-form-container breadcrumb="no" breadcrumb-label-columns="name" breadcrumb-separator=", ">
 
     <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
-        header-actions="R" keys="id" keys-sql-types="INTEGER" columns="id;dest_address" show-header-navigation="yes"
+        header-actions="R" keys="id" keys-sql-types="INTEGER" columns="id;dest_address" show-header-navigation="yes" undo-button="no"
         (onDataLoaded)="onDataLoaded($event)">
         <div o-form-toolbar-buttons>
             <o-button icon="delete" type="STROKED" attr="" label="DELETEORDER" layout-padding color="accent"
@@ -87,19 +87,33 @@
                 <o-row>
                     <o-column attr="row1" title="PAYMENT" icon="credit_card" layout-gap="20px" fxFlex="100">
                         <mat-tab-group fxFill>
-                            <mat-tab label="{{ 'CREDIT_CARD' | oTranslate }}">
-                                <o-column layout-gap="12px">
+                            <mat-tab label="{{ 'BIZUM' | oTranslate }}">
+                                <o-column layout-gap="10px">
                                     <o-row>
-                                        <o-text-input fxFlex="40" attr="card_number" label="CARD_NUMBER"></o-text-input>
+                                        <span style="font-size: 18px;">Para pagar haga un Bizum al teléfono:</span>
                                     </o-row>
-                                    <o-row layout-gap="20px">
-                                        <o-text-input attr="card_exp" label="EXPIRATION"
-                                            class="form-field"></o-text-input>
-                                        <o-text-input attr="card_ccv" label="CCV" class="form-field"></o-text-input>
+                                    <o-row>
+                                        <span style="font-size: 18px;font-weight: 900;">+34 777 123 456</span>
                                     </o-row>
                                     <o-row>
                                         <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
                                             (click)="pay($event,1)"></o-button>
+                                    </o-row>
+                                </o-column>
+                            </mat-tab>
+                            <mat-tab label="{{ 'CREDIT_CARD' | oTranslate }}">
+                                <o-column layout-gap="12px">
+                                    <o-row>
+                                        <o-text-input fxFlex="40" attr="card_number" label="{{ 'CARD_NUMBER' | oTranslate }}" placeholder="Requiere: XXXXXXXXXXXXXXXX"></o-text-input>
+                                    </o-row>
+                                    <o-row layout-gap="20px">
+                                        <o-text-input attr="card_exp" label="{{ 'EXPIRATION' | oTranslate }}" placeholder="Requiere: XX/XX"
+                                            class="form-field"></o-text-input>
+                                        <o-text-input attr="card_ccv" label="{{ 'CCV' | oTranslate }}" class="form-field" placeholder="Requiere: XXX"></o-text-input>
+                                    </o-row>
+                                    <o-row>
+                                        <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
+                                            (click)="pay($event,2)"></o-button>
                                     </o-row>
                                 </o-column>
                             </mat-tab>
@@ -112,20 +126,6 @@
                                     <o-row>
                                         <span
                                             style="font-size: 18px;font-weight: 900;">ES77-1111-2222-3333-4444-5555</span>
-                                    </o-row>
-                                    <o-row>
-                                        <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
-                                            (click)="pay($event,1)"></o-button>
-                                    </o-row>
-                                </o-column>
-                            </mat-tab>
-                            <mat-tab label="{{ 'BIZUM' | oTranslate }}">
-                                <o-column layout-gap="10px">
-                                    <o-row>
-                                        <span style="font-size: 18px;">Para pagar haga un BIZUM al teléfono:</span>
-                                    </o-row>
-                                    <o-row>
-                                        <span style="font-size: 18px;font-weight: 900;">+34 777 123 456</span>
                                     </o-row>
                                     <o-row>
                                         <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"

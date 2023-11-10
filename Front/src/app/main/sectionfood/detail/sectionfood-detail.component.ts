@@ -57,6 +57,7 @@ export class SectionfoodDetailComponent implements OnInit {
             iconPosition: "left",
           };
           this.snackBarService.open("PRODUCT_ADDED_TO_CART", config);
+          this.backToProducts();
         }
       });
   }
@@ -67,5 +68,8 @@ export class SectionfoodDetailComponent implements OnInit {
 
   goToShoppingCart(event: any) {
     this.router.navigate(["/main/shoppingcart"]);
+  }
+  backToProducts() {
+    this.router.navigate(["/main/sectionfood"]);
   }
 }

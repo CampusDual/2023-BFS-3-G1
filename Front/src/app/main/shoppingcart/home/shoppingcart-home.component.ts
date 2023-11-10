@@ -107,7 +107,7 @@ export class ShoppingcartHomeComponent implements OnInit {
           icon: "check_circle",
           iconPosition: "left",
         };
-        this.snackBarService.open("Quantity updated successfully", config);
+        this.snackBarService.open("Cantidad actualizada correctamente", config);
         this.shoppingcartGrid.reloadData();
       } else {
         console.error("Error updating item:", resp.message);
@@ -133,7 +133,7 @@ export class ShoppingcartHomeComponent implements OnInit {
           icon: "check_circle",
           iconPosition: "left",
         };
-        this.snackBarService.open("Item deleted successfully", config);
+        this.snackBarService.open("Elemento borrado correctamente", config);
         this.shoppingcartGrid.reloadData();
       } else {
         console.error("Error deleting item:", resp.message);

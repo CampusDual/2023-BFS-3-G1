@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
+import { from } from "rxjs";
 
 @Component({
   selector: "app-sales-detail",
@@ -68,8 +69,17 @@ export class SalesDetailComponent implements OnInit {
         }
       });
   }
-
+  payed():boolean{
+    if(this.oForm == undefined || this.oForm.getComponents()== undefined || this.oForm.getComponents().salestatus == undefined || !this.oForm.getComponents().salestatus ){
+      return false
+    }
+    let payedValue = this.oForm.getComponents().salestatus.getValue();
+    return payedValue && payedValue == 1    
+  }
+    
   getValue() {
     return 2;
   }
+  
+  
 }

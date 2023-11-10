@@ -48,7 +48,7 @@
   "PESCADO": "Pescado",
   "SOJA": "Soja",
   "SESAMO": "Sésamo",
-  "GLUTEN": "Glúten",
+  "GLUTEN": "Gluten",
   "NO APTO PARA VEGANOS": "No apto para veganos",
   "SALES": "Ventas",
   "SHORT_DESCRIPTION": "Descripción corta",
@@ -86,7 +86,7 @@
   "al_cacahuetes": "Cacahuetes",
   "al_cascara": "Cáscara",
   "al_crustaceos": "Crustáceos",
-  "al_gluten": "Glúten",
+  "al_gluten": "Gluten",
   "al_huevo": "Huevo",
   "al_leche": "Leche",
   "al_moluscos": "Moluscos",
@@ -136,11 +136,17 @@
 "SALEORDERNUMBER": "Número de pedido",
 "SALESTATUS" : "Estado del pedido",
 "PAYED" : "Estado del pedido: Pagado",
+"UNPAYED" :"Estado del pedido: Pendiente de Pago",
 "PENDIENTE" : "Pendiente de envío",
 "ADDMOREPRODUCTS" : "Añadir más productos",
 "DELETEORDER" : "Cancelar pedido",
 "ARE_YOU_SURE" : "¿Está seguro de querer cancelar el pedido?",
 "SALEORDER_CANCELLED" : "Pedido Cancelado",
-"SALEORDER_CANCELLED_SUCCESSFULLY" : "Pedido cancelado correctamente."
-
+"SALEORDER_CANCELLED_SUCCESSFULLY" : "Pedido cancelado correctamente.",
+"CREDIT_CARD" : "Tarjeta de Crédito",
+"TRANSFER" : "Transferencia",
+"BIZUM": "Bizum",
+"CARD_NUMBER" : "Número de tarjeta",
+"EXPIRATION" : "Fecha de expiración",
+"CVV" : "Cvv"
 }
