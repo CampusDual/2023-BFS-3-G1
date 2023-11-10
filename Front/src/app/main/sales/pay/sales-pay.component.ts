@@ -30,9 +30,9 @@ export class SalesPayComponent implements OnInit {
     protected dialogService: DialogService,
     protected router: Router,
     protected snackBarService: SnackBarService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onDataLoaded(event: any) {
     this.ontimizeService.configureService(
@@ -88,13 +88,13 @@ export class SalesPayComponent implements OnInit {
         if (result) {
           this.deleteOrderBack();
           if (this.dialogService) {
-            this.dialogService.confirm(
+            this.dialogService.info(
               "SALEORDER_CANCELLED",
               "SALEORDER_CANCELLED_SUCCESSFULLY"
             );
             this.dialogService.dialogRef.afterClosed().subscribe((result) => {
               if (result) {
-                    this.router.navigate(["/main/sectionfood"]);
+                this.router.navigate(["/main/sectionfood"]);
               }
             });
           }
@@ -144,20 +144,36 @@ export class SalesPayComponent implements OnInit {
         "El pago se ha realizado correctamente",
         config
       );
-      this.router.navigate(["/main/sales/" + this.id]);
-    }
-
-    if (this.dialogService && instrument == 1) {
-      const config: ODialogConfig = {
-        icon: "credit_card",
-        okButtonText: "ACEPTAR",
-      };
-      this.dialogService.alert(
-        "PEDIDO PAGADO",
-        "El pago se ha realizado correctamente",
-        config
-      );
+      this.deleteCart();
       this.router.navigate(["/main/sales/" + this.id]);
     }
   }
+
+  deleteCart() {
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("shoppingcart")
+    );
+    this.ontimizeService.query({}, ["id", "user_"], "shoppingcart").subscribe((resp) => {
+      if (resp.code === 0) {
+        const itemsToDelete = resp.data;
+        itemsToDelete.forEach((item) => {
+          this.ontimizeService.delete({ id: item.id, user_: item.user_ }, "shoppingcart").subscribe((deleteResp) => {
+            if (deleteResp.code === 0) {
+              console.log("Elemento eliminado con éxito");
+            } else {
+              console.error("Error al eliminar elemento del carrito:", deleteResp.message);
+            }
+          });
+        });
+      }
+    });
+  }
+
+
+
+
+
+
+
+
 }
