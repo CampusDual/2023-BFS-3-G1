@@ -1,6 +1,7 @@
 package com.campusdual.springontimize.model.core.service;
 
 import com.campusdual.springontimize.api.core.service.IShoppingCartService;
+import com.campusdual.springontimize.model.core.dao.ProductDao;
 import com.campusdual.springontimize.model.core.dao.ShoppingCartDao;
 import com.campusdual.springontimize.model.core.dao.WholesalerDao;
 import com.ontimize.jee.common.dto.EntityResult;
@@ -25,7 +26,10 @@ public class ShoppingCartService implements IShoppingCartService {
     @Autowired private DefaultOntimizeDaoHelper daoHelper;
     @Override
     public EntityResult shoppingcartQuery(Map<String, Object> keyMap, List<String> attrList) throws OntimizeJEERuntimeException {
-        return this.daoHelper.query(this.shoppingCartDao, keyMap,attrList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
+        userKeyMap.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
+        return this.daoHelper.query(this.shoppingCartDao, userKeyMap,attrList);
     }
 
     @Override

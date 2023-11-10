@@ -54,7 +54,7 @@ public class WholesalerService implements IWholesalerService {
 	public EntityResult wholesalerbalanceQuery(Map<String, Object> keyMap, List<String> attrList) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
-		userKeyMap.put(WholesalerDao.ATTR_SALE_USER, authentication.getName());
+		userKeyMap.put(ProductDao.ATTR_WHOLESALER, authentication.getName());
 		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
 				WholesalerDao.QUERY_VTOTALSALES);
 	}
@@ -62,7 +62,7 @@ public class WholesalerService implements IWholesalerService {
 	public EntityResult wholesalersalesdetailQuery(Map<String, Object> keyMap, List<String> attrList) {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
-			userKeyMap.put(WholesalerDao.ATTR_SALE_USER,authentication.getName());
+			userKeyMap.put(ProductDao.ATTR_WHOLESALER,authentication.getName());
 			return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
 					WholesalerDao.QUERY_VSALESDETAIL);
 	}
@@ -71,7 +71,7 @@ public class WholesalerService implements IWholesalerService {
 	public EntityResult wholesalerbestsellersQuery(Map<String, Object> keyMap, List<String> attrList) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
-		userKeyMap.put(WholesalerDao.ATTR_SALE_USER,authentication.getName());
+		userKeyMap.put(ProductDao.ATTR_WHOLESALER,authentication.getName());
 		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
 				WholesalerDao.QUERY_VBESTSELLERS);
 	}

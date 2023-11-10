@@ -72,7 +72,7 @@ public class SaleOrdersHService implements ISaleOrdersHService {
         }
         Map<String, Object> deleteFilter = new HashMap<>();
         deleteFilter.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
-        //EntityResult deleteResult=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
+       //EntityResult deleteResult=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
         return resultInsert;
     }
 
