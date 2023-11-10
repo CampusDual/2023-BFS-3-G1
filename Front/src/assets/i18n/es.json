@@ -134,10 +134,13 @@
 "PAY": "Pagar",
 "MY_SALEORDERS": "Mis Pedidos",
 "SALEORDERNUMBER": "Número de pedido",
-"SALEDATE" : "Fecha de venta",
 "SALESTATUS" : "Estado del pedido",
 "PAYED" : "Estado del pedido: Pagado",
 "PENDIENTE" : "Pendiente de envío",
 "ADDMOREPRODUCTS" : "Añadir más productos",
-"DELETEORDER" : "Cancelar pedido "
+"DELETEORDER" : "Cancelar pedido",
+"ARE_YOU_SURE" : "¿Está seguro de querer cancelar el pedido?",
+"SALEORDER_CANCELLED" : "Pedido Cancelado",
+"SALEORDER_CANCELLED_SUCCESSFULLY" : "Pedido cancelado correctamente."
+
 }

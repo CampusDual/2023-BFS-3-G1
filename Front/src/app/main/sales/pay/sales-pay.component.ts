@@ -63,15 +63,7 @@ export class SalesPayComponent implements OnInit {
       });
   }
 
-  deleteOrder(event: any) {
-    if (this.dialogService) {
-      this.dialogService.confirm("SALEORDER_CANCEL", "ARE_YOU_SURE");
-      this.dialogService.dialogRef.afterClosed().subscribe((result) => {
-        if (!result) {
-          return;
-        }
-      });
-    }
+  deleteOrderBack() {
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("saleordersh")
     );
@@ -87,18 +79,30 @@ export class SalesPayComponent implements OnInit {
         console.error(resp);
       }
     });
+  }
+
+  deleteOrder(event: any) {
     if (this.dialogService) {
-      this.dialogService.confirm(
-        "SALEORDER_CANCELLED",
-        "SALEORDER_CANCELLED_SUCCESSFULLY"
-      );
+      this.dialogService.confirm("DELETEORDER", "ARE_YOU_SURE");
       this.dialogService.dialogRef.afterClosed().subscribe((result) => {
-        if (!result) {
+        if (result) {
+          this.deleteOrderBack();
+          if (this.dialogService) {
+            this.dialogService.confirm(
+              "SALEORDER_CANCELLED",
+              "SALEORDER_CANCELLED_SUCCESSFULLY"
+            );
+            this.dialogService.dialogRef.afterClosed().subscribe((result) => {
+              if (result) {
+                    this.router.navigate(["/main/sectionfood"]);
+              }
+            });
+          }
+        } else {
           return;
         }
       });
     }
-    this.router.navigate(["/main/sectionfood"]);
   }
 
   pay(event: any, instrument: number) {
