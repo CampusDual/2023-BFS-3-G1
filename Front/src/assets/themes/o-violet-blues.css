@@ -3760,6 +3760,10 @@ app-about .mat-divider {
 * Other app styles
 */
 
-.fab-mini2{
-  color: red;
- }
+.mat-table{
+  background-color:#e1dfd4;
+}
+
+input{
+  background-color:#ffffff !important;
+}

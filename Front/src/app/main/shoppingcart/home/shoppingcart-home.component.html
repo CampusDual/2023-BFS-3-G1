@@ -5,9 +5,14 @@
         <o-button icon="list_alt" type="STROKED" attr="" label="CREATE_SALEORDER" layout-padding color="accent"
             (onClick)="goToSales($event)"></o-button>
     </div>
+    <div o-form-toolbar-buttons>
+        <o-button icon="list_alt" type="STROKED" attr="" label="ADDMOREPRODUCTS" layout-padding color="accent"
+            (onClick)="backToProducts($event)"></o-button>
+    </div>
 </o-row>
 <o-row>
-    <o-column style="background-color:#a6b4a1;" title="SALEORDER_DATA" icon="checklist" layout-align="start"
+    <o-column style="background-color:#a6b4a1 ;margin-top: 10px; border-radius: 10px;
+    text-align: center;" title="SALEORDER_DATA" icon="checklist" layout-align="start"
         layout-gap="10px" fxFlex="15">
         <o-row>
             <o-column fxFlex="70" layout-align="start start">
@@ -53,16 +58,7 @@
     </o-column>
     <o-column fxFlex="85">
         <div class="grid-con" fxFill fxLayout="column" fxLayoutAlign="start">
-            <o-row>
-            <div o-form-toolbar-buttons>
-                <o-button icon="list_alt" type="STROKED" attr="" label="CREATE_SALEORDER" layout-padding color="accent"
-                    (onClick)="goToSales($event)"></o-button>
-            </div>
-            <div o-form-toolbar-buttons>
-                <o-button icon="list_alt" type="STROKED" attr="" label="ADDMOREPRODUCTS" layout-padding color="accent"
-                    (onClick)="backToProducts($event)"></o-button>
-            </div>
-        </o-row>
+
             <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
                 entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_;total"
                 query-rows="12" quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="6"
