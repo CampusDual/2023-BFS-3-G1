@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
+  DialogService,
   OGridComponent,
   OSnackBarConfig,
   OntimizeService,
@@ -27,6 +28,7 @@ export class ShoppingcartHomeComponent implements OnInit {
     private actRoute: ActivatedRoute,
     router: Router,
     protected snackBarService: SnackBarService,
+    protected dialogService: DialogService,
     
     ) {
     this.router = router;
@@ -35,6 +37,7 @@ export class ShoppingcartHomeComponent implements OnInit {
   ngOnInit() {
     this.calculateAndDisplaySalesTotals(); 
   }
+  
 
   calculateAndDisplaySalesTotals() {
     this.ontimizeservice.configureService(
@@ -54,13 +57,22 @@ export class ShoppingcartHomeComponent implements OnInit {
       }
     });
   }
+  
 
   goToSales(event: any) {
     this.ontimizeservice.configureService(
       this.ontimizeservice.getDefaultServiceConfiguration("saleordersh")
     );
+    if(this.shoppingcartGrid.dataArray == undefined || this.shoppingcartGrid.dataArray.length <1 ){
+        if (this.dialogService) {
+        this.dialogService.warn('Error en el carrito',
+            'El carrito no tiene productos');
+        }
+        return  
+    }
+    console.log("dataArray:" + this.shoppingcartGrid.dataArray)
     this.ontimizeservice.insert({}, "saleordersh").subscribe((resp) => {
-      if (resp.code === 0) {
+      if (resp.code === 0) {        
         let responseid = resp.data.id;
         this.router.navigate(["/main/sales/pay/" + responseid]);
         const config: OSnackBarConfig = {
