@@ -79,28 +79,28 @@ export const MENU_CONFIG: MenuRootItem[] = [
       },           
     ],
   }, 
-  // {
-  //   id: "admin",
-  //   name: "ADMINISTRATION",
-  //   icon: "settings",
-  //   opened: true,
-  //   items: [
-  //     {
-  //       id: "admin-categories",
-  //       name: "CATEGORIES",
-  //       tooltip: "CATEGORIES_TOOLTIP",
-  //       route: "/main/admon-categories",
-  //       icon: "category",
-  //     },
-  //     {
-  //       id: "admin-products",
-  //       name: "PRODUCTS",
-  //       tooltip: "PRODUCTS_TOOLTIP",
-  //       route: "/main/admon-products",
-  //       icon: "inventory_2",
-  //     },      
-  //   ],
-  // },  
+  {
+    id: "admin",
+    name: "ADMINISTRATION",
+    icon: "settings",
+    opened: true,
+    items: [
+      {
+        id: "admin-categories",
+        name: "CATEGORIES",
+        tooltip: "CATEGORIES_TOOLTIP",
+        route: "/main/admon-categories",
+        icon: "category",
+      },
+      {
+        id: "admin-products",
+        name: "PRODUCTS",
+        tooltip: "PRODUCTS_TOOLTIP",
+        route: "/main/admon-products",
+        icon: "inventory_2",
+      },      
+    ],
+  },  
   {
     id: "logout",
     name: "LOGOUT",

@@ -486,7 +486,7 @@ o-row.o-row.bg-level-1 {
 
 .o-column > .o-container .o-container-scroll.o-container-gap,
 .o-row > .o-container .o-container-scroll.o-container-gap {
-  padding: 10px 6px 6px; }
+  padding: 10px 10px 10px; }
 
 .o-column.o-appearance-outline > .o-container .o-container-scroll.o-container-gap,
 .o-row.o-appearance-outline > .o-container .o-container-scroll.o-container-gap {
