@@ -148,5 +148,6 @@
 "BIZUM": "Bizum",
 "CARD_NUMBER" : "Número de tarjeta",
 "EXPIRATION" : "Fecha de expiración",
-"CVV" : "Cvv"
+"CVV" : "Cvv",
+"BACKTOPAY": "Proceder al pago"
 }

@@ -25,7 +25,9 @@
                   ${mainschema}.saleordersl AS SA
                   INNER JOIN ${mainschema}.TUSER AS US ON US.USER_ = SA.USER_
                   INNER JOIN ${mainschema}.products AS PR ON PR.id = SA.product_id
+                  LEFT JOIN ${mainschema}.saleordersh AS SH ON SH.id = SA.saleordersh_id
                #WHERE#
+
                #ORDER#
             ]]>
             </Sentence>

@@ -1,10 +1,10 @@
   h2, h4 {
     margin-left: 5%;
   }
-.content{
+/* .content{
   margin-top: 40px;
-overflow: hidden !important;
-}
+overflow: hidden !important; */
+/* } */
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -31,7 +31,7 @@ overflow: hidden !important;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-overflow: hidden !important;
+    overflow: hidden !important;
   }
     
 

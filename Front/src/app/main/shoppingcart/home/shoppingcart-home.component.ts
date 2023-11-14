@@ -88,7 +88,7 @@ export class ShoppingcartHomeComponent implements OnInit {
     this.router.navigate(["/main/sectionfood"]);
   }
 
-  updateCartItem(listItem: any, option:number) {
+  updateCartItem(listItem: any, option: number) {
     this.ontimizeservice.configureService(
       this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
     );
@@ -98,19 +98,26 @@ export class ShoppingcartHomeComponent implements OnInit {
     };
     let newQty = listItem.qty;
     let price = listItem.shoppingcart_price;
-    
-    
-    if(option ===1){
+  
+    if (option === 1) {
       newQty++; 
-    }else if (option === 0 && newQty > 0){
+    } else if (option === 0 && newQty > 1) {
       newQty--;
+    } else if (option === 0 && newQty === 1) {
+      const config: OSnackBarConfig = {
+        milliseconds: 5000,
+        icon: "warning",
+        iconPosition: "left",
+      };
+      this.snackBarService.open("No puede haber menos de un artículo", config);
+      return;
     }
-    let total : number = newQty * price;
- 
+    let total: number = newQty * price;
     const attrMap = {
       qty: newQty,
-      total :total
+      total: total
     };
+  
     this.ontimizeservice.update(keyMap, attrMap, "shoppingcart").subscribe((resp) => {
       if (resp.code === 0) {
         this.calculateAndDisplaySalesTotals();
