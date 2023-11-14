@@ -84,8 +84,11 @@
               </o-row>
               <o-row>
                   <o-column *ngIf="payed()" attr="row1" title="PAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
+                    
                   </o-column>
                   <o-column *ngIf="!payed()" attr="row1" title="UNPAYED" icon="credit_card" layout-gap="20px" fxFlex="100">
+                    <o-row fxFlex="30" ><o-button icon="credit_card" type="STROKED" attr="" label="BACKTOPAY" layout-padding color="accent"
+                (onClick)="proceedToPay()"></o-button></o-row>
                 </o-column>
               </o-row>
               <o-row>

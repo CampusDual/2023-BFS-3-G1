@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
 import { from } from "rxjs";
 
@@ -16,10 +17,13 @@ export class SalesDetailComponent implements OnInit {
 
   private id: number = 0;
 
-  constructor(private ontimizeService: OntimizeService,) {}
+  constructor(private ontimizeService: OntimizeService,
+    protected router: Router) {}
 
   @ViewChild("oForm", { static: false })
   private oForm: OFormComponent;
+ 
+  
 
 
   ngOnInit() {}
@@ -81,5 +85,10 @@ export class SalesDetailComponent implements OnInit {
     return 2;
   }
   
+  proceedToPay() {
+    let formValues = this.oForm.getComponents();
+    this.id = formValues.id.getValue();
+    this.router.navigate(["/main/sales/pay/" + this.id])
+  }
   
 }

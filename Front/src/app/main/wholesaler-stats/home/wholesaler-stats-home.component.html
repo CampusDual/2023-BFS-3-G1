@@ -12,8 +12,10 @@
             <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="40">
               <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }}</span>
-              <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
+              <span class="account-form-value balance">{{ anualtotalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
+              <span class="account-form-value balance">{{ totalbenefits | oReal: { grouping: true, minDecimalDigits: 2,
+                  maxDecimalDigits: 2 } }} €</span>
               <div class="balance-border"></div>
               <span>{{ 'FIRST SALE DATE' | oTranslate }}{{ first_sale_date | date:'d MMM, y' }}</span>
               <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
