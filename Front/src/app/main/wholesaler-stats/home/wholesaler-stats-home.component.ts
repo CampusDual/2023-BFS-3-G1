@@ -10,6 +10,7 @@ import {
 import {
   ChartSeries,
   LinePlusBarFocusChartConfiguration,
+  OChartComponent,
   PieChartConfiguration,
 } from "ontimize-web-ngx-charts";
 import { D3LocaleService } from "../../../shared/d3-locale/d3Locale.service";
@@ -27,15 +28,18 @@ export class WholesalerStatsHomeComponent implements OnInit {
   filterBuilder: OFilterBuilderComponent;
   @ViewChild("sales", { static: true })
   sales: OTableComponent;
+  @ViewChild("ochart", { static: true })
+  ochart: OChartComponent;
 
   public formLabel: string;
   public id: string;
   public totalsales: number = 0;
+  public pastTotalsales: number = 0;
   public first_sale_date: Date;
   public last_sale_date: Date;
   public lineData: ChartSeries[];
   public balanceChartParams: LinePlusBarFocusChartConfiguration;
-
+  public currentYear;
   public movementTypesChartParams: PieChartConfiguration;
 
   constructor(
@@ -50,20 +54,11 @@ export class WholesalerStatsHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
-    );
-    const columns = ["totalsales"];
-    this.ontimizeService
-      .query(void 0, columns, "wholesalerbalance")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          this.totalsales = resp.data[0]["totalsales"];
-        } else {
-          console.error(resp);
-        }
-      });
+    this.filterCurrentYear();
+
     this.getFirstLastMovement();
+
+    this.processValues();
   }
 
   private getFirstLastMovement() {
@@ -117,26 +112,82 @@ export class WholesalerStatsHomeComponent implements OnInit {
     }
   }
 
-  public onSaleDataDataLoaded(data: any): void {    
-      this.processLineData(data);   
+  filterCurrentYear() {
+    let filtersCurrent: Array<Expression> = [];
+    let filtersPrevious: Array<Expression> = [];
+    let currentDate = new Date();
+    this.currentYear = currentDate.getFullYear();
+    let startOfCurrentYear = new Date(this.currentYear, 0, 2);
+    let startOfLastYear = new Date(currentDate);
+    startOfLastYear.setFullYear(this.currentYear - 1);
+    startOfLastYear.setMonth(0);
+    startOfLastYear.setDate(2);
+
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    let pastCurrentDate = new Date(currentDate);
+    pastCurrentDate.setFullYear(currentDate.getFullYear() - 1);
+
+    let startOfYearISO = startOfCurrentYear.toISOString().split('T')[0];
+    let nextDayISO = currentDate.toISOString().split('T')[0];
+
+    let startOfLastYearISO = startOfLastYear.toISOString().split('T')[0];
+    let pastNextDayISO = pastCurrentDate.toISOString().split('T')[0];
+
+    filtersCurrent.push(FilterExpressionUtils.buildExpressionMoreEqual('saledate', startOfYearISO));
+    filtersCurrent.push(FilterExpressionUtils.buildExpressionLessEqual('saledate', nextDayISO));
+
+    filtersPrevious.push(FilterExpressionUtils.buildExpressionMoreEqual('saledate', startOfLastYearISO));
+    filtersPrevious.push(FilterExpressionUtils.buildExpressionLessEqual('saledate', pastNextDayISO));
+
+
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
+    );
+    let kv = { '@basic_expression': filtersCurrent.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) };
+    const columns = ['totalsales'];
+    this.ontimizeService.query(kv, columns, 'wholesalerbalance', { saledate: 93 }).subscribe(
+      result => {
+        if (result.data && result.data.length) {
+          this.totalsales = result.data[0]['totalsales'];
+
+        } else {
+          console.log("Fallo recogiendo info.");
+        }
+      }
+    );
+    let kvPreviousYear = { '@basic_expression': filtersPrevious.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) };
+    this.ontimizeService.query(kvPreviousYear, columns, 'wholesalerbalance', { saledate: 93 }).subscribe(
+      result => {
+        if (result.data && result.data.length) {
+          this.pastTotalsales = result.data[0]['totalsales'];
+        } else {
+          console.log("Fallo recogiendo info para el año anterior.");
+        }
+      }
+    );
+
   }
 
- private processLineData(data: any[]): void {
+
+  public onSaleDataDataLoaded(data: any): void {
+    this.processLineData(data);
+  }
+
+  private processLineData(data: any[]): void {
     if (data && data.length) {
       const salesSerie: ChartSeries = {
         key: this.translateService.get('SALES'),
         values: []
       }
-      data.forEach((item: any, i: number) => {                      
-        salesSerie.values.push({ x: item.saledate, y: item.total });       
-      });      
+      data.forEach((item: any, i: number) => {
+        salesSerie.values.push({ x: item.saledate, y: item.total });
+      });
       this.lineData = [salesSerie];
     }
   }
 
   public onTableDataLoaded(data: any): void {
-    this.formLabel = data.ACCOUNTTYP;
-    this.id = data.ACCOUNTID;
 
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
@@ -177,4 +228,58 @@ export class WholesalerStatsHomeComponent implements OnInit {
     this.balanceChartParams.legend.margin.bottom = 0;
     this.balanceChartParams.legend.margin.left = 0;
   }
+
+
+  
+  processValues() {
+    this.ontimizeService.configureService(
+      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
+    );
+    let columns = ["year","month","totalsales"];
+    let filters: Array<Expression> = [];
+    filters.push(
+      FilterExpressionUtils.buildExpressionEquals('year', this.currentYear)
+    );
+    this.ontimizeService
+      .query({}, columns , "wholesalermonthtotalsales")
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          
+        } else {
+          console.error(resp);
+        }
+      });
+
+    // let values = {
+    //   'currentYear': [],
+    //   'lastYear': [],
+    // };
+    // var self = this;
+    // let balance = 0.0;
+    // let average = 0.0;
+    // data.forEach((item: any, index: number) => {
+    //   let val = {
+    //     'x': item[self.xAxis],
+    //     'y': item[self.yAxis]
+    //   };
+
+    //   balance += val.y;
+    //   let val2 = {
+    //     'x': val.x,
+    //     'y': balance
+    //   };
+
+    //   average += balance;
+    //   let val3 = {
+    //     'x': val.x,
+    //     'y': (average / (index + 1))
+    //   };
+
+    //   values['movement'].push(val);
+    //   values['average'].push(val3);
+    //   values['total'].push(val2);
+    // });
+    // return values;
+  }
+
 }

@@ -10,25 +10,37 @@
         <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
           <div fxLayout="row">
             <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
-              fxFlex="40">
-              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }}</span>
-              <span class="account-form-value balance">{{ anualtotalsales | oReal: { grouping: true, minDecimalDigits: 2,
+              fxFlex="30">
+              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear}}</span>
+              <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
-              <span class="account-form-value balance">{{ totalbenefits | oReal: { grouping: true, minDecimalDigits: 2,
-                  maxDecimalDigits: 2 } }} €</span>
               <div class="balance-border"></div>
               <span>{{ 'FIRST SALE DATE' | oTranslate }}{{ first_sale_date | date:'d MMM, y' }}</span>
               <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
               <span></span>
             </o-column>
             <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
-              fxFlex="40">
-              <o-chart type="line" x-label="Time" y-label="Amount (€)" service="wholesalers"
-                entity="wholesalersalesdetail" x-axis="saledate" y-axis="total" x-data-type="time"></o-chart>
+              fxFlex="30">
+              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear -1}}</span>
+              <span class="account-form-value balance">{{ pastTotalsales | oReal: { grouping: true, minDecimalDigits: 2,
+                maxDecimalDigits: 2 } }} €</span>
+              <div class="balance-border"></div>
+              <span>{{ 'FIRST SALE DATE' | oTranslate }}{{ first_sale_date | date:'d MMM, y' }}</span>
+              <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
+              <span></span>
             </o-column>
           </div>
+          <!-- GRAFICA -->
+          <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1" fxFlex="40">
+            <o-chart #ochart type="multiBar" x-label="Mes" y-label="Importe (€)" layout-fill service="wholesalers" entity="wholesalermonthtotalsales"
+              x-axis="month" y-axis="totalsales;year" x-data-type="year"></o-chart>
+          </o-column>
         </div>
+          <!-- <o-chart type="multiBar" x-label="Time" y-label="Amount (€)" layout-fill entity="EMovementsGrouped"
+            x-axis="DATE_" y-axis="MOVEMENT;AVERAGE;BALANCE" x-data-type="time"></o-chart> -->
       </mat-tab>
+
+
 
       <!-- tab con las ventas -->
       <mat-tab label="{{ 'SALES_DATA' | oTranslate }}">
@@ -130,8 +142,8 @@
           <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
           </o-table-column>
           <!-- cantidad vendida -->
-          <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" type="number" searchable="yes" 
-          orderable="yes" thousand-separator="." decimal-separator="," content-align="end">
+          <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" type="number" searchable="yes"
+            orderable="yes" thousand-separator="." decimal-separator="," content-align="end">
           </o-table-column>
           <!-- total -->
           <o-table-column attr="salestotal" title="TOTAL" type="currency" currency-symbol="€"

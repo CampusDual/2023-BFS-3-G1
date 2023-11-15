@@ -1,9 +1,7 @@
 package com.campusdual.springontimize.model.core.service;
 
 import com.campusdual.springontimize.api.core.service.IWholesalerService;
-import com.campusdual.springontimize.model.core.dao.ProductDao;
-import com.campusdual.springontimize.model.core.dao.SaleOrdersLDao;
-import com.campusdual.springontimize.model.core.dao.WholesalerDao;
+import com.campusdual.springontimize.model.core.dao.*;
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,5 +76,12 @@ public class WholesalerService implements IWholesalerService {
 		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
 				WholesalerDao.QUERY_VBESTSELLERS);
 	}
-
+	@Override
+	public EntityResult wholesalermonthtotalsalesQuery(Map<String, Object> keyMap, List<String> attrList) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
+		userKeyMap.put(WholesalerDao.ATTR_USER_, authentication.getName());
+		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
+				WholesalerDao.QUERY_VMONTHTOTALSALES);
+}
 }
