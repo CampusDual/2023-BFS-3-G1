@@ -3,6 +3,7 @@ package com.campusdual.springontimize.model.core.service;
 import com.campusdual.springontimize.api.core.service.IWholesalerService;
 import com.campusdual.springontimize.model.core.dao.*;
 import com.ontimize.jee.common.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResultMapImpl;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -12,10 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Lazy
 @Service("WholesalerService")
@@ -77,11 +75,50 @@ public class WholesalerService implements IWholesalerService {
 				WholesalerDao.QUERY_VBESTSELLERS);
 	}
 	@Override
-	public EntityResult wholesalermonthtotalsalesQuery(Map<String, Object> keyMap, List<String> attrList) {
+	public EntityResult wholesalersalesbyyearmonthQuery(Map<String, Object> keyMap, List<String> attrList) {
+		List<String> fixAttr = new ArrayList<>();
+		fixAttr.add(WholesalerDao.ATTR_SALE_YEAR);
+		fixAttr.add(WholesalerDao.ATTR_SALE_MONTH);
+		fixAttr.add(WholesalerDao.ATTR_TOTAL_SALES);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
 		userKeyMap.put(WholesalerDao.ATTR_USER_, authentication.getName());
-		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
-				WholesalerDao.QUERY_VMONTHTOTALSALES);
-}
+		EntityResult existQuery= daoHelper.query(wholesalerDao, userKeyMap, fixAttr,
+				WholesalerDao.QUERY_VSALESBYYEARMONTH);
+		if (existQuery.isWrong()) {
+			return existQuery;
+		}
+		EntityResult result = new EntityResultMapImpl();
+		List<String> sales = (List<String>) existQuery.get(WholesalerDao.ATTR_SALE_MONTH);
+		if (sales == null) {
+			sales = new ArrayList<>();
+		}
+		List<String> months = Arrays.asList("Dic", "Nov", "Oct", "Sept","Ago","Jul","Jun","May","Abr","Mar","Feb","Ene");
+		Integer saleyear = (Integer) userKeyMap.get(WholesalerDao.ATTR_SALE_YEAR);
+		if (saleyear == null){
+			result.setCode(EntityResult.OPERATION_WRONG);
+			result.setMessage("saleyear is mandatory");
+			return result;
+		}
+		for(String month : months) {
+			if (!sales.contains(month)) {
+				result.addRecord(addEmptyMonth(month, saleyear));
+			} else {
+				Integer pos = sales.indexOf(month);
+				Map<String,Object> register = existQuery.getRecordValues(pos);
+				result.addRecord(register);
+			}
+		}
+
+		return result;
+	}
+
+	private Map<String, Object> addEmptyMonth(String salemonth, Integer saleyear)  {
+		Map<String,Object> newresult = new HashMap<>();
+		newresult.put(WholesalerDao.ATTR_SALE_MONTH,salemonth);
+		newresult.put(WholesalerDao.ATTR_SALE_YEAR, saleyear);
+		newresult.put(WholesalerDao.ATTR_TOTAL_SALES, 0);
+		return newresult;
+	}
+
 }

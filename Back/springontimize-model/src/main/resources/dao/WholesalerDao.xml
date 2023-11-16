@@ -73,18 +73,15 @@
             ]]>
             </Sentence>
         </Query>
-        <Query id="monthtotalsales">
-            <AmbiguousColumns>
-                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
-            </AmbiguousColumns>
+        <Query id="salesbyyearmonth">
             <Sentence>
                 <![CDATA[
                SELECT
                   #COLUMNS#
                FROM
-                  ${mainschema}.monthtotalsales as MT
+                  ${mainschema}.salesbyyearmonth
               #WHERE#
-               #ORDER#
+              #ORDER#
             ]]>
             </Sentence>
         </Query>
