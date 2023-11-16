@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -75,6 +76,18 @@ public class WholesalerService implements IWholesalerService {
 				WholesalerDao.QUERY_VBESTSELLERS);
 	}
 	@Override
+	public EntityResult wholesalersalesthisyearQuery(Map<String, Object> keyMap, List<String> attrList) {
+		keyMap.put(WholesalerDao.ATTR_SALE_YEAR, Year.now().getValue());
+		return this.wholesalersalesbyyearmonthQuery(keyMap,attrList);
+
+	}
+	@Override
+	public EntityResult wholesalersalespreviusyearQuery(Map<String, Object> keyMap, List<String> attrList) {
+		keyMap.put(WholesalerDao.ATTR_SALE_YEAR, Year.now().getValue()-1);
+		return this.wholesalersalesbyyearmonthQuery(keyMap,attrList);
+	}
+
+	@Override
 	public EntityResult wholesalersalesbyyearmonthQuery(Map<String, Object> keyMap, List<String> attrList) {
 		List<String> fixAttr = new ArrayList<>();
 		fixAttr.add(WholesalerDao.ATTR_SALE_YEAR);
@@ -121,4 +134,10 @@ public class WholesalerService implements IWholesalerService {
 		return newresult;
 	}
 
+	private Date addMonth(Date date, int amount){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.MONTH, amount);
+		return calendar.getTime();
+	}
 }

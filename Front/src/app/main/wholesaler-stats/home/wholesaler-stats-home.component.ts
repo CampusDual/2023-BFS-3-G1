@@ -169,7 +169,6 @@ export class WholesalerStatsHomeComponent implements OnInit {
 
   }
 
-
   public onSaleDataDataLoaded(data: any): void {
     this.processLineData(data);
   }
