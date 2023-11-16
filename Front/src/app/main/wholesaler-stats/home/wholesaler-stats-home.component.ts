@@ -28,8 +28,8 @@ export class WholesalerStatsHomeComponent implements OnInit {
   filterBuilder: OFilterBuilderComponent;
   @ViewChild("sales", { static: true })
   sales: OTableComponent;
-  @ViewChild("ochart", { static: true })
-  ochart: OChartComponent;
+  @ViewChild("ochart1", { static: true })
+  ochart1: OChartComponent;
 
   public formLabel: string;
   public id: string;
@@ -58,7 +58,7 @@ export class WholesalerStatsHomeComponent implements OnInit {
 
     this.getFirstLastMovement();
 
-    this.processValues();
+    // this.processValues();
   }
 
   private getFirstLastMovement() {
@@ -227,59 +227,6 @@ export class WholesalerStatsHomeComponent implements OnInit {
     this.balanceChartParams.legend.margin.right = 0;
     this.balanceChartParams.legend.margin.bottom = 0;
     this.balanceChartParams.legend.margin.left = 0;
-  }
-
-
-  
-  processValues() {
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
-    );
-    let columns = ["year","month","totalsales"];
-    let filters: Array<Expression> = [];
-    filters.push(
-      FilterExpressionUtils.buildExpressionEquals('year', this.currentYear)
-    );
-    this.ontimizeService
-      .query({}, columns , "wholesalermonthtotalsales")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          
-        } else {
-          console.error(resp);
-        }
-      });
-
-    // let values = {
-    //   'currentYear': [],
-    //   'lastYear': [],
-    // };
-    // var self = this;
-    // let balance = 0.0;
-    // let average = 0.0;
-    // data.forEach((item: any, index: number) => {
-    //   let val = {
-    //     'x': item[self.xAxis],
-    //     'y': item[self.yAxis]
-    //   };
-
-    //   balance += val.y;
-    //   let val2 = {
-    //     'x': val.x,
-    //     'y': balance
-    //   };
-
-    //   average += balance;
-    //   let val3 = {
-    //     'x': val.x,
-    //     'y': (average / (index + 1))
-    //   };
-
-    //   values['movement'].push(val);
-    //   values['average'].push(val3);
-    //   values['total'].push(val2);
-    // });
-    // return values;
   }
 
 }
