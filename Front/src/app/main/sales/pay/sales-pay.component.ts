@@ -5,6 +5,7 @@ import {
   ODialogConfig,
   OFormComponent,
   OSnackBarConfig,
+  OTranslateService,
   OntimizeService,
   SnackBarService,
 } from "ontimize-web-ngx";
@@ -19,6 +20,7 @@ export class SalesPayComponent implements OnInit {
   public saletaxes: number = 0;
   public saletotal: number = 0;
   public saletransport: number = 5;
+  public currentLang: string;
 
   private id: number = 0;
 
@@ -29,8 +31,9 @@ export class SalesPayComponent implements OnInit {
     private ontimizeService: OntimizeService,
     protected dialogService: DialogService,
     protected router: Router,
-    protected snackBarService: SnackBarService
-  ) { }
+    protected snackBarService: SnackBarService,
+ private translateService: OTranslateService
+  ) {  this.currentLang = this.translateService.getCurrentLang();}
 
   ngOnInit() { }
 

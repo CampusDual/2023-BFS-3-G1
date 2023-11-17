@@ -1,14 +1,14 @@
 <div class="container">
-    <o-form-container breadcrumb="no" breadcrumb-label-columns="es_name" breadcrumb-separator="-">
+    <o-form-container breadcrumb="no">
         <o-form #oForm attr="product_detail_form" service="products" entity="product" keys="id" keys-sql-types="INTEGER"
-            columns="id;es_name;es_description_short;es_description_long;image;price;category_id;al_gluten;al_cacahuetes;al_cascara;al_altramuces;al_leche;al_vegano;al_apio;al_crustaceos;al_huevo;al_moluscos;al_mostaza;al_pescado;al_sesamo;al_soja;al_sulfitos"
+            columns="id;{{currentLang}}_name;{{currentLang}}_description_short;{{currentLang}}_description_long;image;price;category_id;al_gluten;al_cacahuetes;al_cascara;al_altramuces;al_leche;al_vegano;al_apio;al_crustaceos;al_huevo;al_moluscos;al_mostaza;al_pescado;al_sesamo;al_soja;al_sulfitos"
             editable-detail="yes" show-header="yes" header-actions="" [label-header]="formLabel"
             show-header-navigation="no" include-breadcrumb="yes" layout-align="centered">
             <o-integer-input attr="id" oHidden></o-integer-input>
             <o-integer-input attr="price" oHidden></o-integer-input>
             <div o-form-toolbar-buttons>
-                <button type="button" class="o-form-toolbar-button" mat-stroked-button (click)="goToShoppingCart($event)"
-                    attr="gotoshoppingcart">
+                <button type="button" class="o-form-toolbar-button" mat-stroked-button
+                    (click)="goToShoppingCart($event)" attr="gotoshoppingcart">
                     <mat-icon>shopping_cart</mat-icon>
                     <span>{{ 'SHOPPINGCART' | oTranslate }}</span>
                 </button>
@@ -24,76 +24,74 @@
                     <o-column layout-gap="30px">
                         <o-row>
                             <div>
-                                <h2><span>{{ oForm.getDataValue('es_name').value }}</span></h2>
-                                <span>{{ oForm.getDataValue('es_description_long').value }}</span>
+                                <h2><span>{{ currentLang == 'en' ? oForm.getDataValue('en_name').value : oForm.getDataValue('es_name').value }}</span></h2>
+                                <span>{{ currentLang == 'en' ? oForm.getDataValue('en_description_long').value : oForm.getDataValue('es_description_long').value }}</span>
                             </div>
                         </o-row>
-<o-row attr="row2" class="allergens">
-                    <img width="30px" *ngIf="oForm.getDataValue('al_altramuces').value === true"
-                        src="./assets/images/allergens/13.png" alt="{{ 'al_altramuces' | oTranslate }}"
-                        title="{{ 'al_altramuces' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_apio').value === true"
-                        src="./assets/images/allergens/9.png" alt="{{ 'al_apio' | oTranslate }}"
-                        title="{{ 'al_apio' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_cacahuetes').value === true"
-                        src="./assets/images/allergens/5.png" alt="{{ 'al_cacahuetes' | oTranslate }}"
-                        title="{{ 'al_cacahuetes' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_cascara').value === true"
-                        src="./assets/images/allergens/8.png" alt="{{ 'al_cascara' | oTranslate }}"
-                        title="{{ 'al_cascara' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_crustaceos').value === true"
-                        src="./assets/images/allergens/2.png" alt="{{ 'al_crustaceos' | oTranslate }}"
-                        title="{{ 'al_crustaceos' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_gluten').value === true"
-                        src="./assets/images/allergens/1.png" alt="{{ 'al_gluten' | oTranslate }}"
-                        title="{{ 'al_gluten' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_huevo').value === true"
-                        src="./assets/images/allergens/3.png" alt="{{ 'al_huevo' | oTranslate }}"
-                        title="{{ 'al_huevo' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_leche').value === true"
-                        src="./assets/images/allergens/7.png" alt="{{ 'al_leche' | oTranslate }}"
-                        title="{{ 'al_leche' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_moluscos').value === true"
-                        src="./assets/images/allergens/14.png" alt="{{ 'al_moluscos' | oTranslate }}"
-                        title="{{ 'al_moluscos' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_mostaza').value === true"
-                        src="./assets/images/allergens/10.png" alt="{{ 'al_mostaza' | oTranslate }}"
-                        title="{{ 'al_mostaza' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_pescado').value === true"
-                        src="./assets/images/allergens/4.png" alt="{{ 'al_pescado' | oTranslate }}"
-                        title="{{ 'al_pescado' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_sesamo').value === true"
-                        src="./assets/images/allergens/11.png" alt="{{ 'al_sesamo' | oTranslate }}"
-                        title="{{ 'al_sesamo' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_soja').value === true"
-                        src="./assets/images/allergens/6.png" alt="{{ 'al_soja' | oTranslate }}"
-                        title="{{ 'al_soja' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_sulfitos').value === true"
-                        src="./assets/images/allergens/12.png" alt="{{ 'al_sulfitos' | oTranslate }}"
-                        title="{{ 'al_sulfitos' | oTranslate }}" />
-                    <img width="30px" *ngIf="oForm.getDataValue('al_vegano').value === true"
-                        src="./assets/images/allergens/15.png" alt="{{ 'al_vegano' | oTranslate }}"
-                        title="{{ 'al_vegano' | oTranslate }}" />
-                </o-row>
+                        <o-row attr="row2" class="allergens">
+                            <img width="30px" *ngIf="oForm.getDataValue('al_altramuces').value === true"
+                                src="./assets/images/allergens/13.png" alt="{{ 'al_altramuces' | oTranslate }}"
+                                title="{{ 'al_altramuces' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_apio').value === true"
+                                src="./assets/images/allergens/9.png" alt="{{ 'al_apio' | oTranslate }}"
+                                title="{{ 'al_apio' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_cacahuetes').value === true"
+                                src="./assets/images/allergens/5.png" alt="{{ 'al_cacahuetes' | oTranslate }}"
+                                title="{{ 'al_cacahuetes' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_cascara').value === true"
+                                src="./assets/images/allergens/8.png" alt="{{ 'al_cascara' | oTranslate }}"
+                                title="{{ 'al_cascara' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_crustaceos').value === true"
+                                src="./assets/images/allergens/2.png" alt="{{ 'al_crustaceos' | oTranslate }}"
+                                title="{{ 'al_crustaceos' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_gluten').value === true"
+                                src="./assets/images/allergens/1.png" alt="{{ 'al_gluten' | oTranslate }}"
+                                title="{{ 'al_gluten' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_huevo').value === true"
+                                src="./assets/images/allergens/3.png" alt="{{ 'al_huevo' | oTranslate }}"
+                                title="{{ 'al_huevo' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_leche').value === true"
+                                src="./assets/images/allergens/7.png" alt="{{ 'al_leche' | oTranslate }}"
+                                title="{{ 'al_leche' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_moluscos').value === true"
+                                src="./assets/images/allergens/14.png" alt="{{ 'al_moluscos' | oTranslate }}"
+                                title="{{ 'al_moluscos' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_mostaza').value === true"
+                                src="./assets/images/allergens/10.png" alt="{{ 'al_mostaza' | oTranslate }}"
+                                title="{{ 'al_mostaza' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_pescado').value === true"
+                                src="./assets/images/allergens/4.png" alt="{{ 'al_pescado' | oTranslate }}"
+                                title="{{ 'al_pescado' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_sesamo').value === true"
+                                src="./assets/images/allergens/11.png" alt="{{ 'al_sesamo' | oTranslate }}"
+                                title="{{ 'al_sesamo' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_soja').value === true"
+                                src="./assets/images/allergens/6.png" alt="{{ 'al_soja' | oTranslate }}"
+                                title="{{ 'al_soja' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_sulfitos').value === true"
+                                src="./assets/images/allergens/12.png" alt="{{ 'al_sulfitos' | oTranslate }}"
+                                title="{{ 'al_sulfitos' | oTranslate }}" />
+                            <img width="30px" *ngIf="oForm.getDataValue('al_vegano').value === true"
+                                src="./assets/images/allergens/15.png" alt="{{ 'al_vegano' | oTranslate }}"
+                                title="{{ 'al_vegano' | oTranslate }}" />
+                        </o-row>
                         <o-row layout-gap="100px">
                             <o-column>
-                                <o-row title="Comprar" layout-gap="15px" elevation="3" layout-align="center">
-                                    <!-- <o-integer-input #qty attr="" label="Cantidad" min="1"
-                                        [data]="getQtyDefaultValue()" ></o-integer-input> -->
-                                        <input id="input" type="number" #qty [(ngModel)]="selectedQty" min="1">
+                                <o-row title="BUY" layout-gap="15px" elevation="3" layout-align="center">                                  
+                                    <input id="input" type="number" #qty [(ngModel)]="selectedQty" min="1">
 
-                                    <o-button label="Agregar a carrito" (click)="addToCart($event)"></o-button>
+                                    <o-button label="ADD TO CART" (click)="addToCart($event)"></o-button>
                                 </o-row>
                             </o-column>
                             <o-column layout-gap="15px">
                                 <o-combo attr="category_id" width="300px" label="CATEGORY" query-on-init="no"
                                     query-on-bind="yes" filter="yes" value-column="id" service="categories"
-                                    entity="category" keys="id" columns="id;es_name" visible-columns="es_name"
+                                    entity="category" keys="id" columns="id;{{currentLang}}_name" visible-columns="{{currentLang}}_name"
                                     enabled="true" read-only="true" show-controls="no">
                                 </o-combo>
                                 <o-combo attr="country_id" label="COUNTRY" width="250px" query-on-init="no"
                                     query-on-bind="yes" filter="yes" value-column="id" service="countries"
-                                    entity="country" keys="id" columns="id;es_name" visible-columns="es_name"
+                                    entity="country" keys="id" columns="id;{{currentLang}}_name" visible-columns="{{currentLang}}_name"
                                     enabled="true" read-only="true" show-controls="no">
                                 </o-combo>
                             </o-column>

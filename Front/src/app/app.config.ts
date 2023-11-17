@@ -26,7 +26,7 @@ export const CONFIG: Config = {
 
   appMenuConfiguration: MENU_CONFIG,
 
-  applicationLocales: ['es'],
+  applicationLocales: ['es','en'],
 
   exportConfiguration: {
     path: '/export'

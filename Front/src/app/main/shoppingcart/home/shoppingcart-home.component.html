@@ -6,17 +6,17 @@
             (onClick)="goToSales($event)"></o-button>
     </div>
     <div o-form-toolbar-buttons>
-        <o-button icon="list_alt" type="STROKED" attr="" label="ADDMOREPRODUCTS" layout-padding color="accent"
+        <o-button icon="add" type="STROKED" attr="" label="ADD_MORE_PRODUCTS" layout-padding color="accent"
             (onClick)="backToProducts($event)"></o-button>
     </div>
 </o-row>
 <o-row>
     <o-column style="background-color:#a6b4a1 ;margin-top: 10px; border-radius: 10px;
     text-align: center;" title="SALEORDER_DATA" icon="checklist" layout-align="start"
-        layout-gap="10px" fxFlex="15">
+        layout-gap="10px" fxFlex="20">
         <o-row>
             <o-column fxFlex="70" layout-align="start start">
-                {{ 'SALEORDER_SUBTOTAL' | oTranslate }}...
+                {{ 'SUBTOTAL' | oTranslate }}...
             </o-column>
             <o-column fxFlex="30" layout-align="start end">
                 {{ salesubtotal | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }}
@@ -25,7 +25,7 @@
         </o-row>
         <o-row>
             <o-column fxFlex="70" layout-align="start start">
-                {{ 'SALEORDER_TAXES' | oTranslate }}...
+                {{ 'TAXES' | oTranslate }}...
             </o-column>
             <o-column fxFlex="30" layout-align="start end">
                 {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
@@ -34,7 +34,7 @@
         </o-row>
         <o-row>
             <o-column fxFlex="70" layout-align="start start">
-                {{ 'SALEORDER_TRANSPORT' | oTranslate }}...
+                {{ 'TRANSPORT' | oTranslate }}...
             </o-column>
             <o-column fxFlex="30" layout-align="start end">
                 {{ saletransport | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 }
@@ -46,7 +46,7 @@
         </div>
         <o-row>
             <o-column fxFlex="70" layout-align="start start">
-                <span style="font-weight: bold;">{{ 'SALEORDER_TOTAL' | oTranslate }}...</span>
+                <span style="font-weight: bold;">{{ 'TOTAL' | oTranslate }}...</span>
             </o-column>
             <o-column fxFlex="30" layout-align="start end">
                 <span style="font-weight: bold;">{{ saletotal | oReal: { grouping: true,
@@ -60,7 +60,7 @@
         <div class="grid-con" fxFill fxLayout="column" fxLayoutAlign="start">
 
             <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
-                entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;es_name;user_;total"
+                entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;{{currentLang}}_name;user_;total"
                 query-rows="12" quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="6"
                 refresh-button="false" grid-item-height="1:2">
 
@@ -70,10 +70,11 @@
                             auto-fit="true" full-screen-button="no" empty-image="./assets/images/no-image.png"
                             fxFill></o-image>
                         <!-- Cor do nome do produto -->
-                        <span style="font-size: 13px; color: #5b7056; min-height: 45px;">{{ list.es_name }}</span>
+                        <span style="font-size: 13px; color: #5b7056; min-height: 45px;">
+{{ currentLang == 'en' ? list.en_name : list.es_name }}</span>
                         <!-- Cor da cantidade -->
                         <span style="font-size: 13px; color: #5b7056">
-                            Cantidad {{list.qty}}</span>
+                            {{"QTY" | oTranslate}} {{list.qty}}</span>
                         <!-- Cor do prezo -->
                         <span style="font-size: 13px; color: #5b7056; font-style: italic;">
                             {{list.shoppingcart_price}} €</span>

@@ -6,6 +6,7 @@ import {
   OFormComponent,
   OIntegerInputComponent,
   OSnackBarConfig,
+  OTranslateService,
   OntimizeService,
   SnackBarService,
 } from "ontimize-web-ngx";
@@ -24,13 +25,16 @@ export class SectionfoodDetailComponent implements OnInit {
   @ViewChild("qty", { static: false })
   private oQty: OIntegerInputComponent;
 
-  
-  selectedQty: number =1;
+  public currentLang: string;
+
+  selectedQty: number = 1;
   constructor(
     private router: Router,
     private ontimizeservice: OntimizeService,
-    protected snackBarService: SnackBarService
+    protected snackBarService: SnackBarService,
+    private translateService: OTranslateService
   ) {
+    this.currentLang = this.translateService.getCurrentLang();
     this.ontimizeservice.configureService(
       this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
     );
