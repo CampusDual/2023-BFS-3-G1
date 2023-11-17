@@ -6,8 +6,8 @@
         service="saleordersh"
         entity="saleordershrelated_data"
         title="SALES"
-        columns="saleordersh_id;saledate;salestatus_es_name;countries_es_name;dest_city"
-        visible-columns="saleordersh_id;saledate;salestatus_es_name;countries_es_name;dest_city;saleordertotal"
+        columns="saleordersh_id;saledate;salestatus_{{currentLang}}_name;countries_{{currentLang}}_name;dest_city"
+        visible-columns="saleordersh_id;saledate;salestatus_{{currentLang}}_name;countries_{{currentLang}}_name;dest_city;saleordertotal"
         sort-columns="saledate"
         keys="saleordersh_id"
         query-rows="10"
@@ -32,15 +32,15 @@
           
         ></o-table-column>
         <o-table-column
-          attr="salestatus_es_name"
+          attr="salestatus_{{currentLang}}_name"
           title="SALESTATUS"
           width="15%"
           class="o-table-column-centered"
         ></o-table-column>
         <o-table-column attr="dest_city" title="DEST_CITY"></o-table-column>
         <o-table-column
-          attr="countries_es_name"
-          title="country_id"
+          attr="countries_{{currentLang}}_name"
+          title="COUNTRY"
         ></o-table-column>
         <o-table-column
           attr="saleordertotal"
@@ -65,8 +65,8 @@
                 entity="saleordersl"
                 parent-keys="saleordersh_id:saleordersh_id"
                 keys="saleordersl_id"
-                columns="saleordersl_id;saleordersl_price;qty;total;image;es_name"
-                visible-columns="saleordersl_price;qty;total;image;es_name"
+                columns="saleordersl_id;saleordersl_price;qty;total;image;{{currentLang}}_name"
+                visible-columns="saleordersl_price;qty;total;image;{{currentLang}}_name"
                 query-on-init="no"
                 query-rows="10"
                 pageable="no"

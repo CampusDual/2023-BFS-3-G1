@@ -41,7 +41,7 @@
   "FILTERS_PRODUCTS": "Filter products with selected alergens",
   "BUY": "Buy",
   "ADD TO CART": "Add to cart",
-  "CREATE_SALEORDER": "New SALE ORDER",
+  "CREATE_SALEORDER": "New sale order",
   "ADD_MORE_PRODUCTS": "Add more products",
   "SHOPPINGCART": "Shopping Cart",
   "SALEORDER_DATA": "Economic Data",
@@ -96,7 +96,7 @@
   "PRODUCT_ADDED_TO_CART": "Product Added to Cart",
   "SALEORDER_CREATED": "Sale Order created successfully",
   "DEST_ADDRESS": "Destination Address",
-  "DEST_CP": "CP",
+  "DEST_CP": "ZIP code",
   "DEST_CITY": "City",
   "PAYMENT": "Payment",
   "SALEORDER_TOTAL": "Sale Order Total : ",
@@ -119,5 +119,8 @@
   "CARD_NUMBER": "Card Number",
   "EXPIRATION": "Expiration Date",
   "CVV": "CVV",
-  "BACKTOPAY": "Proceed to payment"
+  "BACKTOPAY": "Proceed to payment",
+  "CARDNUMBERHINT":"Requires: XXXXXXXXXXXXXXXX",
+  "CARDEXPIREDATEHINT":"Requires: XX/XX",
+  "CARDCVVHINT":"Requires: XXX"
 }

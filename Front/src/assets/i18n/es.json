@@ -118,6 +118,9 @@
 "TRANSFER_PAYMENT": "Para pagar haga una transferencia a la cuenta:",
   "CARD_NUMBER": "Número de tarjeta",
   "EXPIRATION": "Fecha de expiración",
-  "CVV": "Cvv",
-  "BACKTOPAY": "Proceder al pago"
+  "CVV": "CVV",
+  "BACKTOPAY": "Proceder al pago",
+  "CARDNUMBERHINT":"Requiere: XXXXXXXXXXXXXXXX",
+  "CARDEXPIREDATEHINT":"Requiere: XX/XX",
+  "CARDCVVHINT":"Requiere: XXX"
 }

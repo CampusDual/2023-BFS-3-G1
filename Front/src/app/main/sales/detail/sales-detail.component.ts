@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
-import { OFormComponent, OntimizeService } from "ontimize-web-ngx";
+import { OFormComponent, OTranslateService, OntimizeService } from "ontimize-web-ngx";
 import { from } from "rxjs";
 
 @Component({
@@ -16,9 +16,11 @@ export class SalesDetailComponent implements OnInit {
   public saletransport: number = 5;
 
   private id: number = 0;
+  public currentLang: string;
 
   constructor(private ontimizeService: OntimizeService,
-    protected router: Router) {}
+    protected router: Router,private translateService: OTranslateService
+    ) {  this.currentLang = this.translateService.getCurrentLang();}
 
   @ViewChild("oForm", { static: false })
   private oForm: OFormComponent;

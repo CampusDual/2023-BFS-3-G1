@@ -44,6 +44,7 @@
                 <AmbiguousColumn name="salestatus_es_name" prefix="ss" databaseName="es_name" />
                 <AmbiguousColumn name="salestatus_en_name" prefix="ss" databaseName="en_name" />
                 <AmbiguousColumn name="countries_es_name" prefix="co" databaseName="es_name" />
+                <AmbiguousColumn name="countries_en_name" prefix="co" databaseName="en_name" />
 
             </AmbiguousColumns>
             <Sentence>
@@ -66,7 +67,7 @@
                 sh.salestatus = ss.id
                  #WHERE#
                GROUP BY
-                sh.id,co.es_name,ss.es_name
+                sh.id,co.es_name,ss.es_name,co.en_name,ss.en_name
                #ORDER#
             ]]>
             </Sentence>
