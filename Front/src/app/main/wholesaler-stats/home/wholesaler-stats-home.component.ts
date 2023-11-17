@@ -35,7 +35,7 @@ export class WholesalerStatsHomeComponent implements OnInit {
   @ViewChild("discretebar", { static: true })
   discretebar: OChartComponent;
   @ViewChild("formFilter", { static: true })
-  formFilter:OFormComponent;
+  formFilter: OFormComponent;
 
   public chartParameters = new LineChartConfiguration();
   public formLabel: string;
@@ -50,7 +50,7 @@ export class WholesalerStatsHomeComponent implements OnInit {
   public movementTypesChartParams: PieChartConfiguration;
   public globalFilter;
   public initialDate;
-  public endDate; 
+  public endDate;
   public currentLang: string;
 
   constructor(
@@ -59,7 +59,6 @@ export class WholesalerStatsHomeComponent implements OnInit {
     private d3LocaleService: D3LocaleService,
     //private reportStoreService: OReportStoreService,
     private themeService: ThemeService
-  
   ) {
     this.currentLang = this.translateService.getCurrentLang();
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
@@ -68,76 +67,16 @@ export class WholesalerStatsHomeComponent implements OnInit {
 
   ngOnInit() {
     this.filterCurrentYear();
-
-    this.getFirstLastMovement();
-
-    // this.processValues();
   }
 
-  
-
-  private getFirstLastMovement() {
-    const columns = ["saledate"];
-    this.ontimizeService
-      .query(void 0, columns, "wholesalersalesdetail")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          this.last_sale_date = resp.data[resp.data.length - 1].saledate;
-          this.first_sale_date = resp.data[0].saledate;
-        } else {
-          console.error(resp);
-        }
-      });
+  // se ejecuta al hacer clic en el botón del filtro en el tab de ventas
+  public onSaleDataDataLoaded(data: any): void {
+    //this.processLineData();
+    this.createChartFilter();
   }
 
-  // creamos el filtro por el que se va a hacer la búsqueda
-  createFilter(values: Array<{ attr; value }>): Expression {
-    let filters: Array<Expression> = [];
-    values.forEach((fil) => {
-      if (fil.value) {
-        if (fil.attr === "saledate_start") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionMoreEqual(
-              "saledate",
-              fil.value
-            )
-          );
-        }
-        if (fil.attr === "saledate_end") {
-          filters.push(
-            FilterExpressionUtils.buildExpressionLessEqual(
-              "saledate",
-              fil.value
-            )
-          );
-        }
-      }
-    });
-
-    if (filters.length > 0) {
-      this.globalFilter = filters.reduce((exp1, exp2) =>
-        FilterExpressionUtils.buildComplexExpression(
-          exp1,
-          exp2,
-          FilterExpressionUtils.OP_AND
-        )
-      );
-          return this.globalFilter;
-    } else {
-      return null;
-    }
-  }
-
-
-  createChartFilter(){
-    let formValues = this.formFilter.getComponents();
-    this.initialDate = formValues.filterStartDate.getValue();
-    this.endDate = formValues.filterEndDate.getValue();
-  }
-
-
-
-
+  // *********** TAB DE RESUMEN ****************
+  // creamos el filtro por el que se va a hacer la búsqueda en la tabla de datos de ventas
   filterCurrentYear() {
     let filtersCurrent: Array<Expression> = [];
     let filtersPrevious: Array<Expression> = [];
@@ -154,80 +93,175 @@ export class WholesalerStatsHomeComponent implements OnInit {
     let pastCurrentDate = new Date(currentDate);
     pastCurrentDate.setFullYear(currentDate.getFullYear() - 1);
 
-    let startOfYearISO = startOfCurrentYear.toISOString().split('T')[0];
-    let nextDayISO = currentDate.toISOString().split('T')[0];
+    let startOfYearISO = startOfCurrentYear.toISOString().split("T")[0];
+    let nextDayISO = currentDate.toISOString().split("T")[0];
 
-    let startOfLastYearISO = startOfLastYear.toISOString().split('T')[0];
-    let pastNextDayISO = pastCurrentDate.toISOString().split('T')[0];
+    let startOfLastYearISO = startOfLastYear.toISOString().split("T")[0];
+    let pastNextDayISO = pastCurrentDate.toISOString().split("T")[0];
 
-    filtersCurrent.push(FilterExpressionUtils.buildExpressionMoreEqual('saledate', startOfYearISO));
-    filtersCurrent.push(FilterExpressionUtils.buildExpressionLessEqual('saledate', nextDayISO));
+    filtersCurrent.push(
+      FilterExpressionUtils.buildExpressionMoreEqual("saledate", startOfYearISO)
+    );
+    filtersCurrent.push(
+      FilterExpressionUtils.buildExpressionLessEqual("saledate", nextDayISO)
+    );
 
-    filtersPrevious.push(FilterExpressionUtils.buildExpressionMoreEqual('saledate', startOfLastYearISO));
-    filtersPrevious.push(FilterExpressionUtils.buildExpressionLessEqual('saledate', pastNextDayISO));
-
+    filtersPrevious.push(
+      FilterExpressionUtils.buildExpressionMoreEqual(
+        "saledate",
+        startOfLastYearISO
+      )
+    );
+    filtersPrevious.push(
+      FilterExpressionUtils.buildExpressionLessEqual("saledate", pastNextDayISO)
+    );
 
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
     );
-    let kv = { '@basic_expression': filtersCurrent.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) };
-    const columns = ['totalsales'];
-    this.ontimizeService.query(kv, columns, 'wholesalerbalance', { saledate: 93 }).subscribe(
-      result => {
+    let kv = {
+      "@basic_expression": filtersCurrent.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      ),
+    };
+    const columns = ["totalsales"];
+    this.ontimizeService
+      .query(kv, columns, "wholesalerbalance", { saledate: 93 })
+      .subscribe((result) => {
         if (result.data && result.data.length) {
-          this.totalsales = result.data[0]['totalsales'];
-
+          this.totalsales = result.data[0]["totalsales"];
         } else {
           console.log("Fallo recogiendo info.");
         }
-      }
-    );
-    let kvPreviousYear = { '@basic_expression': filtersPrevious.reduce((exp1, exp2) => FilterExpressionUtils.buildComplexExpression(exp1, exp2, FilterExpressionUtils.OP_AND)) };
-    this.ontimizeService.query(kvPreviousYear, columns, 'wholesalerbalance', { saledate: 93 }).subscribe(
-      result => {
+      });
+    let kvPreviousYear = {
+      "@basic_expression": filtersPrevious.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      ),
+    };
+    this.ontimizeService
+      .query(kvPreviousYear, columns, "wholesalerbalance", { saledate: 93 })
+      .subscribe((result) => {
         if (result.data && result.data.length) {
-          this.pastTotalsales = result.data[0]['totalsales'];
+          this.pastTotalsales = result.data[0]["totalsales"];
         } else {
           console.log("Fallo recogiendo info para el año anterior.");
         }
+      });
+  }
+  // *********** FIN TAB DE RESUMEN ****************
+
+  // *********** TAB DE VENTAS ****************
+  // crea el filtro para la tabla
+  createFilter(values: Array<{ attr; value }>): Expression {
+    let filters: Array<Expression> = [];
+    values.forEach((fil) => {
+      if (fil.value) {
+        if (fil.attr === "saledate_start") {         
+          filters.push(
+            FilterExpressionUtils.buildExpressionMoreEqual(
+              "saledate",
+              fil.value
+            )
+          );
+        }
+        if (fil.attr === "saledate_end") {
+
+          filters.push(
+            FilterExpressionUtils.buildExpressionLessEqual(
+              "saledate",
+              fil.value + (60*60*23*1000) + ((59*60*1000) + (59*1000))
+            )
+          );
+        }
       }
-    );
-
+    });
+    if (filters.length > 0) {
+      this.globalFilter = filters.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      );
+      return this.globalFilter;
+    } else {
+      return null;
+    }
   }
 
-  public onSaleDataDataLoaded(data: any): void {
-    this.processLineData();
+
+  // carga los datos de la gráfica (vienen del back)
+  createChartFilter() {
+    let formValues = this.formFilter.getComponents();
+    this.initialDate = formValues.filterStartDate.getValue();
+    this.endDate = formValues.filterEndDate.getValue();
+this.initialDate = new Date(this.initialDate);
+this.endDate = new Date(this.endDate);
+
+
+    // if (this.initialDate === undefined) {
+    //   this.initialDate = "1900-01-01";
+    // }
+    // if (this.endDate === undefined) {
+    //   this.endDate = new Date().setDate(new Date().getDate() + 1);
+    // } else {
+    //   this.endDate.setDate(this.endDate.getDate()) + 1 ;
+    // }
+    console.log("fecha fin: " + this.endDate);
+    let filters: Array<Expression> = [];
+
+    filters.push(
+      FilterExpressionUtils.buildExpressionMoreEqual(
+        "saledate",
+        this.initialDate
+      )
+    );
+    filters.push(
+      FilterExpressionUtils.buildExpressionLessEqual("saledate", this.endDate)
+    );
+    let kv = {
+      "@basic_expression": filters.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      ),
+    };
+    const columns = ["saledate,saletotal"];
+    this.ontimizeService
+      .query(kv, columns, "wholesalersalesbyday", { saledate: 93 })
+      .subscribe((result) => {
+        if (result.data && result.data.length) {
+          this.dataChart(result);
+        } else {
+          console.log("Fallo recogiendo info.");
+        }
+      });
   }
 
-  private processLineData(): void {
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
-    );
-    const columns = ['saledate','saletotal'];
-    
-    this.ontimizeService.query( this.globalFilter, columns, 'wholesalersalesbyday', { saledate: 93 }).subscribe(
-      result => {
-       this.dataChart(result);
-      }
-    );
-    
-  }
-
-  private dataChart(result){
+  private dataChart(result) {
     if (result.data && result.data.length) {
       this.configureDiscreteBarChart();
-      let dataAdapter = DataAdapterUtils.createDataAdapter(this.chartParameters);
+      let dataAdapter = DataAdapterUtils.createDataAdapter(
+        this.chartParameters
+      );
       this.discretebar.setDataArray(dataAdapter.adaptResult(result.data));
-      }
-      
+    }
   }
+
   private configureDiscreteBarChart(): void {
     this.chartParameters.xAxis = "saledate";
     this.chartParameters.yAxis = ["saletotal"];
-    
   }
-
-
-
-  
+  // *********** FIN TAB DE VENTAS ****************
 }
