@@ -138,6 +138,8 @@
   "EN":"ENG",
   "ES":"ESP",
   "en":"Inglés",
-  "PAYED_PAY":"Pedido pagado"
-
+  "Sept": "Sep",
+  "PAYED_PAY":"Pedido pagado",
+  "DESTINATION_ADDRESS":"Dirección de envío",
+  "FILTERS_SALES":"Filtro de ventas"
 }

@@ -107,6 +107,7 @@ public class WholesalerService implements IWholesalerService {
 			sales = new ArrayList<>();
 		}
 		List<String> months = Arrays.asList("Dic", "Nov", "Oct", "Sept","Ago","Jul","Jun","May","Abr","Mar","Feb","Ene");
+
 		Integer saleyear = (Integer) userKeyMap.get(WholesalerDao.ATTR_SALE_YEAR);
 		if (saleyear == null){
 			result.setCode(EntityResult.OPERATION_WRONG);

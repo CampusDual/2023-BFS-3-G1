@@ -138,5 +138,20 @@
   "EN":"ENG",
   "ES":"ESP",
   "en":"English",
-  "PAYED_PAY":"Order paid"
+  "PAYED_PAY":"Order paid",
+  "Ene": "Jan",
+  "Feb": "Feb",
+  "Mar": "Mar",
+  "Abr": "Apr",
+  "May": "May",
+  "Jun": "Jun",
+  "Jul": "Jul",
+  "Ago": "Aug",
+  "Sept": "Sep",
+  "Oct": "Oct",
+  "Nov": "Nov",
+  "Dic": "Dec",
+  "DESTINATION_ADDRESS":"Shipping address",
+  "FILTERS_SALES":"Sales filter"
+
 }
