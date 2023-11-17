@@ -32,7 +32,7 @@
   "MOLUSCOS": "Molluscs",
   "HUEVO": "Egg",
   "MOSTAZA": "Mustard",
-  "LACTEOS": "Diary",
+  "LACTEOS": "Dairy",
   "PESCADO": "Fish",
   "SOJA": "Soy",
   "SESAMO": "Sesame",
@@ -152,6 +152,21 @@
   "Nov": "Nov",
   "Dic": "Dec",
   "DESTINATION_ADDRESS":"Shipping address",
-  "FILTERS_SALES":"Sales filter"
+  "FILTERS_SALES":"Sales filter",
+  "al_altramuces":"Lupins",
+  "al_apio": "Celery",
+  "al_cacahuetes": "Peanuts",
+  "al_cascara": "Nuts",
+  "al_crustaceos": "Crustaceans",
+  "al_sulfitos": "Sulphites",
+  "al_moluscos": "Molluscs",
+  "al_huevo": "Egg",
+  "al_mostaza": "Mustard",
+  "al_leche": "Dairy",
+  "al_pescado": "Fish",
+  "al_soja": "Soy",
+  "al_sesamo": "Sesame",
+  "al_gluten": "Gluten",
+  "al_vegano": "Vegan"
 
 }

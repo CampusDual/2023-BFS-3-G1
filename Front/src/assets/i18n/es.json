@@ -141,5 +141,20 @@
   "Sept": "Sep",
   "PAYED_PAY":"Pedido pagado",
   "DESTINATION_ADDRESS":"Dirección de envío",
-  "FILTERS_SALES":"Filtro de ventas"
+  "FILTERS_SALES":"Filtro de ventas",
+  "al_altramuces":"Altramuces",
+  "al_apio": "Apio",
+  "al_cacahuetes": "Cacahuetes",
+  "al_cascara": "Cáscara",
+  "al_crustaceos": "Crustáceos",
+  "al_sulfitos": "Sulfitos",
+  "al_moluscos": "Moluscos",
+  "al_huevo": "Huevo",
+  "al_mostaza": "Mostaza",
+  "al_leche": "Lácteos",
+  "al_pescado": "Pescado",
+  "al_soja": "Soja",
+  "al_sesamo": "Sésamo",
+  "al_gluten": "Gluten",
+  "al_vegano": "Vegano"
 }
