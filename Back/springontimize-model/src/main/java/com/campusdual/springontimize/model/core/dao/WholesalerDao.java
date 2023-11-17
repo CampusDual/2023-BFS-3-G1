@@ -17,6 +17,7 @@ public class WholesalerDao extends OntimizeJdbcDaoSupport {
     public static final String QUERY_VSALESDETAIL = "salesdetail";
     public static final String QUERY_VBESTSELLERS = "bestsellers";
     public static final String QUERY_VSALESBYYEARMONTH = "salesbyyearmonth";
+    public static final String QUERY_VSALESBYDAY= "salesbyday";
 
     public static final String ATTR_ID = "id";
     public static final String ATTR_ES_NAME = "es_name";

@@ -125,6 +125,15 @@ public class WholesalerService implements IWholesalerService {
 
 		return result;
 	}
+	@Override
+	public EntityResult wholesalersalesbydayQuery(Map<String, Object> keyMap, List<String> attrList){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
+		userKeyMap.put(WholesalerDao.ATTR_USER_,authentication.getName());
+		return this.daoHelper.query(wholesalerDao, userKeyMap, attrList,
+				WholesalerDao.QUERY_VSALESBYDAY);
+	}
+
 
 	private Map<String, Object> addEmptyMonth(String salemonth, Integer saleyear)  {
 		Map<String,Object> newresult = new HashMap<>();
