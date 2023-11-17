@@ -51,6 +51,7 @@ export class WholesalerStatsHomeComponent implements OnInit {
   public globalFilter;
   public initialDate;
   public endDate; 
+  public currentLang: string;
 
   constructor(
     private ontimizeService: OntimizeService,
@@ -58,7 +59,9 @@ export class WholesalerStatsHomeComponent implements OnInit {
     private d3LocaleService: D3LocaleService,
     //private reportStoreService: OReportStoreService,
     private themeService: ThemeService
+  
   ) {
+    this.currentLang = this.translateService.getCurrentLang();
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     //this._configurePieChart(d3Locale);
   }
