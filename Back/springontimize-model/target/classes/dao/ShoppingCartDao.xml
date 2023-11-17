@@ -30,6 +30,7 @@
                 <Column>shoppingcart_price</Column>
                 <Column>image</Column>
                 <Column>es_name</Column>
+                <Column>en_name</Column>
             </ValidColumns>
             <Sentence>
                 <![CDATA[

@@ -16,7 +16,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     items: [
       {
         id: "food",
-        name: "SECTION_FOOD",
+        name: "FOOD",
         tooltip: "SECTION_FOOD_TOOLTIP",
         route: "/main/sectionfood",
         icon: "lunch_dining",
@@ -65,15 +65,13 @@ export const MENU_CONFIG: MenuRootItem[] = [
     items: [
       {
         id: "wholesaler-products",
-        name: "WHOLESALER_PRODUCTS",
-        tooltip: "WHOLESALER_PRODUCTS_TOOLTIP",
+        name: "MY_PRODUCTS",   
         route: "/main/wholesaler-products",
         icon: "inventory",
       },
       {
         id: "wholesaler-stats",
-        name: "WHOLESALER_STATS",
-        tooltip: "WHOLESALER_STATS_TOOLTIP",
+        name: "MY_STATS",     
         route: "/main/wholesaler-stats",
         icon: "bar_chart",
       },           

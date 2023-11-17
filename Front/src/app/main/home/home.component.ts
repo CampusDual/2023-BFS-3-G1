@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { OTranslateService } from "ontimize-web-ngx";
 
 @Component({
   selector: "home",
@@ -7,7 +8,14 @@ import { Router } from "@angular/router";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent {
-  constructor(protected router: Router) { }
+  public currentLang: string;
+
+  constructor(
+    protected router: Router,
+    private translateService: OTranslateService
+  ) {
+    this.currentLang = this.translateService.getCurrentLang();
+  }
 
   public gotoProducts() {
     this.router.navigate(["/main/sectionfood"]);

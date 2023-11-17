@@ -53,12 +53,12 @@
             </div>
           </div>
           <div fxLayout="row wrap" fxLayoutGap="32px">
-            <o-slide-toggle attr="al_vegano" label="NO APTO PARA VEGANOS" read-only="no"></o-slide-toggle>
+            <o-slide-toggle attr="al_vegano" label="NOT FOR VEGANS" read-only="no"></o-slide-toggle>
             <o-combo #category_id attr="category_id" label="CATEGORY" read-only="no" service="categories"
-              entity="category" columns="id;es_name;en_name" value-column="id" keys="id" visible-columns="es_name"
-              sql-type="INTEGER" fxFlex="calc(25% - 32px)" sort-columns="es_name" ></o-combo>
+              entity="category" columns="id;{{currentLang}}_name" value-column="id" keys="id" visible-columns="{{currentLang}}_name"
+              sql-type="INTEGER" fxFlex="calc(25% - 32px)"></o-combo>
             <o-combo #country_id attr="country_id" label="COUNTRY" read-only="no" service="countries" entity="country"
-              columns="id;en_name;es_name" value-column="id" keys="id" visible-columns="es_name" sql-type="INTEGER"
+              columns="id;{{currentLang}}_name" value-column="id" keys="id" visible-columns="{{currentLang}}_name" sql-type="INTEGER"
               fxFlex="calc(25% - 32px)"></o-combo>
           </div>
           <!-- visible-columns="{{ 'es_name' | oTranslate }}" -->
@@ -81,10 +81,11 @@
 
       <!-- grid de productos -->
       <o-grid #grid attr="grid" service="products" entity="product"
-        columns="id;es_name;image;price;category_id;country_id" keys="id" cols="4" show-page-size="false"
-        orderable="false" quick-filter="false" grid-item-height="1:1.3" sortable-columns="es_name" sort-column=""
+        columns="id;{{currentLang}}_name;image;price;category_id;country_id" keys="id" cols="4" show-page-size="false"
+        orderable="false" quick-filter="false" grid-item-height="1:1.3" sortable-columns="{{currentLang}}_name" sort-column=""
         controls="true" refresh-button="false" insert-button="false" pagination-controls="true" gutter-size="10px"
-        fixed-header="no" show-footer="true" [ngStyle]="{ height: '600px' }" quick-filter="yes" quick-filter-columns= "es_name;price">
+        fixed-header="no" show-footer="true" [ngStyle]="{ height: '600px' }" quick-filter="yes" 
+        quick-filter-columns= "{{currentLang}}_name;price">
         <o-grid-item *ngFor="let list of grid.dataArray">
           <o-column layout-padding class="container-item">
             <div>              
@@ -95,7 +96,7 @@
             </div>
             <div>
               <h4 style="font-size: 15px; color: #5b7056">
-                {{ list.es_name }} <br />
+                {{ currentLang == 'en' ? list.en_name: list.es_name }} <br />
                 {{ list.price }} €
               </h4>
             </div>
@@ -106,9 +107,10 @@
   </div>
 </o-form>
 
-<div id="footer" class="footer-container" style="background-color: #6c7b69; text-align: center; padding: 10px ; height: auto ">
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <span class="footer-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #d2cdbb">&copy; Creado
-      por Group-A. 2023</span>
-  </div>
+<div id="footer" class="footer-container" style="background-color:#6c7b69;; text-align: center; padding: 10px;">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <span class="footer-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #D2CDBB;">&copy;
+            {{ 'GROUP A' |  oTranslate }}
+            2023</span>
+    </div>
 </div>
