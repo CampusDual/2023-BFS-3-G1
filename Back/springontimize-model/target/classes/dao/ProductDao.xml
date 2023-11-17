@@ -20,7 +20,9 @@
                 <AmbiguousColumn name="product_image" prefix="PO" databaseName="image" />
                 <AmbiguousColumn name="category_image" prefix="CA" databaseName="image" />
                 <AmbiguousColumn name="product_es_name" prefix="PO" databaseName="es_name" />
+                <AmbiguousColumn name="product_en_name" prefix="PO" databaseName="en_name" />
                 <AmbiguousColumn name="category_es_name" prefix="CA" databaseName="es_name" />
+                <AmbiguousColumn name="category_en_name" prefix="CA" databaseName="en_name" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
