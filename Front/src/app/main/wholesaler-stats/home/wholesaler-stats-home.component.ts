@@ -3,12 +3,16 @@ import {
   Expression,
   FilterExpressionUtils,
   OFilterBuilderComponent,
+  OFormComponent,
   OntimizeService,
   OTableComponent,
   OTranslateService,
 } from "ontimize-web-ngx";
 import {
   ChartSeries,
+  DataAdapterUtils,
+  DiscreteBarChartConfiguration,
+  LineChartConfiguration,
   LinePlusBarFocusChartConfiguration,
   OChartComponent,
   PieChartConfiguration,
@@ -28,9 +32,12 @@ export class WholesalerStatsHomeComponent implements OnInit {
   filterBuilder: OFilterBuilderComponent;
   @ViewChild("sales", { static: true })
   sales: OTableComponent;
-  @ViewChild("ochart1", { static: true })
-  ochart1: OChartComponent;
+  @ViewChild("discretebar", { static: true })
+  discretebar: OChartComponent;
+  @ViewChild("formFilter", { static: true })
+  formFilter:OFormComponent;
 
+  public chartParameters = new LineChartConfiguration();
   public formLabel: string;
   public id: string;
   public totalsales: number = 0;
@@ -41,6 +48,9 @@ export class WholesalerStatsHomeComponent implements OnInit {
   public balanceChartParams: LinePlusBarFocusChartConfiguration;
   public currentYear;
   public movementTypesChartParams: PieChartConfiguration;
+  public globalFilter;
+  public initialDate;
+  public endDate; 
 
   constructor(
     private ontimizeService: OntimizeService,
@@ -60,6 +70,8 @@ export class WholesalerStatsHomeComponent implements OnInit {
 
     // this.processValues();
   }
+
+  
 
   private getFirstLastMovement() {
     const columns = ["saledate"];
@@ -100,17 +112,28 @@ export class WholesalerStatsHomeComponent implements OnInit {
     });
 
     if (filters.length > 0) {
-      return filters.reduce((exp1, exp2) =>
+      this.globalFilter = filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
           exp2,
           FilterExpressionUtils.OP_AND
         )
       );
+          return this.globalFilter;
     } else {
       return null;
     }
   }
+
+
+  createChartFilter(){
+    let formValues = this.formFilter.getComponents();
+    this.initialDate = formValues.filterStartDate.getValue();
+    this.endDate = formValues.filterEndDate.getValue();
+  }
+
+
+
 
   filterCurrentYear() {
     let filtersCurrent: Array<Expression> = [];
@@ -170,62 +193,38 @@ export class WholesalerStatsHomeComponent implements OnInit {
   }
 
   public onSaleDataDataLoaded(data: any): void {
-    this.processLineData(data);
+    this.processLineData();
   }
 
-  private processLineData(data: any[]): void {
-    if (data && data.length) {
-      const salesSerie: ChartSeries = {
-        key: this.translateService.get('SALES'),
-        values: []
-      }
-      data.forEach((item: any, i: number) => {
-        salesSerie.values.push({ x: item.saledate, y: item.total });
-      });
-      this.lineData = [salesSerie];
-    }
-  }
-
-  public onTableDataLoaded(data: any): void {
-
+  private processLineData(): void {
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
     );
-    if (data.hasOwnProperty("totalsales") && this.ontimizeService !== null) {
-      const filter = {
-        ACCOUNTID: data.ACCOUNTID,
-      };
-      const columns = ["MOVEMENT", "DATE_", "MOVEMENTTYPEID"];
-      this.ontimizeService
-        .query({}, columns, "movement", { ACCOUNTID: 4 })
-        .subscribe((resp) => {
-          if (resp.code === 0) {
-            //this.processLineData(resp.data);
-          } else {
-            console.error(resp);
-          }
-        });
-    }
-    //this.getLastMovement();
+    const columns = ['saledate','saletotal'];
+    
+    this.ontimizeService.query( this.globalFilter, columns, 'wholesalersalesbyday', { saledate: 93 }).subscribe(
+      result => {
+       this.dataChart(result);
+      }
+    );
+    
   }
 
-  private _configureLineBarChart(locale: any): void {
-    this.balanceChartParams = new LinePlusBarFocusChartConfiguration();
-    this.balanceChartParams.margin.top = 20;
-    this.balanceChartParams.margin.right = 80;
-    this.balanceChartParams.margin.bottom = 40;
-    this.balanceChartParams.margin.left = 120;
-    this.balanceChartParams.focusEnable = false;
-    this.balanceChartParams.yDataType = locale.numberFormat("$,f");
-    this.balanceChartParams.y1Axis.showMaxMin = false;
-    this.balanceChartParams.xDataType = (d) =>
-      locale.timeFormat("%d %b %Y")(new Date(d));
-    this.balanceChartParams.x1Axis.tickPadding = 10;
-    this.balanceChartParams.y1Axis.tickPadding = 10;
-    this.balanceChartParams.legend.margin.top = 0;
-    this.balanceChartParams.legend.margin.right = 0;
-    this.balanceChartParams.legend.margin.bottom = 0;
-    this.balanceChartParams.legend.margin.left = 0;
+  private dataChart(result){
+    if (result.data && result.data.length) {
+      this.configureDiscreteBarChart();
+      let dataAdapter = DataAdapterUtils.createDataAdapter(this.chartParameters);
+      this.discretebar.setDataArray(dataAdapter.adaptResult(result.data));
+      }
+      
+  }
+  private configureDiscreteBarChart(): void {
+    this.chartParameters.xAxis = "saledate";
+    this.chartParameters.yAxis = ["saletotal"];
+    
   }
 
+
+
+  
 }

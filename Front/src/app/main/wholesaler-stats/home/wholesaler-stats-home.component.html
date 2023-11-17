@@ -14,9 +14,9 @@
               <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
               <div class="balance-border"></div>
-              <o-chart #ochart1 type="multiBar" x-label="Mes" y-label="Importe (€)" layout-fill service="wholesalers"
-                entity="wholesalersalesthisyear"  x-axis="salemonth" y-axis="totalsales"
-                x-data-type="year" ></o-chart>
+              <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" service="wholesalers" entity="wholesalersalesthisyear"
+                x-axis="salemonth" y-axis="totalsales"></o-chart>
+
             </o-column>
             <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="50">
@@ -24,13 +24,13 @@
               <span class="account-form-value balance">{{ pastTotalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
               <div class="balance-border"></div>
-              <o-chart #ochart type="multiBar" x-label="Mes" y-label="Importe (€)" layout-fill service="wholesalers"
+              <o-chart #ochart type="discreteBar" x-label="Mes" y-label="Importe (€)" layout-fill service="wholesalers"
                 entity="wholesalersalespreviusyear" x-axis="salemonth" y-axis="totalsales"
                 x-data-type="Month"></o-chart>
             </o-column>
           </div>
         </div>
-        
+
       </mat-tab>
 
 
@@ -111,8 +111,8 @@
             <o-column title="{{ 'SALES_GRAPH' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="40">
               <!-- aqui va la tabla con el detalle de las ventas filtradas si es el caso -->
-              <o-chart #saleschart type="line" x-label="Time" y-label="Amount (€)" [data]="lineData" x-axis="saledate"
-                y-axis="total" x-data-type="time" showLegend="true"></o-chart>
+              <o-chart [chart-parameters]="chartParameters" #discretebar type="line" x-label="Time" y-label="Amount (€)"  x-axis="x"
+                y-axis="y" x-data-type="time" showLegend="true"></o-chart>
 
             </o-column>
           </div>

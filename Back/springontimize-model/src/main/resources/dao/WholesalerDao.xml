@@ -85,5 +85,17 @@
             ]]>
             </Sentence>
         </Query>
+        <Query id="salesbyday">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.salesbyday
+              #WHERE#
+              #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>
