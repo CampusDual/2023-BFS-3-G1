@@ -2648,12 +2648,12 @@ textarea {
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  border-radius: 0;
+  border-radius: 10px;
   background-color: #8ca386;
  }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0;
+  border-radius: 10px;
   -webkit-box-shadow: none;
   background-color: #60735b;
   opacity: 1.0; }
@@ -3763,3 +3763,5 @@ app-about .mat-divider {
 .mat-table{
   background-color:#e1dfd4;
 }
+
+
