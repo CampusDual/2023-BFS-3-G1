@@ -75,8 +75,8 @@ export class ShoppingcartHomeComponent implements OnInit {
     ) {
       if (this.dialogService) {
         this.dialogService.warn(
-          "Error en el carrito",
-          "El carrito no tiene productos"
+          "CART_ERROR",
+          "CART_EMPTY"
         );
       }
       return;
@@ -120,7 +120,7 @@ export class ShoppingcartHomeComponent implements OnInit {
         icon: "warning",
         iconPosition: "left",
       };
-      this.snackBarService.open("No puede haber menos de un artículo", config);
+      this.snackBarService.open("CART_LESS", config);
       return;
     }
     let total: number = newQty * price;
@@ -140,7 +140,7 @@ export class ShoppingcartHomeComponent implements OnInit {
             iconPosition: "left",
           };
           this.snackBarService.open(
-            "Cantidad actualizada correctamente",
+            "QTY_UPDATED",
             config
           );
           this.shoppingcartGrid.reloadData();
@@ -166,7 +166,7 @@ export class ShoppingcartHomeComponent implements OnInit {
           icon: "check_circle",
           iconPosition: "left",
         };
-        this.snackBarService.open("Elemento borrado correctamente", config);
+        this.snackBarService.open("SUCC_DEL", config);
         this.shoppingcartGrid.reloadData();
       } else {
         console.error("Error deleting item:", resp.message);

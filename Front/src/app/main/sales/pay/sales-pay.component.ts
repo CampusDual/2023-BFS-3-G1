@@ -234,8 +234,8 @@ export class SalesPayComponent implements OnInit {
         };
     
         this.dialogService.alert(
-          "Tarjeta de Crédito no válida",
-          "Por favor, complete correctamente todos los campos de la tarjeta de crédito.",
+          "WRONG_CARD",
+          "CARD_COMPL",
           config
         );
         return;
@@ -254,11 +254,11 @@ export class SalesPayComponent implements OnInit {
     if (this.dialogService) {
       const config: ODialogConfig = {
         icon: "credit_card",
-        okButtonText: "ACEPTAR",
+        okButtonText: "ACCEPT",
       };
       this.dialogService.alert(
-        "PEDIDO PAGADO",
-        "El pago se ha realizado correctamente",
+        "PAYED_PAY",
+        "SUCC_PAY",
         config
       );
       this.deleteCart();
