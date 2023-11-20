@@ -87,6 +87,12 @@ public class WholesalerService implements IWholesalerService {
 		return this.wholesalersalesbyyearmonthQuery(keyMap,attrList);
 	}
 
+	/**
+	 * Get the sales by year and current month required to draw the frontend bar chart in wholesalers/stats/home tab Summary
+	 * @param keyMap The attributes and values to search for
+	 * @param attrList The fields and values used as data
+	 * @return the EntityResult containing the response code and data
+	 */
 	@Override
 	public EntityResult wholesalersalesbyyearmonthQuery(Map<String, Object> keyMap, List<String> attrList) {
 		List<String> fixAttr = new ArrayList<>();

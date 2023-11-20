@@ -13,7 +13,7 @@ import { SalesPayComponent } from './pay/sales-pay.component';
   imports: [
     CommonModule,
     OntimizeWebModule,
-    SalesRoutingModule
-  ]
+    SalesRoutingModule,
+  ],
 })
-export class SalesModule { }
+export class SalesModule {}

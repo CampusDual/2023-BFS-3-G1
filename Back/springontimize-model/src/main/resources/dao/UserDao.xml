@@ -16,10 +16,16 @@
             <ValidColumns>
                 <Column>USER_</Column>
                 <Column>PASSWORD</Column>
-                <Column>NAME</Column>
-                <Column>SURNAME</Column>
-                <Column>EMAIL</Column>
-                <Column>NIF</Column>
+                <Column>name</Column>
+                <Column>surname</Column>
+                <Column>email</Column>
+                <Column>nif</Column>
+                <Column>address</Column>
+                <Column>codpos</Column>
+                <Column>phonenumber</Column>
+                <Column>city</Column>
+                <Column>country_id</Column>
+                <Column>code</Column>
                 <Column>USERBLOCKED</Column>
                 <Column>LASTPASSWORDUPDATE</Column>
                 <Column>FIRSTLOGIN</Column>
@@ -29,7 +35,9 @@
                     SELECT
                         #COLUMNS#
                     FROM
-                        ${mainschema}.TUSER
+                        ${mainschema}.TUSER AS tu
+                    INNER JOIN
+                        ${mainschema}.countries AS co ON co.id = tu.country_id
                     #WHERE#
                 ]]>
             </Sentence>

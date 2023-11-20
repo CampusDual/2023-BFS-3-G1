@@ -70,9 +70,12 @@ public class SaleOrdersHService implements ISaleOrdersHService {
 			updateKeys.put(SaleOrdersLDao.ATTR_SALEDATE, saleDate);
 			EntityResult result =this.daoHelper.insert(this.saleOrdersLDao,updateKeys);
         }
-        Map<String, Object> deleteFilter = new HashMap<>();
-        deleteFilter.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
-       //EntityResult deleteResult=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
+        //Map<String, Object> deleteFilter = new HashMap<>();
+        //deleteFilter.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
+//        EntityResult deleteResult=this.daoHelper.delete(this.shoppingCartDao,deleteFilter);
+//        if (resultInsert.isWrong()) { //En caso de que haya fallado la consulta devolvemos el error al front
+//            return deleteResult;
+//        }
         return resultInsert;
     }
 

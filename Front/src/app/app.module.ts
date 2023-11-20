@@ -20,6 +20,12 @@ import { StyleManager } from './shared/style-manager/style-manager';
 import { ThemeService } from './shared/theme.service';
 import { FormsModule } from '@angular/forms';
 
+declare global {
+  interface Window {
+    paypal: any;
+  }
+}
+
 // Defining custom providers (if needed)...
 export const customProviders: any = [
   D3LocaleService,

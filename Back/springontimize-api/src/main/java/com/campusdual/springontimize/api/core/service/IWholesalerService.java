@@ -25,6 +25,7 @@ public interface IWholesalerService {
 
     public EntityResult  wholesalersalesbyyearmonthQuery(Map<String, Object>keyMap, List<String>attrList);
 
+
     public EntityResult wholesalersalesthisyearQuery(Map<String, Object> keyMap, List<String> attrList);
     public EntityResult wholesalersalespreviusyearQuery(Map<String, Object> keyMap, List<String> attrList);
     public EntityResult wholesalersalesbydayQuery(Map<String, Object> keyMap, List<String> attrList);
