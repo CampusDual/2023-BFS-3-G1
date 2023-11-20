@@ -86,7 +86,7 @@
   "SUMMARY": "Summary",
   "SALES_DATA": "Sales Data",
   "PRODUCTS_SALE_DATA": "Products Sale Data",
-  "SALES_INFO": "Sales Information",
+  "SALES_INFO": "Sales Information: Year ",
   "FILTERS": "Filters",
   "SALES_DETAIL": "Sales Detail",
   "SALES_GRAPH": "Sales Graph",
@@ -168,5 +168,6 @@
   "al_soja": "Soy",
   "al_sesamo": "Sesame",
   "al_gluten": "Gluten",
-  "al_vegano": "Vegan"
+  "al_vegano": "Vegan",
+  "Tarjeta de débito o crédito":"Tarjetita"
 }

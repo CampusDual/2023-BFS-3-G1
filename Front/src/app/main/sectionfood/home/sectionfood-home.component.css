@@ -1,5 +1,5 @@
   h2, h4 {
-    margin-left: 5%;
+    margin-left: 6%;
   }
 /* .content{
   margin-top: 40px;
@@ -38,6 +38,15 @@ overflow: hidden !important; */
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     overflow: hidden !important;
+  }
+
+  .carrito{
+    width: 112px;
+    padding-top: 15px;
+    color: rgb(87, 38, 38)
+  }
+  .carro{
+    width: 112px;
   }
     
 
