@@ -169,5 +169,7 @@
   "al_sesamo": "Sesame",
   "al_gluten": "Gluten",
   "al_vegano": "Vegan",
-  "Tarjeta de débito o crédito":"Tarjetita"
+  "Tarjeta de débito o crédito":"Tarjetita",
+  "COST": "Cost",
+  "MARGIN": "Profit Margin"
 }

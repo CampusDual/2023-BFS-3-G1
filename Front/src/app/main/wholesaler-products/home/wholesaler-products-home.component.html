@@ -3,30 +3,38 @@
 
   <div fxFill fxLayout="column" fxLayoutAlign="start">
 
-    <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="wholesalerproduct" keys="id"
-      columns="id;image;{{currentLang}}_name;price;featured" visible-columns="image;{{currentLang}}_name;price;featured"
-      sort-columns="id;{{currentLang}}_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
+    <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="wholesalerproduct" keys="product_id"
+      columns="product_id;product_image;product_{{currentLang}}_name;cost;price;featured" visible-columns="product_image;product_{{currentLang}}_name;cost;price;featured;salemargin"
+      sort-columns="product_id;{{currentLang}}_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
       pageable="no" virtual-scroll="no">
       <!-- imagen -->
-      <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
+      <o-table-column attr="product_image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
         type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
       </o-table-column>
       <!-- nombre -->
-      <o-table-column attr="{{currentLang}}_name" title="NAME" searchable="yes" orderable="yes">
+      <o-table-column attr="product_{{currentLang}}_name" title="NAME" searchable="yes" orderable="yes">
+      </o-table-column>
+      <!-- precio coste -->
+      <o-table-column attr="cost" title="COST" type="currency" currency-symbol="€" currency-symbol-position="right"
+        thousand-separator="." decimal-separator=",">
       </o-table-column>
       <!-- precio -->
       <o-table-column attr="price" title="PRICE" type="currency" currency-symbol="€" currency-symbol-position="right"
         thousand-separator="." decimal-separator=",">
       </o-table-column>
+       <!-- margen -->
+       <o-table-column attr="salemargin" title="MARGIN" type="currency" currency-symbol="%" currency-symbol-position="right"
+       thousand-separator="." decimal-separator=",">
+     </o-table-column>
       <!-- categoria -->
-      <o-table-column attr="{{currentLang}}_name" title="CATEGORY" orderable="no"></o-table-column>
+      <o-table-column attr="category_{{currentLang}}_name" title="CATEGORY" orderable="no"></o-table-column>
       <!-- featured -->
       <o-table-column attr="featured" title="FEATURED" orderable="no" content-align="center">
         <app-featured-column-renderer></app-featured-column-renderer>
       </o-table-column>
 
       <o-table-context-menu></o-table-context-menu>
-      <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+      <o-table-paginator page-size-options="12;24;48"></o-table-paginator>
     </o-table>
 
   </div>

@@ -16,6 +16,7 @@
                                 rows="3" class="form-field"></o-textarea-input>
                             <o-textarea-input attr="{{currentLang}}_description_long" label="LONG_DESCRIPTION" width="100%" rows="6"
                                 class="form-field"></o-textarea-input>
+                                <o-currency-input attr="cost" label="COST" width="95px" required="true"></o-currency-input>            
                             <o-currency-input attr="price" label="PRICE" width="95px" required="true"></o-currency-input>
                             <o-combo attr="category_id" width="300px" label="CATEGORY" query-on-init="no"
                                 query-on-bind="yes" filter="yes" value-column="id" service="categories"
@@ -76,9 +77,8 @@
                 keys="id" keys-sql-types="INTEGER" show-header-navigation="no" service="products" entity="product">
                 <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="product_id:id"
                     columns="saleordersl_id;saledate;product_id;saleordersl_price;qty;total"
-                    visible-columns="saleordersl_id;saledate;qty;saleordersl_price;total" insert-button="no" delete-button="no"
-                    query-rows="24" >
-                    <o-table-column attr="saleordersl_id" title="ID" class="o-table-column-centered"></o-table-column>
+                    visible-columns="saledate;qty;saleordersl_price;total" insert-button="no" delete-button="no"
+                    query-rows="24" >                    
                     <o-table-column attr="saledate" title="SALEDATE" type="date" format="LL"></o-table-column>
                     <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
                     </o-table-column>

@@ -62,6 +62,6 @@ public class ProductService implements IProductService {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
 		userKeyMap.put(ProductDao.ATTR_WHOLESALER,authentication.getName());
-		return this.daoHelper.query(productDao, userKeyMap, attrList);
+		return this.daoHelper.query(productDao, userKeyMap, attrList, productDao.QUERY_VWHOLESALERPRODUCT);
 	}
 }

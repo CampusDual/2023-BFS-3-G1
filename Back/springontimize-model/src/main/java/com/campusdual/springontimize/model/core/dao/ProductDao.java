@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 public class ProductDao extends OntimizeJdbcDaoSupport {
     public static final String QUERY_VPRODUCTCATEGORY = "productcategory";
+    public static final String QUERY_VWHOLESALERPRODUCT = "wholesalerproduct";
+
     public static final String ATTR_ID = "id";
     public static final String ATTR_ES_DESCRIPTION_SHORT = "es_description_short";
     public static final String ATTR_FEATURED = "featured";

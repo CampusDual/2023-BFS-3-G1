@@ -8,3 +8,6 @@ Back/.idea/misc.xml
 Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
 Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
 Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/dao/ProductDao.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/dao/ProductDao.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/ProductService.class

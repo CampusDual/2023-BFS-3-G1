@@ -36,5 +36,28 @@
             ]]>
             </Sentence>
         </Query>
+        <Query id="wholesalerproduct">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
+                <AmbiguousColumn name="category_id" prefix="CA" databaseName="id" />
+                <AmbiguousColumn name="product_image" prefix="PO" databaseName="image" />
+                <AmbiguousColumn name="category_image" prefix="CA" databaseName="image" />
+                <AmbiguousColumn name="product_es_name" prefix="PO" databaseName="es_name" />
+                <AmbiguousColumn name="product_en_name" prefix="PO" databaseName="en_name" />
+                <AmbiguousColumn name="category_es_name" prefix="CA" databaseName="es_name" />
+                <AmbiguousColumn name="category_en_name" prefix="CA" databaseName="en_name" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#, (po.price - po.cost)/po.price*100 as salemargin
+               FROM
+                  ${mainschema}.PRODUCTS AS PO
+                  LEFT JOIN ${mainschema}.CATEGORIES AS CA ON PO.CATEGORY_ID = CA.ID
+               #WHERE#
+               #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
     </Queries>
 </JdbcEntitySetup>

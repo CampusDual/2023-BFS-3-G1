@@ -157,5 +157,7 @@
   "al_soja": "Soja",
   "al_sesamo": "Sésamo",
   "al_gluten": "Gluten",
-  "al_vegano": "Vegano"
+  "al_vegano": "Vegano",
+  "COST": "Coste",
+  "MARGIN": "Margen Bfo."
 }
