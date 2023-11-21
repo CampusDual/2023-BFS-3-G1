@@ -49,14 +49,12 @@ export class ShoppingcartHomeComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.code === 0) {
           const cartItems = resp.data;
-          if (Object.keys(cartItems).length === 0) {
-            this.salesubtotal = 0;
-          } else {
+          
             this.salesubtotal = cartItems.reduce(
               (subtotal, item) => subtotal + item.qty * item.shoppingcart_price,
               0
             );
-          }
+         
 
           this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
           this.saletotal = +(
