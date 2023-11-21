@@ -99,13 +99,15 @@ export class SectionfoodHomeComponent implements OnInit {
   getQtyDefaultValue() {
     return 1;
   }
+
   addToCart(id: number , price: number) {
     console.log(id)
     let product_id = id
     let qty = 1
+    let total = qty * price
     this.ontimizeservice
       .insert(
-        { price: price, product_id: product_id, qty: qty},
+        { price: price, product_id: product_id, qty: qty, total: total },
         "shoppingcart"
       )
       .subscribe((resp) => {
