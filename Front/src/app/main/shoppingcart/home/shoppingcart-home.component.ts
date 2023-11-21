@@ -49,10 +49,15 @@ export class ShoppingcartHomeComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.code === 0) {
           const cartItems = resp.data;
-          this.salesubtotal = cartItems.reduce(
-            (subtotal, item) => subtotal + item.qty * item.shoppingcart_price,
-            0
-          );
+          if (Object.keys(cartItems).length === 0) {
+            this.salesubtotal = 0;
+          } else {
+            this.salesubtotal = cartItems.reduce(
+              (subtotal, item) => subtotal + item.qty * item.shoppingcart_price,
+              0
+            );
+          }
+
           this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
           this.saletotal = +(
             this.salesubtotal +
@@ -74,10 +79,7 @@ export class ShoppingcartHomeComponent implements OnInit {
       this.shoppingcartGrid.dataArray.length < 1
     ) {
       if (this.dialogService) {
-        this.dialogService.warn(
-          "CART_ERROR",
-          "CART_EMPTY"
-        );
+        this.dialogService.warn("CART_ERROR", "CART_EMPTY");
       }
       return;
     }
@@ -139,10 +141,7 @@ export class ShoppingcartHomeComponent implements OnInit {
             icon: "check_circle",
             iconPosition: "left",
           };
-          this.snackBarService.open(
-            "QTY_UPDATED",
-            config
-          );
+          this.snackBarService.open("QTY_UPDATED", config);
           this.shoppingcartGrid.reloadData();
         } else {
           console.error("Error updating item:", resp.message);

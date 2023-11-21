@@ -15,8 +15,7 @@
         row-height="medium"
         delete-button="no"
         insert-button="no"
-        sort-columns="saledate: DESC"
-      >
+        sort-columns="saledate: DESC">
         <o-table-column
           attr="saleordersh_id"
           title="SALEORDERNUMBER"
@@ -66,7 +65,7 @@
                 parent-keys="saleordersh_id:saleordersh_id"
                 keys="saleordersl_id"
                 columns="saleordersl_id;saleordersl_price;qty;total;image;{{currentLang}}_name"
-                visible-columns="saleordersl_price;qty;total;image;{{currentLang}}_name"
+                visible-columns="image;{{currentLang}}_name;qty;saleordersl_price;total;"
                 query-on-init="no"
                 query-rows="10"
                 pageable="no"
