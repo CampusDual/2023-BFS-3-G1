@@ -201,42 +201,36 @@ export class WholesalerStatsHomeComponent implements OnInit {
 
   // carga los datos de la gráfica (vienen del back)
   createChartFilter() {
-    let formValues = this.formFilter.getComponents();
-    this.initialDate = formValues.filterStartDate.getValue();
-    this.endDate = formValues.filterEndDate.getValue();
-this.initialDate = new Date(this.initialDate);
-this.endDate = new Date(this.endDate);
-
-
-    // if (this.initialDate === undefined) {
-    //   this.initialDate = "1900-01-01";
-    // }
-    // if (this.endDate === undefined) {
-    //   this.endDate = new Date().setDate(new Date().getDate() + 1);
-    // } else {
-    //   this.endDate.setDate(this.endDate.getDate()) + 1 ;
-    // }
-    console.log("fecha fin: " + this.endDate);
     let filters: Array<Expression> = [];
+    let kv = {};
+    let formValues = this.formFilter.getComponents();
+    let initialDate = formValues.filterStartDate.getValue();
+    let endDate = formValues.filterEndDate.getValue();
 
-    filters.push(
-      FilterExpressionUtils.buildExpressionMoreEqual(
-        "saledate",
-        this.initialDate
-      )
-    );
-    filters.push(
-      FilterExpressionUtils.buildExpressionLessEqual("saledate", this.endDate)
-    );
-    let kv = {
-      "@basic_expression": filters.reduce((exp1, exp2) =>
-        FilterExpressionUtils.buildComplexExpression(
-          exp1,
-          exp2,
-          FilterExpressionUtils.OP_AND
-        )
-      ),
-    };
+    if (initialDate != undefined) {
+      filters.push(
+        FilterExpressionUtils.buildExpressionMoreEqual("saledate", initialDate)
+      );
+    }
+    if (endDate != undefined) {
+      filters.push(
+        FilterExpressionUtils.buildExpressionLessEqual("saledate", endDate)
+      );
+    }
+    console.log("fecha ini: " + initialDate);
+    console.log("fecha fin: " + endDate);
+
+    if (filters.length > 0) {
+      kv = {
+        "@basic_expression": filters.reduce((exp1, exp2) =>
+          FilterExpressionUtils.buildComplexExpression(
+            exp1,
+            exp2,
+            FilterExpressionUtils.OP_AND
+          )
+        ),
+      };
+    }
     const columns = ["saledate,saletotal"];
     this.ontimizeService
       .query(kv, columns, "wholesalersalesbyday", { saledate: 93 })
