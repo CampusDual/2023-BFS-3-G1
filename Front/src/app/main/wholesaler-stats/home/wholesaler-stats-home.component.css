@@ -197,5 +197,8 @@
     .boton1{
       margin-left: 40%;
     }
+    .nv-series{
+      display: none;
+    }
   }
  
