@@ -4,7 +4,7 @@
   <div fxFill fxLayout="column" fxLayoutAlign="start">
 
     <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="wholesalerproduct" keys="product_id"
-      columns="product_id;product_image;product_{{currentLang}}_name;cost;price;featured" visible-columns="product_image;product_{{currentLang}}_name;cost;price;featured;salemargin"
+      columns="product_id;product_image;product_{{currentLang}}_name;category_{{currentLang}}_name;cost;price;featured" visible-columns="product_image;product_{{currentLang}}_name;cost;price;featured;salemargin"
       sort-columns="product_id;{{currentLang}}_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
       pageable="no" virtual-scroll="no">
       <!-- imagen -->
