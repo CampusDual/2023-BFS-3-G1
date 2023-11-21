@@ -8,7 +8,7 @@
       <mat-tab label="{{ 'SUMMARY' | oTranslate }}">
         <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
           <div fxLayout="row">
-            <o-column title="{{ 'SALES_INFO' | oTranslate }} N" class="account-info-container mat-elevation-z1"
+            <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="50">
               <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear}}</span>
               <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
@@ -18,7 +18,7 @@
                 x-axis="salemonth" y-axis="totalsales"></o-chart>
 
             </o-column>
-            <o-column title="{{ 'SALES_INFO' | oTranslate }} N-1" class="account-info-container mat-elevation-z1"
+            <o-column title="{{ 'SALES_INFO_2' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="50">
               <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear -1}}</span>
               <span class="account-form-value balance">{{ pastTotalsales | oReal: { grouping: true, minDecimalDigits: 2,
@@ -49,11 +49,7 @@
                   read-only="no"></o-date-input>
                 <o-date-input #filterEndDate attr="filterEndDate" style="margin-top: 15px" label="ENDDATE"
                   read-only="no"></o-date-input>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="32px">
-              <div fxFlex="100%" fxFill class="filter_btn" fxLayoutAlign="flex-end flex-end">
-                <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear"
+                <o-button class="boton1" attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear"
                   layout-padding>
                 </o-button>
                 <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="STROKED" label="Filter"

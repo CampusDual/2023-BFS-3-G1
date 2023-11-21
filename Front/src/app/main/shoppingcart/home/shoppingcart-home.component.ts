@@ -56,7 +56,7 @@ export class ShoppingcartHomeComponent implements OnInit {
             );
          
 
-          this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
+          this.saletaxes = +(this.salesubtotal * 0.10).toFixed(2);
           this.saletotal = +(
             this.salesubtotal +
             this.saletaxes +

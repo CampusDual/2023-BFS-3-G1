@@ -46,7 +46,7 @@
   "SHOPPINGCART": "Shopping Cart",
   "SALEORDER_DATA": "Economic Data",
   "SUBTOTAL": "Subtotal:",
-  "TAXES": "VAT (21%):",
+  "TAXES": "VAT (10%):",
   "TRANSPORT": "Shipment:",
   "QTY": "Quantity",
   "ID": "Id",
@@ -86,7 +86,6 @@
   "SUMMARY": "Summary",
   "SALES_DATA": "Sales Data",
   "PRODUCTS_SALE_DATA": "Products Sale Data",
-  "SALES_INFO": "Sales Information: Year ",
   "FILTERS": "Filters",
   "SALES_DETAIL": "Sales Detail",
   "SALES_GRAPH": "Sales Graph",
@@ -171,5 +170,7 @@
   "al_vegano": "Vegan",
   "Tarjeta de débito o crédito":"Tarjetita",
   "COST": "Cost",
-  "MARGIN": "Profit Margin"
+  "MARGIN": "Profit Margin",
+  "SALES_INFO": "Sales Information: Current Year",
+  "SALES_INFO_2": "Sales Information: Last Year"
 }

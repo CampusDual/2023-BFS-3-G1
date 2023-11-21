@@ -19,7 +19,6 @@
   "FORGOT_PWD": "¿Has olvidado tu contraseña?",
   "FOOTER_CREATED_BY": "Creado por Imatia Innovation",
   "FOOTER_RIGHTS": "Todos los derechos reservados",
-
   "SECURE FOOD": "Alimentación segura",
   "FEATURED": "Destacados",
   "GROUP A": "Creado por el Grupo A.",
@@ -46,7 +45,7 @@
   "SHOPPINGCART": "Carrito",
   "SALEORDER_DATA": "Datos Pedido",
   "SUBTOTAL": "Subtotal:",
-  "TAXES": "IVA (21%):",
+  "TAXES": "IVA (10%):",
   "TRANSPORT": "Transporte:",
   "TOTAL": "Total",
   "QTY": "Cantidad",
@@ -86,7 +85,6 @@
   "SUMMARY": "Resumen",
   "SALES_DATA": "Datos de Ventas",
   "PRODUCTS_SALE_DATA": "Datos de Productos",
-  "SALES_INFO": "Resumen de Ventas Globales : Año",
   "FILTERS": "Filtros",
   "SALES_DETAIL": "Detalle de ventas",
   "SALES_GRAPH": "Gráfica de ventas",
@@ -159,5 +157,7 @@
   "al_gluten": "Gluten",
   "al_vegano": "Vegano",
   "COST": "Coste",
-  "MARGIN": "Margen Bfo."
+  "MARGIN": "Margen Bfo.",
+  "SALES_INFO": "Resumen de Ventas Globales : Año actual",
+  "SALES_INFO_2": "Resumen de Ventas Globales : Año anterior"
 }

@@ -187,7 +187,7 @@ export class SalesPayComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.code === 0) {
           this.salesubtotal = resp.data[0]["saleordertotal"];
-          this.saletaxes = +(this.salesubtotal * 0.21).toFixed(2);
+          this.saletaxes = +(this.salesubtotal * 0.10).toFixed(2);
           this.saletotal = +(
             this.salesubtotal +
             this.saletaxes +
