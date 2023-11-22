@@ -73,8 +73,8 @@
 
               <o-table #sales fxFlex attr="wholesaler" title="SALES" service="wholesalers"
                 entity="wholesalersalesdetail" keys="sale_id"
-                columns="sale_id;product_id;saledate;image;es_name;qty;sale_price;total"
-                visible-columns="saledate;image;es_name;qty;sale_price;total" sort-columns="saledate"
+                columns="sale_id;product_id;saledate;image;{{ currentLang }}_name;qty;sale_price;total"
+                visible-columns="saledate;image;{{ currentLang }}_name;qty;sale_price;total" sort-columns="saledate"
                 insert-button="false" delete-button="false" query-rows="8" quick-filter="no" row-height="medium"
                 select-all-checkbox="true" pageable="no" virtual-scroll="no"
                 (onDataLoaded)="onSaleDataDataLoaded($event)">
@@ -83,7 +83,7 @@
                   type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
                 </o-table-column>
                 <!-- nombre -->
-                <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
+                <o-table-column attr="{{ currentLang }}_name" title="NAME" searchable="yes" orderable="yes">
                 </o-table-column>
                 <!-- cantidad -->
                 <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
@@ -118,8 +118,8 @@
       <!-- tab con el abc de productos -->
       <mat-tab label="{{ 'PRODUCTS_SALE_DATA' | oTranslate }}">
         <o-table fxFlex attr="product" title="PRODUCTS" service="wholesalers" entity="wholesalerbestsellers"
-          keys="sale_id" columns="product_id;image;es_name;totalqty;salestotal"
-          visible-columns="image;es_name;totalqty;salestotal" sort-columns="totalqty desc" query-rows="24"
+          keys="sale_id" columns="product_id;image;{{ currentLang }}_name;totalqty;salestotal"
+          visible-columns="image;{{ currentLang }}_name;totalqty;salestotal" sort-columns="totalqty desc" query-rows="24"
           quick-filter="yes" row-height="medium" select-all-checkbox="no" pageable="no" virtual-scroll="no"
           detail-mode="no" edition-mode="no" insert-button="false" delete-button="false">
 
@@ -128,7 +128,7 @@
             type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
           </o-table-column>
           <!-- nombre -->
-          <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
+          <o-table-column attr="{{ currentLang }}_name" title="{{ 'NAME' | oTranslate }}" searchable="yes" orderable="yes">
           </o-table-column>
           <!-- cantidad vendida -->
           <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" type="number" searchable="yes"

@@ -133,6 +133,8 @@
   "SUCC_PAY": "The payment has been made correctly.",
   "ACCEPT": "Accept",
   "en_name": "Name",
+  "en_surname": "Surname",
+  "es_name":"Name",
   "price": "Price",
   "es": "Spanish",
   "EN": "ENG",
