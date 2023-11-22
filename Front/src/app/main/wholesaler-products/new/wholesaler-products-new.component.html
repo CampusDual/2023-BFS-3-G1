@@ -4,22 +4,42 @@
     <o-row attr="row1" layout-align="start stretch">
         <!-- datos basicos del nuevo producto -->
         <o-column title="MAIN_DATA" layout-align="start stretch" fxFlex="60" layout-padding>
+            <div>{{ 'ENGLISH_PRODUCT_DATA' | oTranslate }}</div>
             <div fxLayout="row" fxLayoutAlign="start center">
                 <!-- nombre en español -->
-                <o-text-input attr="{{currentLang}}_name" label="NAME" class="margin-right-24" fxFlex.lg="80" fxFlex.xl="80"
+                <o-text-input attr="en_name" label="Name" class="margin-right-24" fxFlex.lg="80" fxFlex.xl="80"
                     fxFlex="100" max-length="100" required="yes"></o-text-input>
                 <div fxFlex></div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center">
-                <o-textarea-input attr="{{currentLang}}_description_short" label="SHORT_DESCRIPTION" width="100%" rows="3"
+                <o-textarea-input attr="en_description_short" label="Short description" width="100%" rows="3"
                     class="form-field"></o-textarea-input>
                 <div fxFlex></div>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center">
-                <o-textarea-input attr="{{currentLang}}_description_long" label="LONG_DESCRIPTION" width="100%" rows="6"
+                <o-textarea-input attr="en_description_long" label="Long description" width="100%" rows="6"
                     class="form-field"></o-textarea-input>
                 <div fxFlex></div>
             </div>
+            <br>
+            <div>{{ 'SPANISH_PRODUCT_DATA' | oTranslate }}</div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <!-- nombre en español -->
+                <o-text-input attr="es_name" label="Nombre" class="margin-right-24" fxFlex.lg="80" fxFlex.xl="80"
+                    fxFlex="100" max-length="100" required="yes"></o-text-input>
+                <div fxFlex></div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <o-textarea-input attr="es_description_short" label="Descripción corta" width="100%" rows="3"
+                    class="form-field"></o-textarea-input>
+                <div fxFlex></div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <o-textarea-input attr="es_description_long" label="Descripción larga" width="100%" rows="6"
+                    class="form-field"></o-textarea-input>
+                <div fxFlex></div>
+            </div>
+            <br>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
                 <!-- nombre en español -->
                 <o-combo attr="country_id" label="COUNTRY" query-on-init="no" query-on-bind="yes" filter="yes"
@@ -30,8 +50,8 @@
                     value-column="id" service="categories" entity="category" keys="id" columns="id;{{currentLang}}_name"
                     visible-columns="{{currentLang}}_name" class="form-field" required="true">
                 </o-combo>
-                <o-currency-input attr="cost" label="COST"></o-currency-input>            
-                <o-currency-input attr="price" label="PRICE"></o-currency-input>
+                <o-currency-input attr="cost" label="COST" required="yes"></o-currency-input>            
+                <o-currency-input attr="price" label="PRICE" required="yes"></o-currency-input>
                 <div fxFlex></div>
             </div>
         </o-column>
