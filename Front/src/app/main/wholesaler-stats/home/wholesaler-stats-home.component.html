@@ -75,7 +75,7 @@
                 entity="wholesalersalesdetail" keys="sale_id"
                 columns="sale_id;product_id;saledate;image;{{ currentLang }}_name;qty;sale_price;total"
                 visible-columns="saledate;image;{{ currentLang }}_name;qty;sale_price;total" sort-columns="saledate"
-                insert-button="false" delete-button="false" query-rows="8" quick-filter="no" row-height="medium"
+                insert-button="false" delete-button="false" query-rows="20" quick-filter="no" row-height="medium"
                 select-all-checkbox="true" pageable="no" virtual-scroll="no"
                 (onDataLoaded)="onSaleDataDataLoaded($event)">
                 <o-table-column attr="saledate" title="SALEDATE" type="date" format="LL"></o-table-column>
@@ -121,7 +121,7 @@
           keys="sale_id" columns="product_id;image;{{ currentLang }}_name;totalqty;salestotal"
           visible-columns="image;{{ currentLang }}_name;totalqty;salestotal" sort-columns="totalqty desc" query-rows="24"
           quick-filter="yes" row-height="medium" select-all-checkbox="no" pageable="no" virtual-scroll="no"
-          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false">
+          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false" query-rows="20">
 
           <!-- imagen -->
           <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
