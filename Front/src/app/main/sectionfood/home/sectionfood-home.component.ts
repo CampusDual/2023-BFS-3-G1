@@ -38,9 +38,7 @@ export class SectionfoodHomeComponent implements OnInit {
     protected router: Router,
     private translateService: OTranslateService
   ) {this.currentLang = this.translateService.getCurrentLang();
-    this.ontimizeservice.configureService(
-      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
-    );}
+    }
 
   ngOnInit() {
     console.log("lenguaje: "+ this.currentLang)
@@ -101,13 +99,16 @@ export class SectionfoodHomeComponent implements OnInit {
   }
 
   addToCart(id: number , price: number) {
+    this.ontimizeservice.configureService(
+      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+    );
     console.log(id)
     let product_id = id
     let qty = 1
     let total = qty * price
     this.ontimizeservice
       .insert(
-        { price: price, product_id: product_id, qty: qty, total: total },
+        { price : price , product_id: product_id, qty: qty, total: total },
         "shoppingcart"
       )
       .subscribe((resp) => {

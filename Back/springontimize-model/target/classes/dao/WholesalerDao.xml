@@ -63,7 +63,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  pr.id AS product_id , es_name , SUM(qty) AS totalqty, SUM(total) AS salestotal, image, (sa.qty * sa.price) - (sa.qty * pr.cost) AS profit
+                  pr.id AS product_id , es_name , en_name, SUM(qty) AS totalqty, SUM(total) AS salestotal, image, (sa.qty * sa.price) - (sa.qty * pr.cost) AS profit
                FROM
                   ${mainschema}.saleordersl AS sa
                   INNER JOIN ${mainschema}.PRODUCTS AS pr ON pr.id = sa.product_id

@@ -29,7 +29,7 @@ public class ShoppingCartService implements IShoppingCartService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Map<String, Object> userKeyMap = new HashMap<>((Map<String, Object>) keyMap);
         userKeyMap.put(ShoppingCartDao.ATTR_USER_, authentication.getName());
-        return this.daoHelper.query(this.shoppingCartDao, userKeyMap,attrList);
+        return this.daoHelper.query(this.shoppingCartDao, userKeyMap,attrList,ShoppingCartDao.QUERY_VRELATED);
     }
 
     @Override
@@ -58,7 +58,8 @@ public class ShoppingCartService implements IShoppingCartService {
         atributes.put(ShoppingCartDao.ATTR_QTY,nProducts + (Integer.parseInt(attrMap.get(ShoppingCartDao.ATTR_QTY).toString())) ); // Hago la actualización del carrito
         Integer qty = Integer.parseInt(attrMap.get(ShoppingCartDao.ATTR_QTY).toString());
         Double price = Double.parseDouble(attrMap.get(ShoppingCartDao.ATTR_PRICE).toString());
-        atributes.put(ShoppingCartDao.ATTR_TOTAL, qty * price);
+        Double total = (nProducts + qty) * price;
+        atributes.put(ShoppingCartDao.ATTR_TOTAL, total );
         return this.daoHelper.update(shoppingCartDao, atributes , updateKeys);
     }
 

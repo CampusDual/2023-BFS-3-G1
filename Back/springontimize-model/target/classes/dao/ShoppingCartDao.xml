@@ -14,7 +14,7 @@
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
     <Queries>
-        <Query id="default">
+        <Query id="related">
             <AmbiguousColumns>
                 <AmbiguousColumn name="id" prefix="SC" databaseName="id" />
                 <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
@@ -42,6 +42,17 @@
                  ${mainschema}.PRODUCTS AS PO
                  ON
                  SC.PRODUCT_ID = PO.ID
+               #WHERE#
+            ]]>
+            </Sentence>
+        </Query>
+        <Query id="default">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.SHOPPINGCART AS SC
                #WHERE#
             ]]>
             </Sentence>

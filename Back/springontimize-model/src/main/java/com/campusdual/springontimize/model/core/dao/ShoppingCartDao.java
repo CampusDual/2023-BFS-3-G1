@@ -15,7 +15,8 @@ public class ShoppingCartDao extends OntimizeJdbcDaoSupport {
     public static final String ATTR_USER_ = "user_";
     public static final String ATTR_PRODUCT_ID = "product_id";
     public static final String ATTR_QTY = "qty";
-    public static final String ATTR_PRICE = "shoppingcart_price";
+    public static final String ATTR_PRICE = "price";
     public static final String ATTR_TOTAL = "total";
+    public static final String QUERY_VRELATED = "related";
 
 }
