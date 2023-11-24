@@ -38,6 +38,7 @@ public class ShoppingCartService implements IShoppingCartService {
         fields.add(ShoppingCartDao.ATTR_QTY);
         fields.add(ShoppingCartDao.ATTR_PRODUCT_ID);
         fields.add(ShoppingCartDao.ATTR_ID);
+        fields.add(ShoppingCartDao.ATTR_PRICE);
         Map<String, Object> filter = new HashMap<>(); //filtro que voy a realizar para la consulta para saber si ya existe en el carrito el producto
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         filter.put(ShoppingCartDao.ATTR_USER_,authentication.getName());
@@ -55,6 +56,9 @@ public class ShoppingCartService implements IShoppingCartService {
         updateKeys.put(ShoppingCartDao.ATTR_ID,existQuery.getRecordValues(0).get(ShoppingCartDao.ATTR_ID) ); //Creo un filtro para realizar una actualización a partir del id del carrito
         Map<String, Object> atributes = new HashMap<>();
         atributes.put(ShoppingCartDao.ATTR_QTY,nProducts + (Integer.parseInt(attrMap.get(ShoppingCartDao.ATTR_QTY).toString())) ); // Hago la actualización del carrito
+        Integer qty = Integer.parseInt(attrMap.get(ShoppingCartDao.ATTR_QTY).toString());
+        Double price = Double.parseDouble(attrMap.get(ShoppingCartDao.ATTR_PRICE).toString());
+        atributes.put(ShoppingCartDao.ATTR_TOTAL, qty * price);
         return this.daoHelper.update(shoppingCartDao, atributes , updateKeys);
     }
 
