@@ -13,6 +13,18 @@
     </UpdateKeys>
     <GeneratedKey>id</GeneratedKey>
     <Queries>
+        <Query id="default">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.PRODUCTS AS PO
+               #WHERE#
+               #ORDER#
+            ]]>
+            </Sentence>
+        </Query>
         <Query id="productcategory">
             <AmbiguousColumns>
                 <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
