@@ -77,7 +77,7 @@
                 keys="id" keys-sql-types="INTEGER" show-header-navigation="no" service="products" entity="product">
                 <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="product_id:id"
                     columns="saleordersl_id;saledate;product_id;saleordersl_price;qty;total"
-                    visible-columns="saledate;qty;saleordersl_price;total" insert-button="no" delete-button="no"
+                    visible-columns="saledate;qty;saleordersl_price;total;profit" insert-button="no" delete-button="no"
                     query-rows="24" >                    
                     <o-table-column attr="saledate" title="SALEDATE" type="date" format="LL"></o-table-column>
                     <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
@@ -88,7 +88,11 @@
                     <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
                         currency-symbol-position="right" thousand-separator="." decimal-separator=",">
                     </o-table-column>
+                    <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+                    currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+                </o-table-column>
                     <o-table-column-aggregate attr="total" title="TOTAL"></o-table-column-aggregate>
+                    <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
                 </o-table>
             </o-form>
         </mat-tab>

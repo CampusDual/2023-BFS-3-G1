@@ -43,7 +43,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  #COLUMNS#
+                  #COLUMNS#, (sa.qty * sa.price) - (sa.qty * pr.cost) AS profit
                FROM
                   ${mainschema}.saleordersl AS SA
                   INNER JOIN ${mainschema}.TUSER AS US ON US.USER_ = SA.USER_
@@ -63,12 +63,12 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  PR.id AS product_id , es_name , SUM(QTY) AS totalqty, SUM(TOTAL) AS salestotal, image
+                  pr.id AS product_id , es_name , SUM(qty) AS totalqty, SUM(total) AS salestotal, image, (sa.qty * sa.price) - (sa.qty * pr.cost) AS profit
                FROM
-                  ${mainschema}.saleordersl AS SA
-                  INNER JOIN ${mainschema}.PRODUCTS AS PR ON PR.ID = SA.PRODUCT_ID
+                  ${mainschema}.saleordersl AS sa
+                  INNER JOIN ${mainschema}.PRODUCTS AS pr ON pr.id = sa.product_id
                #WHERE#
-               GROUP BY PR.ID
+               GROUP BY PR.ID,sa.qty,sa.price,pr.cost
                ORDER BY SUM(QTY) DESC
             ]]>
             </Sentence>

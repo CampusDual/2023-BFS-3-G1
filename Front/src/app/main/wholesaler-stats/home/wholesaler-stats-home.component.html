@@ -74,8 +74,8 @@
               <o-table #sales fxFlex attr="wholesaler" title="SALES" service="wholesalers"
                 entity="wholesalersalesdetail" keys="sale_id"
                 columns="sale_id;product_id;saledate;image;{{ currentLang }}_name;qty;sale_price;total"
-                visible-columns="saledate;image;{{ currentLang }}_name;qty;sale_price;total" sort-columns="saledate"
-                insert-button="false" delete-button="false" query-rows="20" quick-filter="no" row-height="medium"
+                visible-columns="saledate;image;{{ currentLang }}_name;qty;sale_price;total;profit" sort-columns="saledate"
+                insert-button="false" delete-button="false" query-rows="10" quick-filter="no" row-height="medium"
                 select-all-checkbox="true" pageable="no" virtual-scroll="no"
                 (onDataLoaded)="onSaleDataDataLoaded($event)">
                 <o-table-column attr="saledate" title="SALEDATE" type="date" format="LL"></o-table-column>
@@ -96,9 +96,12 @@
                 <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
                   currency-symbol-position="right" thousand-separator="." decimal-separator=",">
                 </o-table-column>
+                <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+                currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
                 <!-- sumatorio del total -->
                 <o-table-column-aggregate attr="total" title="TOTAL"></o-table-column-aggregate>
-
+                <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
                 <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
               </o-table>
 
@@ -119,9 +122,9 @@
       <mat-tab label="{{ 'PRODUCTS_SALE_DATA' | oTranslate }}">
         <o-table fxFlex attr="product" title="PRODUCTS" service="wholesalers" entity="wholesalerbestsellers"
           keys="sale_id" columns="product_id;image;{{ currentLang }}_name;totalqty;salestotal"
-          visible-columns="image;{{ currentLang }}_name;totalqty;salestotal" sort-columns="totalqty desc" query-rows="24"
+          visible-columns="image;{{ currentLang }}_name;totalqty;salestotal;profit" sort-columns="totalqty desc" query-rows="24"
           quick-filter="yes" row-height="medium" select-all-checkbox="no" pageable="no" virtual-scroll="no"
-          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false" query-rows="20">
+          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false" query-rows="12">
 
           <!-- imagen -->
           <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
@@ -138,8 +141,14 @@
           <o-table-column attr="salestotal" title="TOTAL" type="currency" currency-symbol="€"
             currency-symbol-position="right" thousand-separator="." decimal-separator=",">
           </o-table-column>
+          <!-- beneficio -->
+          <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+            currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+          </o-table-column>
           <o-table-context-menu></o-table-context-menu>
-          <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+          <o-table-column-aggregate attr="salestotal" title="TOTAL"></o-table-column-aggregate>
+          <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
+          <o-table-paginator page-size-options="12;24;96"></o-table-paginator>
         </o-table>
       </mat-tab>
 

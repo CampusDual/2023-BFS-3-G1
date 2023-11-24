@@ -24,7 +24,7 @@
             <Sentence>
                 <![CDATA[
                SELECT
-                  #COLUMNS#
+                  #COLUMNS#, ((sa.qty * sa.price) - (sa.qty * po.cost)) AS profit
                FROM
                   ${mainschema}.saleordersl AS sa
                   INNER JOIN ${mainschema}.products AS po ON po.id = sa.product_id
