@@ -1,12 +1,13 @@
-<o-form-layout-manager mode="tab" title="PRODUCTS" label-columns="{{currentLang}}_name" attr="o-form-layout-product-home"
-  title-data-origin="products_form_edit">
+<o-form-layout-manager mode="tab" title="PRODUCTS" label-columns="{{currentLang}}_name"
+  attr="o-form-layout-product-home" title-data-origin="products_form_edit">
 
   <div fxFill fxLayout="column" fxLayoutAlign="start">
 
     <o-table fxFlex attr="product" title="PRODUCTS" service="products" entity="wholesalerproduct" keys="product_id"
-      columns="product_id;product_image;product_{{currentLang}}_name;category_{{currentLang}}_name;cost;price;featured" visible-columns="product_image;product_{{currentLang}}_name;cost;price;featured;salemargin"
-      sort-columns="product_id;{{currentLang}}_name" query-rows="24" quick-filter="yes" row-height="medium" select-all-checkbox="true"
-      pageable="no" virtual-scroll="no">
+      columns="product_id;product_image;product_{{currentLang}}_name;category_{{currentLang}}_name;cost;price;featured"
+      visible-columns="product_image;product_{{currentLang}}_name;cost;price;featured;salemargin"
+      sort-columns="product_id;{{currentLang}}_name" query-rows="24" quick-filter="yes" row-height="medium"
+      select-all-checkbox="true" pageable="no" virtual-scroll="no">
       <!-- imagen -->
       <o-table-column attr="product_image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
         type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
@@ -22,10 +23,10 @@
       <o-table-column attr="price" title="PRICE" type="currency" currency-symbol="€" currency-symbol-position="right"
         thousand-separator="." decimal-separator=",">
       </o-table-column>
-       <!-- margen -->
-       <o-table-column attr="salemargin" title="MARGIN" type="currency" currency-symbol="%" currency-symbol-position="right"
-       thousand-separator="." decimal-separator=",">
-     </o-table-column>
+      <!-- margen -->
+      <o-table-column attr="salemargin" title="MARGIN" type="currency" currency-symbol="%"
+        currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+      </o-table-column>
       <!-- categoria -->
       <o-table-column attr="category_{{currentLang}}_name" title="CATEGORY" orderable="no"></o-table-column>
       <!-- featured -->
