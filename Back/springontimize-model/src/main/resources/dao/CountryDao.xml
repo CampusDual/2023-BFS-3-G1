@@ -19,9 +19,9 @@
                SELECT
                   #COLUMNS#
                FROM
-                  ${mainschema}.COUNTRIES AS CO
+                  ${mainschema}.countries AS co
                #WHERE#
-               ORDER BY EN_NAME
+               ORDER BY en_name
             ]]>
             </Sentence>
         </Query>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OTranslateService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'app-wholesaler-products-new',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WholesalerProductsNewComponent implements OnInit {
 
-  constructor() { }
+  public currentLang: string;
+
+  constructor(private translateService: OTranslateService,) {this.currentLang = this.translateService.getCurrentLang(); }
 
   ngOnInit() {
   }

@@ -18,6 +18,13 @@ import { CONFIG } from './app.config';
 import { D3LocaleService } from './shared/d3-locale/d3Locale.service';
 import { StyleManager } from './shared/style-manager/style-manager';
 import { ThemeService } from './shared/theme.service';
+import { FormsModule } from '@angular/forms';
+
+declare global {
+  interface Window {
+    paypal: any;
+  }
+}
 
 // Defining custom providers (if needed)...
 export const customProviders: any = [
@@ -37,6 +44,7 @@ export const customProviders: any = [
     OntimizeWebModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

@@ -4,7 +4,7 @@
 .allergens{
     margin-left: 4%;
 }
-.buttom{
+.button{
     margin-left: 4%;
     margin-top: 2%;
 }
@@ -14,13 +14,11 @@
 .max-height{
     margin-top: 8%;
 }
-o-combo{
-display: inline-block;
-}
 .container{
     background-color: #d4d1c4;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 97%;
 }
 .footer-container{
     background-color: #6c7b69; 
@@ -29,3 +27,13 @@ display: inline-block;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+input{
+    background-color: #e1e1d4; 
+}
+
+o-button{
+    background-color: #e3e6e8;
+    color: #9f093c;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+

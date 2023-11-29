@@ -2,3 +2,12 @@ Front/node_modules/**
 Back/springontimize-api/target/springontimize-api-1.0.0-SNAPSHOT-sources.jar
 Back/springontimize-api/target/springontimize-api-1.0.0-SNAPSHOT.jar
 Front/package-lock.json
+Back/springontimize-ws/target/springontimize-ws-1.0.0-SNAPSHOT-sources.jar
+*.jar
+Back/.idea/misc.xml
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/WholesalerService.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/dao/ProductDao.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/dao/ProductDao.class
+Back/springontimize-model/target/classes/com/campusdual/springontimize/model/core/service/ProductService.class

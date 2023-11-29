@@ -486,7 +486,7 @@ o-row.o-row.bg-level-1 {
 
 .o-column > .o-container .o-container-scroll.o-container-gap,
 .o-row > .o-container .o-container-scroll.o-container-gap {
-  padding: 10px 6px 6px; }
+  padding: 10px 10px 10px; }
 
 .o-column.o-appearance-outline > .o-container .o-container-scroll.o-container-gap,
 .o-row.o-appearance-outline > .o-container .o-container-scroll.o-container-gap {
@@ -2643,15 +2643,17 @@ textarea {
   width: 8px;
   height: 8px;
   background-color: transparent;
-  opacity: 1.0; }
+  opacity: 1.0;
+  }
 
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  border-radius: 0;
-  background-color: #8ca386; }
+  border-radius: 10px;
+  background-color: #8ca386;
+ }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0;
+  border-radius: 10px;
   -webkit-box-shadow: none;
   background-color: #60735b;
   opacity: 1.0; }
@@ -2880,8 +2882,8 @@ o-data-toolbar.o-table-toolbar .buttons button {
   background-color: #ffffff; }
   .o-button button.mat-stroked-button:not([disabled]).mat-accent:hover,
   .o-button button.mat-stroked-button:not([disabled]).mat-accent .mat-button-focus-overlay {
-    color: #2943a9;
-    background-color: #c5cfec; }
+    color: #7d062e; /*Cor de texto do hover do botón pasar a pedido(no carrito)*/
+    background-color: #D2CDBB; } /*Cor de fondo do hover do botón pasar a pedido(no carrito)*/
 
 .o-form .o-form-toolbar button.mat-stroked-button,
 .ontimize-table.o-table .o-table-container .o-table-toolbar .buttons .o-table-button button.mat-stroked-button {
@@ -3757,3 +3759,9 @@ app-about .mat-divider {
 /*
 * Other app styles
 */
+
+.mat-table{
+  background-color:#e1dfd4;
+}
+
+

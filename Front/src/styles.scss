@@ -41,3 +41,15 @@ span.header-title-container{
 td.o-column-currency>div{
   margin-right: 65px;
 }
+
+.o-app-sidenav-container::-webkit-scrollbar {
+  display: none !important;
+}
+.o-app-sidenav > mat-sidenav-container::-webkit-scrollbar {
+  display: none !important;
+}
+
+
+
+
+

@@ -46,9 +46,10 @@ body {
   
   .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px;
+    border-radius:10px;
   }
   
   .logo-container {
@@ -96,9 +97,11 @@ body {
   }
   
   .footer-container {
-    background-color: #A6D785;
+    background-color: #6c7b69; 
+    text-align: center; 
+    padding: 10px;
+    border-radius: 10px;
   }
-  
   .footer-text {
     color: #D2CDBB;
   }

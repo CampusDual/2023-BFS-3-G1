@@ -5,6 +5,12 @@ import {
   Expression,
   FilterExpressionUtils,
   OFilterBuilderComponent,
+  OFormComponent,
+  OIntegerInputComponent,
+  OSnackBarConfig,
+  OTranslateService,
+  OntimizeService,
+  SnackBarService,
 } from "ontimize-web-ngx";
 import { SectionfoodDetailComponent } from "../detail/sectionfood-detail.component";
 import { Router } from "@angular/router";
@@ -18,14 +24,25 @@ import { Router } from "@angular/router";
 export class SectionfoodHomeComponent implements OnInit {
   @ViewChild("filterBuilder", { static: true })
   filterBuilder: OFilterBuilderComponent;
+  @ViewChild("oForm", { static: false })
+  private oForm: OFormComponent;
+  @ViewChild("qty", { static: false })
+  private oQty: OIntegerInputComponent;
+  public currentLang: string;
 
   constructor(
     protected dialog: MatDialog,
+    private ontimizeservice: OntimizeService,
+    protected snackBarService: SnackBarService,
     protected sanitizer: DomSanitizer,
-    protected router: Router
-  ) {}
+    protected router: Router,
+    private translateService: OTranslateService
+  ) {this.currentLang = this.translateService.getCurrentLang();
+    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("lenguaje: "+ this.currentLang)
+  }
 
   // creamos el filtro por el que se va a hacer la búsqueda
   public createFilter(values: Array<{ attr: string; value: any }>): Expression {
@@ -76,5 +93,33 @@ export class SectionfoodHomeComponent implements OnInit {
   public gotoProducts(listId: number) {
     this.router.navigate(["/main/sectionfood/" + listId + "?isdetail=true"]);
     return false;
+  }
+  getQtyDefaultValue() {
+    return 1;
+  }
+
+  addToCart(id: number , price: number) {
+    this.ontimizeservice.configureService(
+      this.ontimizeservice.getDefaultServiceConfiguration("shoppingcart")
+    );
+    console.log(id)
+    let product_id = id
+    let qty = 1
+    let total = qty * price
+    this.ontimizeservice
+      .insert(
+        { price : price , product_id: product_id, qty: qty, total: total },
+        "shoppingcart"
+      )
+      .subscribe((resp) => {
+        if (resp.code === 0) {
+          const config: OSnackBarConfig = {
+            milliseconds: 5000,
+            icon: "shopping_cart",
+            iconPosition: "left",
+          };
+          this.snackBarService.open("PRODUCT_ADDED_TO_CART", config);
+        }
+      });
   }
 }

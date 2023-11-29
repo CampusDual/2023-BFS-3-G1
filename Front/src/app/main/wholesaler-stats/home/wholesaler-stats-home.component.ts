@@ -3,13 +3,18 @@ import {
   Expression,
   FilterExpressionUtils,
   OFilterBuilderComponent,
+  OFormComponent,
   OntimizeService,
   OTableComponent,
   OTranslateService,
 } from "ontimize-web-ngx";
 import {
   ChartSeries,
+  DataAdapterUtils,
+  DiscreteBarChartConfiguration,
+  LineChartConfiguration,
   LinePlusBarFocusChartConfiguration,
+  OChartComponent,
   PieChartConfiguration,
 } from "ontimize-web-ngx-charts";
 import { D3LocaleService } from "../../../shared/d3-locale/d3Locale.service";
@@ -27,16 +32,26 @@ export class WholesalerStatsHomeComponent implements OnInit {
   filterBuilder: OFilterBuilderComponent;
   @ViewChild("sales", { static: true })
   sales: OTableComponent;
+  @ViewChild("discretebar", { static: true })
+  discretebar: OChartComponent;
+  @ViewChild("formFilter", { static: true })
+  formFilter: OFormComponent;
 
+  public chartParameters = new LineChartConfiguration();
   public formLabel: string;
   public id: string;
   public totalsales: number = 0;
+  public pastTotalsales: number = 0;
   public first_sale_date: Date;
   public last_sale_date: Date;
   public lineData: ChartSeries[];
   public balanceChartParams: LinePlusBarFocusChartConfiguration;
-
+  public currentYear;
   public movementTypesChartParams: PieChartConfiguration;
+  public globalFilter;
+  public initialDate;
+  public endDate;
+  public currentLang: string;
 
   constructor(
     private ontimizeService: OntimizeService,
@@ -45,47 +60,112 @@ export class WholesalerStatsHomeComponent implements OnInit {
     //private reportStoreService: OReportStoreService,
     private themeService: ThemeService
   ) {
+    this.currentLang = this.translateService.getCurrentLang();
     const d3Locale = this.d3LocaleService.getD3LocaleConfiguration();
     //this._configurePieChart(d3Locale);
   }
 
   ngOnInit() {
+    this.filterCurrentYear();
+  }
+
+  // se ejecuta al hacer clic en el botón del filtro en el tab de ventas
+  public onSaleDataDataLoaded(data: any): void {
+    //this.processLineData();
+    this.createChartFilter();
+  }
+
+  // *********** TAB DE RESUMEN ****************
+  // creamos el filtro por el que se va a hacer la búsqueda en la tabla de datos de ventas
+  filterCurrentYear() {
+    let filtersCurrent: Array<Expression> = [];
+    let filtersPrevious: Array<Expression> = [];
+    let currentDate = new Date();
+    this.currentYear = currentDate.getFullYear();
+    let startOfCurrentYear = new Date(this.currentYear, 0, 2);
+    let startOfLastYear = new Date(currentDate);
+    startOfLastYear.setFullYear(this.currentYear - 1);
+    startOfLastYear.setMonth(0);
+    startOfLastYear.setDate(2);
+
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    let pastCurrentDate = new Date(currentDate);
+    pastCurrentDate.setFullYear(currentDate.getFullYear() - 1);
+
+    let startOfYearISO = startOfCurrentYear.toISOString().split("T")[0];
+    let nextDayISO = currentDate.toISOString().split("T")[0];
+
+    let startOfLastYearISO = startOfLastYear.toISOString().split("T")[0];
+    let pastNextDayISO = pastCurrentDate.toISOString().split("T")[0];
+
+    filtersCurrent.push(
+      FilterExpressionUtils.buildExpressionMoreEqual("saledate", startOfYearISO)
+    );
+    filtersCurrent.push(
+      FilterExpressionUtils.buildExpressionLessEqual("saledate", nextDayISO)
+    );
+
+    filtersPrevious.push(
+      FilterExpressionUtils.buildExpressionMoreEqual(
+        "saledate",
+        startOfLastYearISO
+      )
+    );
+    filtersPrevious.push(
+      FilterExpressionUtils.buildExpressionLessEqual("saledate", pastNextDayISO)
+    );
+
     this.ontimizeService.configureService(
       this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
     );
+    let kv = {
+      "@basic_expression": filtersCurrent.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      ),
+    };
     const columns = ["totalsales"];
     this.ontimizeService
-      .query(void 0, columns, "wholesalerbalance")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          this.totalsales = resp.data[0]["totalsales"];
+      .query(kv, columns, "wholesalerbalance", { saledate: 93 })
+      .subscribe((result) => {
+        if (result.data && result.data.length) {
+          this.totalsales = result.data[0]["totalsales"];
         } else {
-          console.error(resp);
+          console.log("Fallo recogiendo info.");
         }
       });
-    this.getFirstLastMovement();
-  }
-
-  private getFirstLastMovement() {
-    const columns = ["saledate"];
+    let kvPreviousYear = {
+      "@basic_expression": filtersPrevious.reduce((exp1, exp2) =>
+        FilterExpressionUtils.buildComplexExpression(
+          exp1,
+          exp2,
+          FilterExpressionUtils.OP_AND
+        )
+      ),
+    };
     this.ontimizeService
-      .query(void 0, columns, "wholesalersalesdetail")
-      .subscribe((resp) => {
-        if (resp.code === 0) {
-          this.last_sale_date = resp.data[resp.data.length - 1].saledate;
-          this.first_sale_date = resp.data[0].saledate;
+      .query(kvPreviousYear, columns, "wholesalerbalance", { saledate: 93 })
+      .subscribe((result) => {
+        if (result.data && result.data.length) {
+          this.pastTotalsales = result.data[0]["totalsales"];
         } else {
-          console.error(resp);
+          console.log("Fallo recogiendo info para el año anterior.");
         }
       });
   }
+  // *********** FIN TAB DE RESUMEN ****************
 
-  // creamos el filtro por el que se va a hacer la búsqueda
+  // *********** TAB DE VENTAS ****************
+  // crea el filtro para la tabla
   createFilter(values: Array<{ attr; value }>): Expression {
     let filters: Array<Expression> = [];
     values.forEach((fil) => {
       if (fil.value) {
-        if (fil.attr === "saledate_start") {
+        if (fil.attr === "saledate_start") {         
           filters.push(
             FilterExpressionUtils.buildExpressionMoreEqual(
               "saledate",
@@ -94,87 +174,88 @@ export class WholesalerStatsHomeComponent implements OnInit {
           );
         }
         if (fil.attr === "saledate_end") {
+
           filters.push(
             FilterExpressionUtils.buildExpressionLessEqual(
               "saledate",
-              fil.value
+              fil.value + (60*60*23*1000) + ((59*60*1000) + (59*1000))
             )
           );
         }
       }
     });
-
     if (filters.length > 0) {
-      return filters.reduce((exp1, exp2) =>
+      this.globalFilter = filters.reduce((exp1, exp2) =>
         FilterExpressionUtils.buildComplexExpression(
           exp1,
           exp2,
           FilterExpressionUtils.OP_AND
         )
       );
+      return this.globalFilter;
     } else {
       return null;
     }
   }
 
-  public onSaleDataDataLoaded(data: any): void {    
-      this.processLineData(data);   
-  }
 
- private processLineData(data: any[]): void {
-    if (data && data.length) {
-      const salesSerie: ChartSeries = {
-        key: this.translateService.get('SALES'),
-        values: []
-      }
-      data.forEach((item: any, i: number) => {                      
-        salesSerie.values.push({ x: item.saledate, y: item.total });       
-      });      
-      this.lineData = [salesSerie];
+  // carga los datos de la gráfica (vienen del back)
+  createChartFilter() {
+    let filters: Array<Expression> = [];
+    let kv = {};
+    let formValues = this.formFilter.getComponents();
+    let initialDate = formValues.filterStartDate.getValue();
+    let endDate = formValues.filterEndDate.getValue();
+
+    if (initialDate != undefined) {
+      filters.push(
+        FilterExpressionUtils.buildExpressionMoreEqual("saledate", initialDate)
+      );
     }
-  }
+    if (endDate != undefined) {
+      filters.push(
+        FilterExpressionUtils.buildExpressionLessEqual("saledate", endDate)
+      );
+    }
+    console.log("fecha ini: " + initialDate);
+    console.log("fecha fin: " + endDate);
 
-  public onTableDataLoaded(data: any): void {
-    this.formLabel = data.ACCOUNTTYP;
-    this.id = data.ACCOUNTID;
-
-    this.ontimizeService.configureService(
-      this.ontimizeService.getDefaultServiceConfiguration("wholesalers")
-    );
-    if (data.hasOwnProperty("totalsales") && this.ontimizeService !== null) {
-      const filter = {
-        ACCOUNTID: data.ACCOUNTID,
+    if (filters.length > 0) {
+      kv = {
+        "@basic_expression": filters.reduce((exp1, exp2) =>
+          FilterExpressionUtils.buildComplexExpression(
+            exp1,
+            exp2,
+            FilterExpressionUtils.OP_AND
+          )
+        ),
       };
-      const columns = ["MOVEMENT", "DATE_", "MOVEMENTTYPEID"];
-      this.ontimizeService
-        .query({}, columns, "movement", { ACCOUNTID: 4 })
-        .subscribe((resp) => {
-          if (resp.code === 0) {
-            //this.processLineData(resp.data);
-          } else {
-            console.error(resp);
-          }
-        });
     }
-    //this.getLastMovement();
+    const columns = ["saledate,saletotal"];
+    this.ontimizeService
+      .query(kv, columns, "wholesalersalesbyday", { saledate: 93 })
+      .subscribe((result) => {
+        if (result.data && result.data.length) {
+          this.dataChart(result);
+        } else {
+          console.log("Fallo recogiendo info.");
+        }
+      });
   }
 
-  private _configureLineBarChart(locale: any): void {
-    this.balanceChartParams = new LinePlusBarFocusChartConfiguration();
-    this.balanceChartParams.margin.top = 20;
-    this.balanceChartParams.margin.right = 80;
-    this.balanceChartParams.margin.bottom = 40;
-    this.balanceChartParams.margin.left = 120;
-    this.balanceChartParams.focusEnable = false;
-    this.balanceChartParams.yDataType = locale.numberFormat("$,f");
-    this.balanceChartParams.y1Axis.showMaxMin = false;
-    this.balanceChartParams.xDataType = (d) =>
-      locale.timeFormat("%d %b %Y")(new Date(d));
-    this.balanceChartParams.x1Axis.tickPadding = 10;
-    this.balanceChartParams.y1Axis.tickPadding = 10;
-    this.balanceChartParams.legend.margin.top = 0;
-    this.balanceChartParams.legend.margin.right = 0;
-    this.balanceChartParams.legend.margin.bottom = 0;
-    this.balanceChartParams.legend.margin.left = 0;
+  private dataChart(result) {
+    if (result.data && result.data.length) {
+      this.configureDiscreteBarChart();
+      let dataAdapter = DataAdapterUtils.createDataAdapter(
+        this.chartParameters
+      );
+      this.discretebar.setDataArray(dataAdapter.adaptResult(result.data));
+    }
   }
+
+  private configureDiscreteBarChart(): void {
+    this.chartParameters.xAxis = "saledate";
+    this.chartParameters.yAxis = ["saletotal"];
+  }
+  // *********** FIN TAB DE VENTAS ****************
 }

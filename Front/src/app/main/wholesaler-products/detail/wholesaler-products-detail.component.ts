@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { OFormComponent, OTranslateService } from 'ontimize-web-ngx';
 
 @Component({
   selector: 'app-wholesaler-products-detail',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wholesaler-products-detail.component.css']
 })
 export class WholesalerProductsDetailComponent implements OnInit {
+  public currentLang: string;
+  constructor(private translateService: OTranslateService) {this.currentLang = this.translateService.getCurrentLang(); }
 
-  constructor() { }
+  @ViewChild('formdata', { static: false })
+  protected formdata: OFormComponent
 
-  ngOnInit() {
+  ngOnInit( ) {
+    this.formdata.reload();
   }
 
 }

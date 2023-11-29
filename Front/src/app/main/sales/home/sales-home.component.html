@@ -1,0 +1,44 @@
+<div class="container">
+  <div fxFill fxLayout="column" fxLayoutAlign="start">
+    <o-table #table attr="sales" service="saleordersh" entity="saleordershrelated_data" title="SALES"
+      columns="saleordersh_id;saledate;salestatus_{{currentLang}}_name;countries_{{currentLang}}_name;dest_city"
+      visible-columns="saleordersh_id;saledate;salestatus_{{currentLang}}_name;countries_{{currentLang}}_name;dest_city;saleordertotal"
+      sort-columns="saledate" keys="saleordersh_id" query-rows="10" pageable="no" row-height="medium" delete-button="no"
+      insert-button="no" sort-columns="saledate: DESC">
+      <o-table-column attr="saleordersh_id" title="SALEORDERNUMBER" width="15%"
+        class="o-table-column-centered"></o-table-column>
+      <o-table-column attr="saledate" title="SALEDATE" width="22%" type="date" format="LL"></o-table-column>
+      <o-table-column attr="salestatus_{{currentLang}}_name" title="SALESTATUS" width="15%"
+        class="o-table-column-centered"></o-table-column>
+      <o-table-column attr="dest_city" title="DEST_CITY"></o-table-column>
+      <o-table-column attr="countries_{{currentLang}}_name" title="COUNTRY"></o-table-column>
+      <o-table-column attr="saleordertotal" title="SALEORDER_TOTAL" type="currency" currency-symbol="€"
+        currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+      </o-table-column>
+
+      <o-table-row-expandable icon-collapse="expand_more" icon-expand="chevron_right">
+        <ng-template let-row>
+          <o-expandable-container [targets]="[salesLines]" [data]="row">
+            <o-table #salesLines service="saleordersl" entity="saleordersl" parent-keys="saleordersh_id:saleordersh_id"
+              keys="saleordersl_id" columns="saleordersl_id;saleordersl_price;qty;total;image;{{currentLang}}_name"
+              visible-columns="image;{{currentLang}}_name;qty;saleordersl_price;total" query-on-init="no"
+              query-rows="10" pageable="no" insert-button="no" delete-button="no" detail-mode="none">
+              <o-table-column attr="image" title="Imagen" orderable="no" searchable="no" type="image" avatar="yes"
+                empty-image="assets/images/no-image.png" image-type="base64" sql-type="base64"></o-table-column>
+              <o-table-column attr="{{currentLang}}_name" title="NAME" content-align="start"></o-table-column>
+              <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
+              </o-table-column>
+              <o-table-column attr="saleordersl_price" title="PRICE" type="currency" currency-symbol="€"
+                currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
+              <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
+                currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
+            </o-table>
+          </o-expandable-container>
+        </ng-template>
+      </o-table-row-expandable>
+      <o-table-context-menu></o-table-context-menu>
+    </o-table>
+  </div>
+</div>

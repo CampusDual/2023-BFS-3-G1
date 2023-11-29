@@ -1,0 +1,174 @@
+<o-form-container breadcrumb="no" breadcrumb-label-columns="name" breadcrumb-separator=", ">
+    <o-form #oForm attr="sales_pay_edit" service="saleordersh" entity="saleordersh" fxLayout="column" show-header="yes"
+        header-actions="R" keys="id" keys-sql-types="INTEGER" columns="id;dest_address" show-header-navigation="yes"
+        undo-button="no" (onDataLoaded)="onDataLoaded($event)">
+
+        <div o-form-toolbar-buttons>
+            <o-button icon="delete" type="STROKED" attr="" label="DELETEORDER" layout-padding color="accent"
+                (onClick)="deleteOrder($event)"></o-button>
+        </div>
+        <o-integer-input attr="id" oHidden></o-integer-input>
+        <o-column layout-gap="50px">
+
+            <o-column layout-gap="20px">
+                <o-row layout-gap="20px">
+                    <o-column style="background-color:#a6b4a1; border-radius:10px" title="SALEORDER_DATA"
+                        icon="checklist" layout-align="start" layout-gap="10px" fxFlex="30">
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
+                                {{ 'SALEORDERNUMBER' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ oForm.getDataValue('id').value | oReal: {grouping: true, minDecimalDigits: 0,
+                                maxDecimalDigits: 0 } }}
+
+                            </o-column>
+                        </o-row>
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
+                                {{ 'SUBTOTAL' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ salesubtotal | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }}
+                                €
+                            </o-column>
+                        </o-row>
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
+                                {{ 'TAXES' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
+                            </o-column>
+                        </o-row>
+                        <o-row>
+
+                            <o-column fxFlex="70" layout-align="start start">
+                                {{ 'TRANSPORT' | oTranslate }}...
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                {{ saletransport | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 }
+                                }} €
+                            </o-column>
+                        </o-row>
+                        <div class="diagonal-bar">
+                            <p></p>
+                        </div>
+                        <o-row>
+                            <o-column fxFlex="70" layout-align="start start">
+                                <span style="font-weight: bold;">{{ 'SALEORDER_TOTAL' | oTranslate }}...</span>
+                            </o-column>
+                            <o-column fxFlex="30" layout-align="start end">
+                                <span style="font-weight: bold;">{{ saletotal | oReal: { grouping: true,
+                                    minDecimalDigits:
+                                    2, maxDecimalDigits: 2 } }} €</span>
+                            </o-column>
+                        </o-row>
+
+                    </o-column>
+                    <o-column title="DESTINATION_ADDRESS" icon="home" layout-gap="20px" fxFlex="70">
+                        <o-row layout-gap="14px">
+                            <o-text-input attr="dest_name" label="NAME" width="100%" class="form-field"></o-text-input>
+                            <o-text-input attr="dest_surname" label="SURNAME" width="100%" class="form-field"></o-text-input>
+                        </o-row>
+                        <o-row>
+                            <o-text-input attr="dest_address" label="DEST_ADDRESS" width="100%"
+                                class="form-field"></o-text-input>
+                        </o-row>
+                        <o-row layout-gap="20px">
+                            <o-text-input attr="dest_cp" label="DEST_CP" class="form-field"></o-text-input>
+                            <o-text-input attr="dest_city" label="DEST_CITY" class="form-field"
+                                ></o-text-input>
+                            <o-combo attr="country_id" label="COUNTRY" query-on-init="no" query-on-bind="yes"
+                                filter="yes" value-column="id" service="countries" entity="country" keys="id"
+                                columns="id;{{currentLang}}_name" visible-columns="{{currentLang}}_name"
+                                class="form-field">
+                            </o-combo>
+                        </o-row>
+                    </o-column>
+                </o-row>
+                <o-row>
+                    <o-column attr="row1" title="PAYMENT" icon="credit_card" layout-gap="20px" fxFlex="100">
+                        <mat-tab-group fxFill>
+                            <mat-tab label="{{ 'PAYPAL' | oTranslate }}">
+                                <o-column layout-gap="10px" fxFlex="20">
+                                    <INPUT TYPE="hidden" name="cmd" value="_xclick-auto-billing">
+                                    <div #paymentRef></div>
+                                </o-column>
+                            </mat-tab>
+                            <!-- <mat-tab label="{{ 'BIZUM' | oTranslate }}">
+                                <o-column layout-gap="10px">
+                                    <o-row>
+                                        <span style="font-size: 18px;">{{ "BIZUM_PAYMENT" | oTranslate}}</span>
+                                    </o-row>
+                                    <o-row>
+                                        <span style="font-size: 18px;font-weight: 900;">+34 777 123 456</span>
+                                    </o-row>
+                                    <o-row>
+                                        <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
+                                            (click)="pay($event,1)"></o-button>
+                                        <div #paymentRef></div>
+
+
+                                    </o-row>
+                                </o-column>
+                            </mat-tab> -->
+                            <!-- <mat-tab label="{{ 'CREDIT_CARD' | oTranslate }}">
+                                <o-column layout-gap="12px">
+                                    <o-row>
+                                        <o-text-input fxFlex="40" attr="card_number"
+                                            label="{{ 'CARD_NUMBER' | oTranslate }}"
+                                            placeholder="CARDNUMBERHINT"></o-text-input>
+                                    </o-row>
+                                    <o-row layout-gap="20px">
+                                        <o-text-input attr="card_exp" label="{{ 'EXPIRATION' | oTranslate }}"
+                                            placeholder="CARDEXPIREDATEHINT" class="form-field"></o-text-input>
+                                        <o-text-input attr="card_ccv" label="{{ 'CVV' | oTranslate }}"
+                                            class="form-field" placeholder="CARDCVVHINT"></o-text-input>
+                                    </o-row>
+                                    <o-row>
+                                        <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
+                                            (click)="pay($event,2)"></o-button>
+                                    </o-row>
+                                </o-column>
+                            </mat-tab>
+                            <mat-tab label="{{ 'TRANSFER' | oTranslate }}">
+                                <o-column layout-gap="10px">
+                                    <o-row>
+                                        <span style="font-size: 18px;">{{ 'TRANSFER_PAYMENT' | oTranslate }}</span>
+                                    </o-row>
+                                    <o-row>
+                                        <span
+                                            style="font-size: 18px;font-weight: 900;">ES77-1111-2222-3333-4444-5555</span>
+                                    </o-row>
+                                    <o-row>
+                                        <o-button type="STROKED" color="accent" label="PAY" icon="credit_card"
+                                            (click)="pay($event,1)"></o-button>
+                                    </o-row>
+                                </o-column>
+                            </mat-tab> -->
+                        </mat-tab-group>
+                    </o-column>
+                </o-row>
+            </o-column>
+
+            <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="saleordersh_id:id"
+                columns="image;{{currentLang}}_name;qty;saleordersl_price;total"
+                visible-columns="image;{{currentLang}}_name;qty;saleordersl_price;total" insert-button="no"
+                query-rows="8">
+                <o-table-column attr="image" title="IMAGE" orderable="no" searchable="no" type="image" avatar="yes"
+                    empty-image="assets/images/no-image.png" image-type="base64" sql-type="base64"></o-table-column>
+                <o-table-column attr="{{currentLang}}_name" title="NAME" content-align="start"></o-table-column>
+                <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
+                </o-table-column>
+                <o-table-column attr="saleordersl_price" title="PRICE" type="currency" currency-symbol="€"
+                    currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+                </o-table-column>
+                <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
+                    currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+                </o-table-column>
+            </o-table>
+        </o-column>
+
+    </o-form>
+</o-form-container>

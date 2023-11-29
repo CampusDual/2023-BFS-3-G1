@@ -3,7 +3,7 @@
         xmlns="http://www.ontimize.com/schema/jdbc"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
-        catalog="" schema="${mainschema}" table="sales"
+        catalog="" schema="${mainschema}" table="saleordersl"
         datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
     <DeleteKeys>
         <Column>id</Column>
@@ -15,21 +15,20 @@
     <Queries>
         <Query id="default">
             <AmbiguousColumns>
-                <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
-                <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
-                <AmbiguousColumn name="sale_id" prefix="SA" databaseName="id" />
-                <AmbiguousColumn name="sale_price" prefix="SA" databaseName="price" />
-                <AmbiguousColumn name="sale_user" prefix="SA" databaseName="user_" />
-                <AmbiguousColumn name="tuser_user" prefix="TU" databaseName="user_" />
+                <AmbiguousColumn name="product_id" prefix="po" databaseName="id" />
+                <AmbiguousColumn name="product_price" prefix="po" databaseName="price" />
+                <AmbiguousColumn name="saleordersl_id" prefix="sa" databaseName="id" />
+                <AmbiguousColumn name="saleordersh_id" prefix="sh" databaseName="id" />
+                <AmbiguousColumn name="saleordersl_price" prefix="sa" databaseName="price" />
             </AmbiguousColumns>
             <Sentence>
                 <![CDATA[
                SELECT
-                  #COLUMNS#
+                  #COLUMNS#, ((sa.qty * sa.price) - (sa.qty * po.cost)) AS profit
                FROM
-                  ${mainschema}.SALES AS SA
-                  INNER JOIN ${mainschema}.PRODUCTS AS PO ON PO.ID = SA.PRODUCT_ID
-                  INNER JOIN ${mainschema}.TUSER AS TU ON TU.USER_ = SA.USER_
+                  ${mainschema}.saleordersl AS sa
+                  INNER JOIN ${mainschema}.products AS po ON po.id = sa.product_id
+                  INNER JOIN ${mainschema}.saleordersh AS sh ON sh.id = sa.saleordersh_id
                #WHERE#
                #ORDER#
             ]]>

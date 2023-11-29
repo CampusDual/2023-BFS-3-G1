@@ -194,4 +194,11 @@
         fill: #9b9b9b !important;
       }
     }
+    .boton1{
+      margin-left: 40%;
+    }
+    .nv-series{
+      display: none;
+    }
   }
+ 

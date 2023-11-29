@@ -1,0 +1,99 @@
+<!-- <o-form-layout-manager mode="tab" title="SHOPPINGCART" label-columns="es_name" attr="o-form-layout-product-home"
+    title-data-origin="products_form_edit"> -->
+<o-row>
+    <div o-form-toolbar-buttons>
+        <o-button icon="list_alt" type="STROKED" attr="" label="CREATE_SALEORDER" layout-padding color="accent"
+            (onClick)="goToSales($event)"></o-button>
+    </div>
+    <div o-form-toolbar-buttons>
+        <o-button icon="add" type="STROKED" attr="" label="ADD_MORE_PRODUCTS" layout-padding color="accent"
+            (onClick)="backToProducts($event)"></o-button>
+    </div>
+</o-row>
+<o-row>
+    <o-column style="background-color:#a6b4a1 ;margin-top: 10px; border-radius: 10px;
+    text-align: center;" title="SALEORDER_DATA" icon="checklist" layout-align="start"
+        layout-gap="10px" fxFlex="20">
+        <o-row>
+            <o-column fxFlex="70" layout-align="start start">
+                {{ 'SUBTOTAL' | oTranslate }}...
+            </o-column>
+            <o-column fxFlex="30" layout-align="start end">
+                {{ salesubtotal | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }}
+                €
+            </o-column>
+        </o-row>
+        <o-row>
+            <o-column fxFlex="70" layout-align="start start">
+                {{ 'TAXES' | oTranslate }}...
+            </o-column>
+            <o-column fxFlex="30" layout-align="start end">
+                {{ saletaxes | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 } }} €
+            </o-column>
+
+        </o-row>
+        <o-row>
+            <o-column fxFlex="70" layout-align="start start">
+                {{ 'TRANSPORT' | oTranslate }}...
+            </o-column>
+            <o-column fxFlex="30" layout-align="start end">
+                {{ saletransport | oReal: { grouping: true, minDecimalDigits: 2, maxDecimalDigits: 2 }
+                }} €
+            </o-column>
+        </o-row>
+        <div class="diagonal-bar">
+            <p></p>
+        </div>
+        <o-row>
+            <o-column fxFlex="70" layout-align="start start">
+                <span style="font-weight: bold;">{{ 'TOTAL' | oTranslate }}...</span>
+            </o-column>
+            <o-column fxFlex="30" layout-align="start end">
+                <span style="font-weight: bold;">{{ saletotal | oReal: { grouping: true,
+                    minDecimalDigits:
+                    2, maxDecimalDigits: 2 } }} €</span>
+            </o-column>
+        </o-row>
+
+    </o-column>
+    <o-column fxFlex="85">
+        <div class="grid-con" fxFill fxLayout="column" fxLayoutAlign="start">
+
+            <o-grid #shoppingcartGrid fxFlex attr="shoppingcartGrid" title="SHOPPINGCART" service="shoppingcart"
+                entity="shoppingcart" keys="id" columns="id;shoppingcart_price;product_id;qty;image;{{currentLang}}_name;user_;total"
+                query-rows="12" quick-filter="no" pageable="no" virtual-scroll="no" detail-mode='none' cols="6"
+                refresh-button="false" grid-item-height="1:2">
+
+                <o-grid-item *ngFor="let list of shoppingcartGrid.dataArray">
+                    <div fxLayout="column" fxLayoutAlign="center">
+                        <o-image [data]="list.image" enabled="false" read-only="false" show-controls="no"
+                            auto-fit="true" full-screen-button="no" empty-image="./assets/images/no-image.png"
+                            fxFill></o-image>
+                        <!-- Cor do nome do produto -->
+                        <span style="font-size: 13px; color: #5b7056; min-height: 45px;">
+{{ currentLang == 'en' ? list.en_name : list.es_name }}</span>
+                        <!-- Cor da cantidade -->
+                        <span style="font-size: 13px; color: #5b7056">
+                            {{"QTY" | oTranslate}} {{list.qty}}</span>
+                        <!-- Cor do prezo -->
+                        <span style="font-size: 13px; color: #5b7056; font-style: italic;">
+                            {{list.shoppingcart_price}} €</span>
+                        <div fxLayout="row" fxLayoutAlign="center">
+                            <o-button id="up1" attr="fab-mini2" type="FAB-MINI" icon="add" layout-padding color=""
+                                (click)="updateCartItem(list,1)"></o-button>
+                            <o-button id="down1" attr="fab-mini2" type="FAB-MINI" icon="remove" layout-padding color=""
+                                (click)="updateCartItem(list,0)"></o-button>
+                            <o-button id="delete" attr="fab-mini2" type="FAB-MINI" icon="delete" layout-padding
+                                color="primary" (click)="deleteCartItem(list)"></o-button>
+                        </div>
+                    </div>
+
+                </o-grid-item>
+            </o-grid>
+        </div>
+    </o-column>
+</o-row>
+
+
+
+<!-- </o-form-layout-manager> -->

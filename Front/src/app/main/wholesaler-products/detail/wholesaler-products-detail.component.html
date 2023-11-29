@@ -1,4 +1,4 @@
-<o-form-container breadcrumb="yes" breadcrumb-label-columns="es_name" [form]="form">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="{{currentLang}}_name" [form]="form">
     <mat-tab-group fxFill>
 
         <mat-tab label="{{ 'MAIN_DATA' | oTranslate }}">
@@ -11,20 +11,31 @@
                         <o-image id="image" attr="image" label="IMAGE" width="350px"
                             empty-image="assets/images/no-image.png" sql-type="OTHER"></o-image>
                         <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
-                            <o-text-input attr="es_name" label="NAME" width="100%" class="form-field"></o-text-input>
-                            <o-textarea-input attr="es_description_short" label="SHORT_DESCRIPTION" width="100%"
-                                rows="3" class="form-field"></o-textarea-input>
-                            <o-textarea-input attr="es_description_long" label="LONG_DESCRIPTION" width="100%" rows="6"
+                            <div>{{ 'ENGLISH_PRODUCT_DATA' | oTranslate }}</div>
+                            <o-text-input attr="en_name" label="Name" width="100%" class="form-field" required="true"></o-text-input>
+                            <!-- <o-textarea-input attr="{{currentLang}}_description_short" label="SHORT_DESCRIPTION" width="100%"
+                                rows="3" class="form-field"></o-textarea-input> -->
+                            <o-textarea-input attr="en_description_long" label="Description" width="100%" rows="6"
                                 class="form-field"></o-textarea-input>
-                            <o-currency-input attr="price" label="PRICE" width="95px"></o-currency-input>
+                                <div>{{ 'SPANISH_PRODUCT_DATA' | oTranslate }}</div>
+                            <o-text-input attr="es_name" label="Nombre" width="100%" class="form-field" required="true"></o-text-input>
+                            <!-- <o-textarea-input attr="{{currentLang}}_description_short" label="SHORT_DESCRIPTION" width="100%"
+                                rows="3" class="form-field"></o-textarea-input> -->
+                            <o-textarea-input attr="es_description_long" label="Descripción" width="100%" rows="6"
+                                class="form-field"></o-textarea-input>
+                                <br>
+                                
+
+                                <o-currency-input attr="cost" label="COST" width="95px" required="true"></o-currency-input>            
+                            <o-currency-input attr="price" label="PRICE" width="95px" required="true"></o-currency-input>
                             <o-combo attr="category_id" width="300px" label="CATEGORY" query-on-init="no"
                                 query-on-bind="yes" filter="yes" value-column="id" service="categories"
-                                entity="category" keys="id" columns="id;es_name" visible-columns="es_name"
+                                entity="category" keys="id" columns="id;{{currentLang}}_name" visible-columns="{{currentLang}}_name"
                                 class="form-field" required="true">
                             </o-combo>
                             <o-combo attr="country_id" label="COUNTRY" width="250px" query-on-init="no"
                                 query-on-bind="yes" filter="yes" value-column="id" service="countries" entity="country"
-                                keys="id" columns="id;en_name" visible-columns="en_name" class="form-field">
+                                keys="id" columns="id;{{currentLang}}_name" visible-columns="{{currentLang}}_name" class="form-field" required="true">
                             </o-combo>
                         </div>
                     </div>
@@ -66,7 +77,7 @@
 
                     </div>
                     <div fxLayout="column" fxLayoutAlign="start">
-                        <o-slide-toggle attr="al_vegano" label="NO APTO PARA VEGANOS" read-only="no"></o-slide-toggle>
+                        <o-slide-toggle attr="al_vegano" label="NOT FOR VEGANS" read-only="no"></o-slide-toggle>
                     </div>
                 </o-row>
             </o-form>
@@ -74,21 +85,24 @@
         <mat-tab label="{{ 'SALES' | oTranslate }}">
             <o-form #form attr="products_form_edit" fxLayout="column" show-header="yes" header-actions="R" #oDetailForm
                 keys="id" keys-sql-types="INTEGER" show-header-navigation="no" service="products" entity="product">
-                <o-table fxFlex service="sales" entity="sale" parent-keys="product_id:id"
-                    columns="sale_id;saledate;product_id;sale_price;qty;total"
-                    visible-columns="sale_id;saledate;qty;sale_price;total" insert-button="no" delete-button="no"
-                    query-rows="8">
-                    <o-table-column attr="sale_id" title="ID" class="o-table-column-centered"></o-table-column>
+                <o-table fxFlex service="saleordersl" entity="saleordersl" parent-keys="product_id:id"
+                    columns="saleordersl_id;saledate;product_id;saleordersl_price;qty;total"
+                    visible-columns="saledate;qty;saleordersl_price;total;profit" insert-button="no" delete-button="no"
+                    query-rows="24" >                    
                     <o-table-column attr="saledate" title="SALEDATE" type="date" format="LL"></o-table-column>
                     <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
                     </o-table-column>
-                    <o-table-column attr="sale_price" title="PRICE" type="currency" currency-symbol="€"
+                    <o-table-column attr="saleordersl_price" title="PRICE" type="currency" currency-symbol="€"
                         currency-symbol-position="right" thousand-separator="." decimal-separator=",">
                     </o-table-column>
                     <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
                         currency-symbol-position="right" thousand-separator="." decimal-separator=",">
                     </o-table-column>
+                    <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+                    currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+                </o-table-column>
                     <o-table-column-aggregate attr="total" title="TOTAL"></o-table-column-aggregate>
+                    <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
                 </o-table>
             </o-form>
         </mat-tab>

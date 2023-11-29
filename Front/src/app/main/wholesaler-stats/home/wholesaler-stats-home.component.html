@@ -4,29 +4,36 @@
 
     <!-- aqui metemos un tab para las distintas opciones  -->
     <mat-tab-group fxFill>
-
       <!-- tab de resumen de ventas con los gráficos -->
       <mat-tab label="{{ 'SUMMARY' | oTranslate }}">
         <div fxLayout="column" fxLayoutAlign="start stretch" class="max-height">
           <div fxLayout="row">
             <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
-              fxFlex="40">
-              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }}</span>
+              fxFlex="50">
+              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear}}</span>
               <span class="account-form-value balance">{{ totalsales | oReal: { grouping: true, minDecimalDigits: 2,
                 maxDecimalDigits: 2 } }} €</span>
               <div class="balance-border"></div>
-              <span>{{ 'FIRST SALE DATE' | oTranslate }}{{ first_sale_date | date:'d MMM, y' }}</span>
-              <span>{{ 'LAST SALE DATE' | oTranslate }}{{ last_sale_date | date:'d MMM, y' }}</span>
-              <span></span>
+              <o-chart type="discreteBar" x-label="Axis x" y-label="Axis Y" service="wholesalers" entity="wholesalersalesthisyear"
+                x-axis="salemonth" y-axis="totalsales"></o-chart>
+
             </o-column>
-            <o-column title="{{ 'SALES_INFO' | oTranslate }}" class="account-info-container mat-elevation-z1"
-              fxFlex="40">
-              <o-chart type="line" x-label="Time" y-label="Amount (€)" service="wholesalers"
-                entity="wholesalersalesdetail" x-axis="saledate" y-axis="total" x-data-type="time"></o-chart>
+            <o-column title="{{ 'SALES_INFO_2' | oTranslate }}" class="account-info-container mat-elevation-z1"
+              fxFlex="50">
+              <span class="account-form-label balance">{{ 'TOTAL SALES' | oTranslate }} {{currentYear -1}}</span>
+              <span class="account-form-value balance">{{ pastTotalsales | oReal: { grouping: true, minDecimalDigits: 2,
+                maxDecimalDigits: 2 } }} €</span>
+              <div class="balance-border"></div>
+              <o-chart #ochart type="discreteBar" x-label="Mes" y-label="Importe (€)" layout-fill service="wholesalers"
+                entity="wholesalersalespreviusyear" x-axis="salemonth" y-axis="totalsales"
+                x-data-type="Month"></o-chart>
             </o-column>
           </div>
         </div>
+
       </mat-tab>
+
+
 
       <!-- tab con las ventas -->
       <mat-tab label="{{ 'SALES_DATA' | oTranslate }}">
@@ -38,15 +45,11 @@
           <div class="filter_style" fxLayout="column" fxLayoutGap="14px">
             <div fxLayout="row wrap" fxLayoutGap="32px">
               <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-                <o-date-input #filterStartDate attr="filterStartDate" style="margin-top: 15px" label="START DATE"
+                <o-date-input #filterStartDate attr="filterStartDate" style="margin-top: 15px" label="STARTDATE"
                   read-only="no"></o-date-input>
-                <o-date-input #filterEndDate attr="filterEndDate" style="margin-top: 15px" label="END DATE"
+                <o-date-input #filterEndDate attr="filterEndDate" style="margin-top: 15px" label="ENDDATE"
                   read-only="no"></o-date-input>
-              </div>
-            </div>
-            <div fxLayout="row" fxLayoutGap="32px">
-              <div fxFlex="100%" fxFill class="filter_btn" fxLayoutAlign="flex-end flex-end">
-                <o-button attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear"
+                <o-button class="boton1" attr="clear" [oFilterBuilderClear]="filterBuilder" type="STROKED" label="Clear"
                   layout-padding>
                 </o-button>
                 <o-button attr="filter" [oFilterBuilderQuery]="filterBuilder" type="STROKED" label="Filter"
@@ -70,8 +73,8 @@
 
               <o-table #sales fxFlex attr="wholesaler" title="SALES" service="wholesalers"
                 entity="wholesalersalesdetail" keys="sale_id"
-                columns="sale_id;product_id;saledate;image;es_name;qty;sale_price;total"
-                visible-columns="saledate;image;es_name;qty;sale_price;total" sort-columns="saledate"
+                columns="sale_id;product_id;saledate;image;{{ currentLang }}_name;qty;sale_price;total"
+                visible-columns="saledate;image;{{ currentLang }}_name;qty;sale_price;total;profit" sort-columns="saledate"
                 insert-button="false" delete-button="false" query-rows="10" quick-filter="no" row-height="medium"
                 select-all-checkbox="true" pageable="no" virtual-scroll="no"
                 (onDataLoaded)="onSaleDataDataLoaded($event)">
@@ -80,7 +83,7 @@
                   type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
                 </o-table-column>
                 <!-- nombre -->
-                <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
+                <o-table-column attr="{{ currentLang }}_name" title="NAME" searchable="yes" orderable="yes">
                 </o-table-column>
                 <!-- cantidad -->
                 <o-table-column attr="qty" title="QTY" class="o-table-column-right" type="integer">
@@ -93,9 +96,12 @@
                 <o-table-column attr="total" title="TOTAL" type="currency" currency-symbol="€"
                   currency-symbol-position="right" thousand-separator="." decimal-separator=",">
                 </o-table-column>
+                <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+                currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+              </o-table-column>
                 <!-- sumatorio del total -->
                 <o-table-column-aggregate attr="total" title="TOTAL"></o-table-column-aggregate>
-
+                <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
                 <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
               </o-table>
 
@@ -104,8 +110,8 @@
             <o-column title="{{ 'SALES_GRAPH' | oTranslate }}" class="account-info-container mat-elevation-z1"
               fxFlex="40">
               <!-- aqui va la tabla con el detalle de las ventas filtradas si es el caso -->
-              <o-chart #saleschart type="line" x-label="Time" y-label="Amount (€)" [data]="lineData" x-axis="saledate"
-                y-axis="total" x-data-type="time" showLegend="true"></o-chart>
+              <o-chart [chart-parameters]="chartParameters" #discretebar type="line" x-label="Time" y-label="Amount (€)"  x-axis="x"
+                y-axis="y" x-data-type="time" ></o-chart>
 
             </o-column>
           </div>
@@ -115,37 +121,38 @@
       <!-- tab con el abc de productos -->
       <mat-tab label="{{ 'PRODUCTS_SALE_DATA' | oTranslate }}">
         <o-table fxFlex attr="product" title="PRODUCTS" service="wholesalers" entity="wholesalerbestsellers"
-          keys="sale_id" columns="product_id;image;es_name;totalqty;salestotal"
-          visible-columns="image;es_name;totalqty;salestotal" sort-columns="totalqty desc" query-rows="24"
+          keys="sale_id" columns="product_id;image;{{ currentLang }}_name;totalqty;salestotal"
+          visible-columns="image;{{ currentLang }}_name;totalqty;salestotal;profit" sort-columns="totalqty desc" query-rows="24"
           quick-filter="yes" row-height="medium" select-all-checkbox="no" pageable="no" virtual-scroll="no"
-          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false">
+          detail-mode="no" edition-mode="no" insert-button="false" delete-button="false" query-rows="12">
 
           <!-- imagen -->
           <o-table-column attr="image" title="IMAGE" async-load="true" width="48px" orderable="no" searchable="no"
             type="image" image-type="base64" empty-image="assets/images/no-image.png" avatar="yes">
           </o-table-column>
           <!-- nombre -->
-          <o-table-column attr="es_name" title="NAME" searchable="yes" orderable="yes">
+          <o-table-column attr="{{ currentLang }}_name" title="NAME" searchable="yes" orderable="yes">
           </o-table-column>
           <!-- cantidad vendida -->
-          <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" type="number" searchable="yes" 
-          orderable="yes" thousand-separator="." decimal-separator="," content-align="end">
+          <o-table-column attr="totalqty" title="{{ 'TOTALQTY' | oTranslate }}" type="number" searchable="yes"
+            orderable="yes" thousand-separator="." decimal-separator="," content-align="end">
           </o-table-column>
           <!-- total -->
           <o-table-column attr="salestotal" title="TOTAL" type="currency" currency-symbol="€"
             currency-symbol-position="right" thousand-separator="." decimal-separator=",">
           </o-table-column>
+          <!-- beneficio -->
+          <o-table-column attr="profit" title="PROFIT" type="currency" currency-symbol="€"
+            currency-symbol-position="right" thousand-separator="." decimal-separator=",">
+          </o-table-column>
           <o-table-context-menu></o-table-context-menu>
-          <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+          <o-table-column-aggregate attr="salestotal" title="TOTAL"></o-table-column-aggregate>
+          <o-table-column-aggregate attr="profit" title="PROFIT"></o-table-column-aggregate>
+          <o-table-paginator page-size-options="12;24;96"></o-table-paginator>
         </o-table>
       </mat-tab>
 
     </mat-tab-group>
-
-
-
-
-
 
   </o-form>
 </div>

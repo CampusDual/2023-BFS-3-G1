@@ -21,25 +21,26 @@ export class ThemeService {
 
   public availableThemes = [
     {
+      primary: '#6f856a',
+      accent: '#4649A6',
+      href: 'o-violet-blues.css',
+      href_dark: 'o-violet-blues-dark.css',
+      description: 'Tema del grupo A',
+      isDefault: true
+    },
+    {
       primary: '#1464a5',
       accent: '#1464a5',
       href: 'ontimize.css',
       href_dark: 'ontimize-dark.css',
       description: 'Ontimize',
-      isDefault: true
-    }, {
+    }, 
+    {
       primary: '#1464a5',
       accent: '#1464a5',
       href: 'ontimize-implatform.css',
       href_dark: 'ontimize-implatform-dark.css',
       description: 'Ontimize with fashion styles'
-    },
-    {
-      primary: '#6f856a',
-      accent: '#4649A6',
-      href: 'o-violet-blues.css',
-      href_dark: 'o-violet-blues-dark.css',
-      description: 'Tema del grupo A'
     },
     {
       primary: '#071540',

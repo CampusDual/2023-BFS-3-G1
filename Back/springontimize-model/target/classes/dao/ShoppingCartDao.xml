@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+        xmlns="http://www.ontimize.com/schema/jdbc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+        catalog="" schema="${mainschema}" table="shoppingcart"
+        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>id</Column>
+        <Column>user_</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>id</Column>
+    </UpdateKeys>
+    <GeneratedKey>id</GeneratedKey>
+    <Queries>
+        <Query id="related">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="id" prefix="SC" databaseName="id" />
+                <AmbiguousColumn name="product_id" prefix="PO" databaseName="id" />
+                <AmbiguousColumn name="shoppingcart_price" prefix="SC" databaseName="price" />
+                <AmbiguousColumn name="product_price" prefix="PO" databaseName="price" />
+            </AmbiguousColumns>
+            <ValidColumns>
+                <Column>user_</Column>
+                <Column>product_id</Column>
+                <Column>qty</Column>
+                <Column>total</Column>
+                <Column>id</Column>
+                <Column>shoppingcart_price</Column>
+                <Column>image</Column>
+                <Column>es_name</Column>
+                <Column>en_name</Column>
+            </ValidColumns>
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.SHOPPINGCART AS SC
+               INNER JOIN
+                 ${mainschema}.PRODUCTS AS PO
+                 ON
+                 SC.PRODUCT_ID = PO.ID
+               #WHERE#
+            ]]>
+            </Sentence>
+        </Query>
+        <Query id="default">
+            <Sentence>
+                <![CDATA[
+               SELECT
+                  #COLUMNS#
+               FROM
+                  ${mainschema}.SHOPPINGCART AS SC
+               #WHERE#
+            ]]>
+            </Sentence>
+        </Query>
+    </Queries>
+</JdbcEntitySetup>

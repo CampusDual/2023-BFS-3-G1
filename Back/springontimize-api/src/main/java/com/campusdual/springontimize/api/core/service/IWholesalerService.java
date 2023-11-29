@@ -23,4 +23,11 @@ public interface IWholesalerService {
     // Devuelve los productos mas vendidos del mayorista seleccionado
     public EntityResult wholesalerbestsellersQuery(Map<String, Object> keyMap, List<String> attrList);
 
+    public EntityResult  wholesalersalesbyyearmonthQuery(Map<String, Object>keyMap, List<String>attrList);
+
+
+    public EntityResult wholesalersalesthisyearQuery(Map<String, Object> keyMap, List<String> attrList);
+    public EntityResult wholesalersalespreviusyearQuery(Map<String, Object> keyMap, List<String> attrList);
+    public EntityResult wholesalersalesbydayQuery(Map<String, Object> keyMap, List<String> attrList);
+
 }

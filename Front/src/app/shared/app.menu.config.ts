@@ -16,7 +16,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     items: [
       {
         id: "food",
-        name: "SECTION_FOOD",
+        name: "FOOD",
         tooltip: "SECTION_FOOD_TOOLTIP",
         route: "/main/sectionfood",
         icon: "lunch_dining",
@@ -44,6 +44,20 @@ export const MENU_CONFIG: MenuRootItem[] = [
     ],
   }, 
   {
+    id: "shoppingcart", 
+    name: "SHOPPINGCART", 
+    icon: "shopping_cart", 
+    route: "/main/shoppingcart",
+    image: "assets/images/cart.png"
+  },
+  {
+    id: "sales",
+     name: "MY_SALEORDERS", 
+     icon: "shopping_bag", 
+     route: "/main/sales",
+     image: "assets/images/sales.png"
+  },
+  {
     id: "wholesaler",
     name: "WHOLESALER",
     icon: "sell",
@@ -51,42 +65,40 @@ export const MENU_CONFIG: MenuRootItem[] = [
     items: [
       {
         id: "wholesaler-products",
-        name: "WHOLESALER_PRODUCTS",
-        tooltip: "WHOLESALER_PRODUCTS_TOOLTIP",
+        name: "MY_PRODUCTS",   
         route: "/main/wholesaler-products",
         icon: "inventory",
       },
       {
         id: "wholesaler-stats",
-        name: "WHOLESALER_STATS",
-        tooltip: "WHOLESALER_STATS_TOOLTIP",
+        name: "MY_STATS",     
         route: "/main/wholesaler-stats",
         icon: "bar_chart",
       },           
     ],
   }, 
-  // {
-  //   id: "admin",
-  //   name: "ADMINISTRATION",
-  //   icon: "settings",
-  //   opened: true,
-  //   items: [
-  //     {
-  //       id: "admin-categories",
-  //       name: "CATEGORIES",
-  //       tooltip: "CATEGORIES_TOOLTIP",
-  //       route: "/main/admon-categories",
-  //       icon: "category",
-  //     },
-  //     {
-  //       id: "admin-products",
-  //       name: "PRODUCTS",
-  //       tooltip: "PRODUCTS_TOOLTIP",
-  //       route: "/main/admon-products",
-  //       icon: "inventory_2",
-  //     },      
-  //   ],
-  // },  
+  {
+    id: "admin",
+    name: "ADMINISTRATION",
+    icon: "settings",
+    opened: true,
+    items: [
+      {
+        id: "admin-categories",
+        name: "CATEGORIES",
+        tooltip: "CATEGORIES_TOOLTIP",
+        route: "/main/admon-categories",
+        icon: "category",
+      },
+      {
+        id: "admin-products",
+        name: "PRODUCTS",
+        tooltip: "PRODUCTS_TOOLTIP",
+        route: "/main/admon-products",
+        icon: "inventory_2",
+      },      
+    ],
+  },  
   {
     id: "logout",
     name: "LOGOUT",
